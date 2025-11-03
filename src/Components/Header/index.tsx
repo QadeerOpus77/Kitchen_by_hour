@@ -10,11 +10,13 @@ import {
 import style from './style';
 import { images } from '../../constant';
 import { HeaderProps } from '../types';
+import { navigate } from '../../navigation/Stack/NavigationRef';
+import NavigationStrings from '../../navigation/NavigationStrings';
+import { RootStackParamList } from '../../navigation/types/RootStackParamList';
 
 const Header: React.FC<HeaderProps> = ({
   title,
   subtitle,
-  onAvatarPress,
   avatarSource = images.user,
   showSearch = true,
 }) => {
@@ -32,6 +34,12 @@ const Header: React.FC<HeaderProps> = ({
       setSearchVisible(!searchVisible);
     });
   };
+
+  const onAvatarPress = () => {
+    navigate({
+      name: NavigationStrings.PROFILE_STACK as keyof RootStackParamList,
+    });
+  }
 
   const inputWidth = widthAnim.interpolate({
     inputRange: [0, 1],

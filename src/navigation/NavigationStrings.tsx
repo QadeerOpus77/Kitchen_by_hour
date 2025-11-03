@@ -17,6 +17,7 @@ export default {
     ALERTS: 'Alerts',
     MENU: 'Menu',
     MORE: 'more',
+    PROFILE: 'Profile',
 
 
     // Setting
@@ -27,7 +28,7 @@ export default {
     ROLE_STACK: 'RoleStack',
     BOTTOM_STACK: 'BottomStack',
     HOME_STACK: 'HomeStack',
-    BOOKING_STACK: 'BookingStack'
-    // PROFILE_STACK: 'ProfileStack'
+    BOOKING_STACK: 'BookingStack',
+    PROFILE_STACK: 'ProfileStack'
 
 };
