@@ -1,0 +1,24 @@
+import { createStackNavigator } from '@react-navigation/stack';
+import * as React from 'react';
+import * as Screens from '../../screens';
+import NavigationStrings from '../NavigationStrings';
+// import DrawerStack from './DrawerStack';
+
+const Stack = createStackNavigator();
+
+export default function BookingStack() {
+    return (
+        <Stack.Navigator
+            screenOptions={{ headerShown: false }}
+            initialRouteName={NavigationStrings.BOOK_NOW}>
+            <Stack.Screen
+                name={NavigationStrings.BOOK_NOW}
+                component={Screens.BookNow}
+            />
+            {/* <Stack.Screen
+                name={NavigationStrings.THANK_YOU}
+                component={Screens.ThankYou}
+            /> */}
+        </Stack.Navigator>
+    );
+}

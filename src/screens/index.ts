@@ -1,0 +1,13 @@
+export { default as SignIn } from './SignIn';
+export { default as SignUp } from './SignUp';
+export { default as ForgotPassword } from './ForgotPassword';
+export { default as Otp } from './OTP';
+export { default as NewPassword } from './NewPassword';
+export { default as SelectRole } from './SelectRole';
+export { default as Home } from './Home';
+export { default as BookNow } from './BookNow';
+// export { default as ThankYou } from './ThankYou';
+export { default as Alerts } from './Alerts';
+export { default as Calender } from './Calender';
+export { default as Menu } from './Menu';
+export { default as CheckIn } from './CheckIn';
