@@ -72,8 +72,6 @@ const FormInput: React.FC<FormInputProps> = ({
           {
             width,
             height,
-            backgroundColor: trip ? COLORS.black : COLORS.white,
-            borderRadius: trip ? SIZES.h22 : SIZES.h45,
           },
         ]}
       >
@@ -85,7 +83,7 @@ const FormInput: React.FC<FormInputProps> = ({
           onChangeText={onChangeText}
           onBlur={onBlur}
           secureTextEntry={isPassword && !isPasswordVisible}
-          placeholderTextColor={trip ? COLORS.darkGray : COLORS.black}
+          placeholderTextColor={COLORS.gray}
           keyboardType={phoneNumber ? 'number-pad' : undefined}
           onFocus={() => setIsFocused(true)}
           onEndEditing={() => setIsFocused(false)}
@@ -119,7 +117,6 @@ const FormInput: React.FC<FormInputProps> = ({
           </TouchableOpacity>
         )}
       </View>
-
       {error && <Text style={styles.errorText}>{error}</Text>}
     </Animated.View>
   );

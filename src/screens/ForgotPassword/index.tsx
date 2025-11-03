@@ -12,7 +12,7 @@ import {
   Platform,
 } from 'react-native';
 import styles from './style';
-import { BackHeader, FormInput } from '../../Components';
+import { BackHeader, Button, FormInput } from '../../Components';
 import { navigate } from '../../navigation/Stack/NavigationRef';
 import NavigationStrings from '../../navigation/NavigationStrings';
 import { RootStackParamList } from '../../navigation/types/RootStackParamList';
@@ -34,7 +34,7 @@ const ForgotPassword = () => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <SafeAreaView style={styles.container}>
           <StatusBar barStyle="dark-content" />
-      <BackHeader/>
+          <BackHeader />
           <View style={styles.content}>
             <Text style={styles.title}>Forgot Password</Text>
             <Text style={styles.description}>
@@ -70,26 +70,34 @@ const ForgotPassword = () => {
                     onBlur={handleBlur('email')}
                     error={touched.email && errors.email ? errors.email : ''}
                     width={width}
-                    height={SIZES.padding * 3}
+                    height={SIZES.input * 1.5}
                   />
-
-                 
                 </View>
               )}
             </Formik>
-             <TouchableOpacity
-                         style={[
-                           styles.forgotButton,
-                         ]}
-                         onPress={OTP}
-                       >
-                         <Text style={styles.forgotButtonText}>Continue</Text>
-                         
-                       </TouchableOpacity>
+            {/* <TouchableOpacity
+              style={[
+                styles.forgotButton,
+              ]}
+              onPress={OTP}
+            >
+              <Text style={styles.forgotButtonText}>Continue</Text>
+
+            </TouchableOpacity> */}
           </View>
+          <Button
+            style={styles.buttonContainer}
+            onPress={OTP}
+            title="Continue"
+          // colors={[COLORS.ThemeColor, COLORS.ThemeColor]}
+          // start={{ x: 0, y: 0 }}
+          // end={{ x: 1, y: 0 }}
+          // disabled={!isValid || loading}
+          />
+
         </SafeAreaView>
       </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+    </KeyboardAvoidingView >
   );
 };
 

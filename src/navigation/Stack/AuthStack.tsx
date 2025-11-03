@@ -24,7 +24,7 @@ export default function AuthStack() {
             />
             <Stack.Screen
                 name={NavigationStrings.OTP}
-                component={Screens.Otp}
+                component={Screens.OTP}
             />
             <Stack.Screen
                 name={NavigationStrings.NEW_PASSWORD}

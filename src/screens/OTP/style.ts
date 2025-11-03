@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { COLORS, FONTS, SIZES } from '../../constant';
+import { COLORS, FONTS, SIZES, commonStyles } from '../../constant';
+import { ThemeContext } from '@react-navigation/native';
 
 export const styles = StyleSheet.create({
   container: {
@@ -11,74 +12,63 @@ export const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    padding:SIZES.padding
+    paddingHorizontal: SIZES.padding,
   },
   title: {
-     marginTop:SIZES.h15,
-      color: COLORS.black,
-      ...FONTS.Regular22,
-      fontSize: SIZES.h30,
+    ...FONTS.Bold24,
+    fontWeight: '600',
   },
   subtitle: {
-     ...FONTS.Regular14,
-    color: COLORS.black,
-    marginBottom: SIZES.base,
+    ...FONTS.Regular14,
+    color: COLORS.darkGray,
   },
   otpContainer: {
+    ...commonStyles.alignItemsCenter,
+    ...commonStyles.justifyContentCenter,
+    padding: SIZES.padding,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: SIZES.h20,
+    gap: SIZES.base,
   },
   otpInput: {
     ...FONTS.Regular22,
-    width:SIZES.h50,
-    height:SIZES.h50,
-    borderWidth: 1,
+    width: SIZES.input * 1,
+    height: SIZES.input * 1.1,
     borderColor: COLORS.borderColor,
     borderRadius: SIZES.h10,
     textAlign: 'center',
+    borderWidth: 1,
     color: COLORS.black,
-    backgroundColor: COLORS.white,
-    
   },
-  otpInputFilled: {
-    borderColor: COLORS.ThemeColor,
-    backgroundColor: COLORS.white,
-  },
+  otpInputFilled: {},
   resendContainer: {
+    ...commonStyles.alignItemsCenter,
+    ...commonStyles.justifyContentCenter,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf:'center',
-    borderRadius:SIZES.h10,
-    backgroundColor:COLORS.lightTheme,
-    paddingVertical:SIZES.width*0.03,
-    width:SIZES.width*0.4
-    
+    alignSelf: 'center',
+    borderRadius: SIZES.radius * 0.5,
+    paddingVertical: SIZES.padding * 0.5,
+    width: SIZES.width * 0.4,
+    backgroundColor: COLORS.ThemeColor,
   },
   resendText: {
-    ...FONTS.Regular14,
-    color: COLORS.black,
+    ...FONTS.Regular12,
   },
   timerText: {
     ...FONTS.Regular14,
     color: COLORS.ThemeColor,
   },
   continueButton: {
-    backgroundColor:COLORS.ThemeColor,
-    padding:SIZES.width*0.03,
-    borderRadius: SIZES.h10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: "auto",
-    marginBottom: SIZES.h50,
+    ...commonStyles.alignItemsCenter,
+    ...commonStyles.justifyContentCenter,
+    backgroundColor: COLORS.ThemeColor,
+    width: SIZES.width * 0.9,
+    paddingVertical: SIZES.padding * 0.5,
+    borderRadius: SIZES.radius,
+    marginTop: 'auto',
+    // marginBottom: SIZES.margin,
+    alignSelf: 'center',
   },
   continueButtonDisabled: {
-    backgroundColor: '#B0D4FF',
-  },
-  continueButtonText: {
-    color: COLORS.white,
-        ...FONTS.Regular15,
-        textAlign: 'center'
+    backgroundColor: COLORS.inActiveColor,
   },
 });

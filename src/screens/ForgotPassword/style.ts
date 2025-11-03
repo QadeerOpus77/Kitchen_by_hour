@@ -10,29 +10,27 @@ export default StyleSheet.create({
     flex: 1,
   },
   content: {
-      flex: 1,
-      padding:SIZES.padding
-    },
-    title: {
-      marginTop:SIZES.h15,
-      color: COLORS.black,
-      ...FONTS.Regular22,
-      fontSize: SIZES.h30,
-    },
+    flex: 1,
+    paddingHorizontal: SIZES.padding,
+    paddingVertical: SIZES.padding * 0.5,
+  },
+  title: {
+    ...FONTS.Regular20,
+  },
   description: {
-    ...FONTS.Regular14,
-    color: COLORS.black,
+    ...FONTS.Regular12,
+    color: COLORS.darkGray,
     marginBottom: SIZES.base,
   },
   inputContainer: {
-    marginHorizontal:SIZES.padding,
+    marginHorizontal: SIZES.padding,
     alignItems: 'center',
     flexDirection: 'column',
   },
   textInput: {
     paddingLeft: SIZES.h10,
     // flex: 1,
-    alignSelf:'center',
+    alignSelf: 'center',
     color: COLORS.black,
     textAlignVertical: 'center',
     borderWidth: 1,
@@ -40,18 +38,19 @@ export default StyleSheet.create({
     borderRadius: SIZES.h10,
     ...FONTS.Regular16,
   },
-  forgotButton: {
-    backgroundColor:COLORS.ThemeColor,
-    padding:SIZES.width*0.03,
-    borderRadius: SIZES.h10,
-    justifyContent: 'center',
+  buttonContainer: {
+    backgroundColor: COLORS.ThemeColor,
+    borderRadius: SIZES.radius,
     alignItems: 'center',
-    marginTop: "auto",
-    marginBottom: SIZES.h30,
+    justifyContent: 'center',
+    height: SIZES.input,
+    width: SIZES.width * 0.9,
+    alignSelf: 'center',
+    marginBottom: SIZES.margin,
   },
-  forgotButtonText:{
+  forgotButtonText: {
     color: COLORS.white,
-        ...FONTS.Regular15,
-        textAlign: 'center'
-  }
+    ...FONTS.Regular15,
+    textAlign: 'center',
+  },
 });

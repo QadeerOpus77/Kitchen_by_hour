@@ -6,7 +6,6 @@ import {
   View,
   KeyboardAvoidingView,
   Platform,
-
   ScrollView,
 } from 'react-native';
 import {
@@ -158,7 +157,8 @@ const SignIn = () => {
                     onBlur={handleBlur('email')}
                     error={touched.email && errors.email}
                     width={width}
-                    height={SIZES.padding * 3}
+                    height={SIZES.input * 1.5}
+                  // height={SIZES.padding * 3}
                   />
                   <FormInput
                     label="Password"
@@ -169,8 +169,7 @@ const SignIn = () => {
                     error={touched.password && errors.password}
                     isPassword
                     width={width}
-                    height={SIZES.padding * 3}
-                  />
+                    height={SIZES.input * 1.5} />
 
                   <View style={styles.rememberMeContainer}>
                     <View style={styles.rememberMeCheckBoxContainer}>

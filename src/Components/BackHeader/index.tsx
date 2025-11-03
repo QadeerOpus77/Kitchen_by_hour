@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { COLORS, images } from '../../constant';
-import {BackHeaderProps } from '../types';
+import { BackHeaderProps } from '../types';
 import { goBack } from '../../navigation/Stack/NavigationRef';
 import styles from './styles';
 

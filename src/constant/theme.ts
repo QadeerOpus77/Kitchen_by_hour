@@ -40,7 +40,7 @@ export const COLORS = {
   lightgray: '#F5F5F5',
   datePickerColor: '#252525',
   error: '#df4759',
-  lightTheme: '#3C92D04D',
+  lightTheme: '#57aae61e',
 };
 
 export const SIZES = {

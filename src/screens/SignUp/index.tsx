@@ -32,7 +32,7 @@ import { useAuthDispatch, useAuthState } from '../../redux/Hook/authHooks';
 
 const SignUp: React.FC<SignInProps> = ({ route }) => {
   const width = SIZES.width * 1;
-  const height = SIZES.height * 0.08;
+  // const height = SIZES.height * 0.08;
 
   const [rememberMe, setRememberMe] = React.useState(false);
   const { register } = useAuthDispatch();
@@ -158,8 +158,7 @@ const SignUp: React.FC<SignInProps> = ({ route }) => {
                             onChangeText={handleChange('first_name')}
                             onBlur={handleBlur('first_name')}
                             width={SIZES.width * 0.5}
-                            height={height}
-                            error={touched.first_name && errors.first_name}
+                            height={SIZES.input * 1.5} error={touched.first_name && errors.first_name}
                           />
                         </View>
                         <View>
@@ -170,8 +169,7 @@ const SignUp: React.FC<SignInProps> = ({ route }) => {
                             onBlur={handleBlur('last_name')}
                             onChangeText={handleChange('last_name')}
                             width={SIZES.width * 0.5}
-                            height={height}
-                            error={touched.last_name && errors.last_name}
+                            height={SIZES.input * 1.5} error={touched.last_name && errors.last_name}
                           />
                         </View>
                       </View>
@@ -182,8 +180,7 @@ const SignUp: React.FC<SignInProps> = ({ route }) => {
                         value={values.email}
                         onChangeText={handleChange('email')}
                         width={width}
-                        height={height}
-                        error={touched.email && errors.email}
+                        height={SIZES.input * 1.5} error={touched.email && errors.email}
                       />
                       <PhoneNumberInput
                         label="Phone Number"
@@ -212,8 +209,7 @@ const SignUp: React.FC<SignInProps> = ({ route }) => {
                         error={touched.password && errors.password}
                         isPassword
                         width={width}
-                        height={SIZES.padding * 3}
-                      />
+                        height={SIZES.input * 1.5} />
 
                       <FormInput
                         label="Confirm Password"
@@ -223,8 +219,7 @@ const SignUp: React.FC<SignInProps> = ({ route }) => {
                         onBlur={handleBlur('confirm_password')}
                         isPassword={true}
                         width={width}
-                        height={height}
-                        error={
+                        height={SIZES.input * 1.5} error={
                           touched.confirm_password && errors.confirm_password
                         }
                       />
