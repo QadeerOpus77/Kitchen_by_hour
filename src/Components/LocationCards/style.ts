@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { SIZES,COLORS,FONTS } from '../../constant';
+import { CodegenTypes, StyleSheet } from 'react-native';
+import { SIZES, COLORS, FONTS, commonStyles } from '../../constant';
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -10,49 +10,47 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     paddingHorizontal: SIZES.padding,
-    paddingVertical:SIZES.padding,
-    justifyContent:'center',
-    alignContent:'center',
-    alignItems:'center'
+    paddingVertical: SIZES.padding,
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
   },
   card: {
     backgroundColor: COLORS.white,
-    width:SIZES.width*.9,
-    padding:SIZES.padding,
-    borderRadius: SIZES.h10,
-    marginBottom: SIZES.padding,
+    width: SIZES.width * 0.9,
+    padding: SIZES.padding,
+    borderRadius: SIZES.radius,
+    marginBottom: SIZES.margin * 0.5,
     overflow: 'hidden',
   },
   image: {
     width: '100%',
-    height:SIZES.height*.3,
-    borderRadius:SIZES.h10,
-    overflow:'hidden'
+    height: SIZES.height * 0.3,
+    borderRadius: SIZES.radius,
+    overflow: 'hidden',
   },
   content: {
-    paddingVertical: SIZES.padding,
+    paddingTop: SIZES.padding * 0.5,
   },
   title: {
-    ...FONTS.Medium22
+    ...FONTS.Medium16,
   },
   address: {
-   ...FONTS.Medium14,
-    marginBottom:SIZES.base,
+    ...FONTS.Medium10,
+    marginBottom: SIZES.h10,
   },
   description: {
-    ...FONTS.Regular12,
-    marginBottom:SIZES.base,
+    ...FONTS.Regular10,
+    marginBottom: SIZES.base,
+    color: COLORS.darkGray,
     // lineHeight: 18,
   },
   button: {
-    backgroundColor:COLORS.ThemeColor,
-    paddingVertical: SIZES.padding*.5,
-    borderRadius: SIZES.h10,
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: COLORS.white,
-    ...FONTS.Regular18
+    backgroundColor: COLORS.ThemeColor,
+    height: SIZES.input,
+    borderRadius: SIZES.radius,
+    ...commonStyles.alignItemsCenter,
+    ...commonStyles.justifyContentCenter,
   },
 });
 

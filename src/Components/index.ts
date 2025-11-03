@@ -2,6 +2,7 @@ export { default as Container } from './Container';
 export { default as LogoContainer } from './LogoContainer';
 export { default as FormInput } from './FormInput';
 export { default as Button } from './Button';
+export { default as AuthFooter } from './AuthFooter';
 export { default as PhoneNumberInput } from './PhoneNumberInput';
 export { default as BackHeader } from './BackHeader';
 export { default as Header } from './Header';

@@ -3,13 +3,14 @@ import { FONTS, COLORS, SIZES } from '../../constant';
 
 export default StyleSheet.create({
   wrapper: {
-    width: SIZES.width * 0.9,
-    alignSelf: 'center',
+    // alignSelf: 'center',
     marginTop: SIZES.h20,
+    width: SIZES.width,
+    paddingHorizontal: SIZES.padding * 0.5,
   },
 
   label: {
-    ...FONTS.Regular14,
+    ...FONTS.Regular12,
     color: COLORS.black,
     marginBottom: SIZES.h8,
   },
@@ -18,26 +19,26 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
-    borderRadius: SIZES.h10,
-    paddingHorizontal: SIZES.h12,
-    height: SIZES.padding * 2,
+    borderRadius: SIZES.radius,
+    paddingHorizontal: SIZES.padding * 0.5,
+    height: SIZES.input,
     backgroundColor: COLORS.white,
+    alignSelf: 'center',
   },
 
   flagContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: SIZES.h8,
   },
 
   flag: {
     ...FONTS.Medium22,
-    marginRight: SIZES.h10,
+    marginRight: SIZES.margin * 0.5,
   },
 
   code: {
     ...FONTS.Medium14,
-    color: COLORS.black,
+    color: COLORS.darkGray,
     marginRight: SIZES.h10,
   },
 
@@ -49,17 +50,16 @@ export default StyleSheet.create({
   },
 
   verticalLine: {
-    width: 1,
-    height: '60%',
-    backgroundColor: COLORS.borderColor,
+    width: 2,
+    height: '70%',
+    backgroundColor: COLORS.inActiveColor,
     marginHorizontal: SIZES.h8,
   },
 
   textInput: {
     flex: 1,
     ...FONTS.Regular16,
-    color: COLORS.black,
-    paddingVertical: 0,
+    color: COLORS.darkGray,
   },
   errorText: {
     color: COLORS.white,

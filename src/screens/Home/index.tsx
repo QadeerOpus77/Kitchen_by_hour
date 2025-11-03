@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Header from '../../Components/Header';
 import style from './style';
-import { Slider, LocationCards, KitchenCards } from '../../Components';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Slider, LocationCards, KitchenCards, Container } from '../../Components';
+
 
 const Home = () => {
   const [selectedKitchen, setSelectedKitchen] = useState<string | null>(null);
@@ -17,45 +17,49 @@ const Home = () => {
   };
 
   const handleSelect = (id: string) => {
-    
+
     // console.log('Selected Station:', id);
   };
-    return (
-    <SafeAreaView style={style.safeArea}>
-      {selectedKitchen ? (
-        // 🧾 Detail Screen
-        <View style={style.detailContainer}>
-          <Header title="Alex William" subtitle="Warner Bros" />
-          <Text style={style.title}>Choose Kitchen</Text>
+  return (
+    <Container style={style.container}>
+      {
+        selectedKitchen ? (
+          // 🧾 Detail Screen
+          <View style={style.detailContainer} >
+            <Header title="Alex William" subtitle="Warner Bros" />
 
-          {/* <TouchableOpacity onPress={handleBackPress}>
+            <Text style={style.title}>Choose Kitchen</Text>
+
+            {/* <TouchableOpacity onPress={handleBackPress}>
             <Text style={style.backButton}>← Back</Text>
           </TouchableOpacity> */}
 
-          {selectedKitchen === '1' && (
-            <View>
-              <KitchenCards onSelect={handleSelect} />
+            {selectedKitchen === '1' && (
+              <View>
+                <KitchenCards onSelect={handleSelect} />
+              </View>
+            )}
+
+            {
+              selectedKitchen === '2' && (
+                <View>
+                  <KitchenCards onSelect={handleSelect} />
+                </View>
+              )
+            }
+          </View >
+        )
+
+          : (
+            // 🏠 Home Screen
+            <View style={style.container}>
+              <Header title="Alex William" subtitle="Warner Bros" />
+              <Text style={style.title}>Our Kitchens Locations</Text>
+              <Slider />
+              <LocationCards onExplore={handleExplorePress} />
             </View>
           )}
-
-          {selectedKitchen === '2' && (
-            <View>
-              <KitchenCards onSelect={handleSelect} />
-            </View>
-          )}
-        </View>
-      )
-
- : (
-        // 🏠 Home Screen
-        <View style={style.container}>
-          <Header title="Alex William" subtitle="Warner Bros" />
-          <Text style={style.title}>Our Kitchens Locations</Text>
-          <Slider />
-          <LocationCards onExplore={handleExplorePress} />
-        </View>
-      )}
-    </SafeAreaView>
+    </Container >
   );
 };
 

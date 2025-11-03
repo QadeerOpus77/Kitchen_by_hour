@@ -41,7 +41,7 @@ const FormInput: React.FC<FormInputProps> = ({
 
   useEffect(() => {
     Animated.timing(scaleAnim, {
-      toValue: isFocused ? 1.05 : 1,
+      toValue: isFocused ? 1 : 1,
       duration: 200,
       useNativeDriver: true,
     }).start();

@@ -55,17 +55,17 @@ const Header: React.FC<HeaderProps> = ({
 
       {/* Right Side: Search Input / Search Button */}
       <View style={style.headerContainer}>
-        {!searchVisible && (
-          <TouchableOpacity onPress={toggleSearch} style={style.iconButton}>
-            <Image
-              source={images.search}
-              style={style.iconImage}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-        )}
+        {/* {!searchVisible && ( */}
+        <TouchableOpacity onPress={toggleSearch} style={style.iconButton}>
+          <Image
+            source={images.search}
+            style={style.iconImage}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+        {/* )} */}
 
-        {searchVisible && (
+        {/* {searchVisible && (
           <Animated.View style={[style.searchBox, { width: inputWidth }]}>
             <TextInput
               placeholder="Search..."
@@ -78,8 +78,8 @@ const Header: React.FC<HeaderProps> = ({
             <TouchableOpacity onPress={toggleSearch}>
               <Text style={style.cancelText}>✕</Text>
             </TouchableOpacity>
-          </Animated.View>
-        )}
+          </View>
+        )} */}
       </View>
     </View>
   );

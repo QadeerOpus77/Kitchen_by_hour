@@ -10,7 +10,7 @@ import {
   Easing,
 } from 'react-native';
 import { images, COLORS } from '../../constant';
-import { Container, LogoContainer, Loader, Button } from '../../Components';
+import { Container, LogoContainer, Loader, Button, AuthFooter } from '../../Components';
 import { navigate } from '../../navigation/Stack/NavigationRef';
 import NavigationStrings from '../../navigation/NavigationStrings';
 import { RootStackParamList } from '../../navigation/types/RootStackParamList';
@@ -44,7 +44,7 @@ const SelectRole: React.FC = () => {
     navigate({ name: NavigationStrings.AUTH_STACK as keyof RootStackParamList });
   };
   const handleHome = () => {
-    navigate({ name: NavigationStrings.HOME_STACK as keyof RootStackParamList });
+    navigate({ name: NavigationStrings.BOTTOM_STACK as keyof RootStackParamList });
   };
 
   return (
@@ -71,24 +71,23 @@ const SelectRole: React.FC = () => {
             />
           </View>
           <View>
-          <Text style={styles.title}>Which best describes you? </Text>
-          <TouchableOpacity>
-            <Text style={styles.button}>Kitchen Operator or Administrator</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-          onPress={handleHome}>
-            <Text style={styles.button}>
-              Food Maker, Caterer, Baker, Food Truck Operatora
-            </Text>
-          </TouchableOpacity>
+            <Text style={styles.title}>Which best describes you? </Text>
+            <TouchableOpacity>
+              <Text style={styles.button}>Kitchen Operator or Administrator</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={handleHome}>
+              <Text style={styles.button}>
+                Food Maker, Caterer, Baker, Food Truck Operator
+              </Text>
+            </TouchableOpacity>
 
           </View>
-          <View style={styles.signupContainer}>
-            <Text style={styles.member}>Already have an account?</Text>
-            <Text style={styles.signupLink} onPress={handleLogin}>
-              Sign in
-            </Text>
-          </View>
+          <AuthFooter
+            message="Already have an account?"
+            linkText="Sign in"
+            targetScreen={NavigationStrings.AUTH_STACK}
+          />
         </Container>
       </KeyboardAvoidingView>
 

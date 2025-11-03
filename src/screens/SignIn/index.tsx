@@ -6,7 +6,7 @@ import {
   View,
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
+
   ScrollView,
 } from 'react-native';
 import {
@@ -16,6 +16,7 @@ import {
   Button,
   Loader,
   showToast,
+  AuthFooter,
 } from '../../Components';
 import styles from './style';
 import { COLORS, FONTS, images, SIZES } from '../../constant';
@@ -107,7 +108,7 @@ const SignIn = () => {
   const width = SIZES.width * 1;
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
+    <Container style={{ flex: 1, backgroundColor: COLORS.white }}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={{ flex: 1 }}
@@ -119,7 +120,7 @@ const SignIn = () => {
         >
           <View style={styles.container}>
             <LogoContainer />
-            <Text style={styles.text}>It’s go time, Chef!</Text>
+            <Text style={styles.text}>It’s Go time, Chef!</Text>
 
             <Formik
               key={formKey}
@@ -197,19 +198,19 @@ const SignIn = () => {
 
                   <Button
                     // onPress={handleSubmit}
-                    
+
                     title="Login"
                     colors={[COLORS.ThemeColor, COLORS.ThemeColor]}
                     onPress={() =>
-                        navigate({
-                          name: NavigationStrings.BOTTOM_STACK as keyof RootStackParamList,
-                        })}
+                      navigate({
+                        name: NavigationStrings.BOTTOM_STACK as keyof RootStackParamList,
+                      })}
                   />
 
-                  <View style={{flexDirection: 'row', alignItems: 'center', marginVertical: 20,}} >
-                    <View style={{marginHorizontal: SIZES.h16, flex: 1, height: 1, backgroundColor: '#000000ff',}} />
+                  <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: SIZES.margin }} >
+                    <View style={{ marginHorizontal: SIZES.margin, flex: 1, height: 1, backgroundColor: '#000000ff', }} />
                     <Text style={styles.continueWith}>or continue with</Text>
-                    <View style={{marginHorizontal: SIZES.h16, flex: 1, height: 1, backgroundColor: '#000000ff',}} />
+                    <View style={{ marginHorizontal: SIZES.margin, flex: 1, height: 1, backgroundColor: '#000000ff', }} />
                   </View>
 
                   <View style={styles.socialContainer}>
@@ -231,8 +232,8 @@ const SignIn = () => {
                                 isGoogle
                                   ? images.google
                                   : isApple
-                                  ? images.apple
-                                  : null
+                                    ? images.apple
+                                    : null
                               }
                               style={styles.socialIcon}
                               resizeMode="contain"
@@ -257,7 +258,7 @@ const SignIn = () => {
               )}
             </Formik>
 
-            <View style={styles.signupContainer}>
+            {/* <View style={styles.signupContainer}>
               <Text style={styles.member}>Not a member?</Text>
               <Text
                 style={styles.signupLink}
@@ -269,12 +270,17 @@ const SignIn = () => {
               >
                 Sign up now
               </Text>
-            </View>
+            </View> */}
           </View>
+          <AuthFooter
+            message="Not a member?"
+            linkText="Sign up"
+            targetScreen={NavigationStrings.SIGN_UP}
+          />
         </ScrollView>
       </KeyboardAvoidingView>
       {loading && <Loader />}
-    </SafeAreaView>
+    </Container>
   );
 };
 

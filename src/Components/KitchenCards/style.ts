@@ -5,16 +5,16 @@ import { panHandlerName } from 'react-native-gesture-handler/lib/typescript/hand
 const styles = StyleSheet.create({
   listContainer: {
     paddingHorizontal: SIZES.padding,
-    paddingBottom: SIZES.padding,
+    // paddingBottom: SIZES.padding,
   },
   cardContainer: {
-    marginBottom: SIZES.h20,
+    marginBottom: SIZES.margin * 0.5,
   },
   image: {
-    borderRadius: SIZES.h20,
+    borderRadius: SIZES.radius,
   },
   title: {
-    ...FONTS.Regular16,
+    ...FONTS.Regular14,
     backgroundColor: COLORS.white,
     borderRadius: SIZES.h20,
     width: 'auto',

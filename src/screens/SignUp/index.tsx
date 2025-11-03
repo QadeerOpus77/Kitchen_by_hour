@@ -18,6 +18,7 @@ import {
   PhoneNumberInput,
   showToast,
   Loader,
+  AuthFooter,
 } from '../../Components';
 import { COLORS, images, SIZES } from '../../constant';
 import styles from './style';
@@ -99,137 +100,137 @@ const SignUp: React.FC<SignInProps> = ({ route }) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <Container
-        scroll={true}
-        style={styles.container}
-        needsKeyboardAvoiding={true}
+
+    <Container
+      scroll={true}
+      style={styles.container}
+      needsKeyboardAvoiding={true}
+    >
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 50 : 0}
       >
-        <KeyboardAvoidingView
-          style={{ flex: 1 }}
-          keyboardVerticalOffset={Platform.OS === 'ios' ? 50 : 0}
+        <ScrollView
+          contentContainerStyle={{
+            flexGrow: 1,
+            backgroundColor: COLORS.white,
+          }}
+          keyboardShouldPersistTaps="handled"
         >
-          <ScrollView
-            contentContainerStyle={{
-              flexGrow: 1,
-              backgroundColor: COLORS.white,
-            }}
-            keyboardShouldPersistTaps="handled"
-          >
+          <View>
+            <LogoContainer />
+            <Text style={styles.text}>Register Yourself</Text>
             <View>
-              <LogoContainer />
-              <Text style={styles.text}>Register Yourself</Text>
-              <View>
-                <Formik
-                  initialValues={{
-                    first_name: '',
-                    last_name: '',
-                    email: '',
-                    password: '',
-                    confirm_password: '',
-                    phone_number: '',
-                    is_verified: false,
-                    is_active: true,
-                    points: 0,
-                  }}
-                  onSubmit={handleRegister}
-                  validationSchema={signUpValidationSchema}
-                >
-                  {({
-                    handleChange,
-                    handleBlur,
-                    handleSubmit,
-                    values,
-                    setFieldValue,
-                    errors,
-                    touched,
-                    isValid,
-                    dirty,
-                  }) => (
-                    <View>
-                      <View style={styles.inputContainer}>
-                        <View style={styles.rowContainer}>
-                          <View>
-                            <FormInput
-                              label="First name"
-                              placeholder=""
-                              value={values.first_name}
-                              onChangeText={handleChange('first_name')}
-                              onBlur={handleBlur('first_name')}
-                              width={SIZES.width * 0.5}
-                              height={height}
-                              error={touched.first_name && errors.first_name}
-                            />
-                          </View>
-                          <View>
-                            <FormInput
-                              label="Last name"
-                              placeholder=""
-                              value={values.last_name}
-                              onBlur={handleBlur('last_name')}
-                              onChangeText={handleChange('last_name')}
-                              width={SIZES.width * 0.5}
-                              height={height}
-                              error={touched.last_name && errors.last_name}
-                            />
-                          </View>
+              <Formik
+                initialValues={{
+                  first_name: '',
+                  last_name: '',
+                  email: '',
+                  password: '',
+                  confirm_password: '',
+                  phone_number: '',
+                  is_verified: false,
+                  is_active: true,
+                  points: 0,
+                }}
+                onSubmit={handleRegister}
+                validationSchema={signUpValidationSchema}
+              >
+                {({
+                  handleChange,
+                  handleBlur,
+                  handleSubmit,
+                  values,
+                  setFieldValue,
+                  errors,
+                  touched,
+                  isValid,
+                  dirty,
+                }) => (
+                  <View>
+                    <View style={styles.inputContainer}>
+                      <View style={styles.rowContainer}>
+                        <View>
+                          <FormInput
+                            label="First name"
+                            placeholder=""
+                            value={values.first_name}
+                            onChangeText={handleChange('first_name')}
+                            onBlur={handleBlur('first_name')}
+                            width={SIZES.width * 0.5}
+                            height={height}
+                            error={touched.first_name && errors.first_name}
+                          />
                         </View>
-                        <FormInput
-                          label="Email Address"
-                          placeholder=""
-                          onBlur={handleBlur('email')}
-                          value={values.email}
-                          onChangeText={handleChange('email')}
-                          width={width}
-                          height={height}
-                          error={touched.email && errors.email}
-                        />
-                        <PhoneNumberInput
-                          label="Phone Number"
-                          value={values.phone_number}
-                          onChange={phone =>
-                            setFieldValue('phone_number', phone)
-                          } // ✅ pass as onChange
-                          error={
-                            touched.phone_number && errors.phone_number
-                              ? errors.phone_number
-                              : ''
-                          }
-                        />
-
-                        {touched.phone_number && errors.phone_number && (
-                          <Text style={styles.errorText}>
-                            {errors.phone_number}
-                          </Text>
-                        )}
-                        <FormInput
-                          label="Password"
-                          placeholder="Enter password"
-                          value={values.password}
-                          onChangeText={handleChange('password')}
-                          onBlur={handleBlur('password')}
-                          error={touched.password && errors.password}
-                          isPassword
-                          width={width}
-                          height={SIZES.padding * 3}
-                        />
-
-                        <FormInput
-                          label="Confirm Password"
-                          placeholder=""
-                          value={values.confirm_password}
-                          onChangeText={handleChange('confirm_password')}
-                          onBlur={handleBlur('confirm_password')}
-                          isPassword={true}
-                          width={width}
-                          height={height}
-                          error={
-                            touched.confirm_password && errors.confirm_password
-                          }
-                        />
+                        <View>
+                          <FormInput
+                            label="Last name"
+                            placeholder=""
+                            value={values.last_name}
+                            onBlur={handleBlur('last_name')}
+                            onChangeText={handleChange('last_name')}
+                            width={SIZES.width * 0.5}
+                            height={height}
+                            error={touched.last_name && errors.last_name}
+                          />
+                        </View>
                       </View>
+                      <FormInput
+                        label="Email Address"
+                        placeholder=""
+                        onBlur={handleBlur('email')}
+                        value={values.email}
+                        onChangeText={handleChange('email')}
+                        width={width}
+                        height={height}
+                        error={touched.email && errors.email}
+                      />
+                      <PhoneNumberInput
+                        label="Phone Number"
+                        value={values.phone_number}
+                        onChange={phone =>
+                          setFieldValue('phone_number', phone)
+                        } // ✅ pass as onChange
+                        error={
+                          touched.phone_number && errors.phone_number
+                            ? errors.phone_number
+                            : ''
+                        }
+                      />
 
-                      {/* <View style={styles.checkboxContainer}>
+                      {touched.phone_number && errors.phone_number && (
+                        <Text style={styles.errorText}>
+                          {errors.phone_number}
+                        </Text>
+                      )}
+                      <FormInput
+                        label="Password"
+                        placeholder=""
+                        value={values.password}
+                        onChangeText={handleChange('password')}
+                        onBlur={handleBlur('password')}
+                        error={touched.password && errors.password}
+                        isPassword
+                        width={width}
+                        height={SIZES.padding * 3}
+                      />
+
+                      <FormInput
+                        label="Confirm Password"
+                        placeholder=""
+                        value={values.confirm_password}
+                        onChangeText={handleChange('confirm_password')}
+                        onBlur={handleBlur('confirm_password')}
+                        isPassword={true}
+                        width={width}
+                        height={height}
+                        error={
+                          touched.confirm_password && errors.confirm_password
+                        }
+                      />
+                    </View>
+
+                    {/* <View style={styles.checkboxContainer}>
                       <CheckBox
                         value={rememberMe}
                         onValueChange={setRememberMe}
@@ -256,32 +257,30 @@ const SignUp: React.FC<SignInProps> = ({ route }) => {
                       </Text>
                     )} */}
 
-                      <Button
-                        style={styles.buttonContainer}
-                        onPress={() => handleSubmit()}
-                        title="Register"
-                        colors={[COLORS.ThemeColor, COLORS.ThemeColor]}
-                        // start={{ x: 0, y: 0 }}
-                        // end={{ x: 1, y: 0 }}
-                        // disabled={!isValid || loading}
-                      />
-                    </View>
-                  )}
-                </Formik>
-
-                <View style={styles.signupContainer}>
-                  <Text style={styles.member}>Already have an account?</Text>
-                  <Text style={styles.signupLink} onPress={handleLogin}>
-                    Login now
-                  </Text>
-                </View>
-              </View>
+                    <Button
+                      // style={styles.buttonContainer}
+                      onPress={() => handleSubmit()}
+                      title="Register"
+                      colors={[COLORS.ThemeColor, COLORS.ThemeColor]}
+                    // start={{ x: 0, y: 0 }}
+                    // end={{ x: 1, y: 0 }}
+                    // disabled={!isValid || loading}
+                    />
+                  </View>
+                )}
+              </Formik>
             </View>
-          </ScrollView>
-        </KeyboardAvoidingView>
-        {loading && <Loader />}
-      </Container>
-    </SafeAreaView>
+          </View>
+          <AuthFooter
+            message="Already have an account?"
+            linkText="Login Now"
+            targetScreen={NavigationStrings.SIGN_IN}
+          />
+        </ScrollView>
+      </KeyboardAvoidingView>
+      {loading && <Loader />}
+    </Container>
+
   );
 };
 

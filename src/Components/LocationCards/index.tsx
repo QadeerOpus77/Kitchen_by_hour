@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, FlatList } from 'react-native';
 import styles from './style';
 import { images } from '../../constant';
+import { Button } from '..';
 
 interface CardsProps {
   onExplore?: (id: string) => void;
@@ -46,7 +47,7 @@ const LocationCards: React.FC<CardsProps> = ({ onExplore }) => {
           style={styles.button}
           onPress={() => onExplore?.(item.id)}
         >
-          <Text style={styles.buttonText}>Explore Kitchen</Text>
+          <Button title='Explore Kitchen' style={styles.button}></Button>
         </TouchableOpacity>
       </View>
     </View>
