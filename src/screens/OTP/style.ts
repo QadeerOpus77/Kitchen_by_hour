@@ -15,12 +15,12 @@ export const styles = StyleSheet.create({
     paddingHorizontal: SIZES.padding,
   },
   title: {
-    ...FONTS.Bold24,
-    fontWeight: '600',
+    ...FONTS.Regular20,
   },
   subtitle: {
-    ...FONTS.Regular14,
+    ...FONTS.Regular12,
     color: COLORS.darkGray,
+    marginBottom: SIZES.base,
   },
   otpContainer: {
     ...commonStyles.alignItemsCenter,

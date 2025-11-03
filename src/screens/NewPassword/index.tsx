@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, KeyboardAvoidingView, Platform,SafeAreaView } from 'react-native';
+import { View, Text, KeyboardAvoidingView, Platform, SafeAreaView } from 'react-native';
 import {
   Button,
   FormInput,
@@ -26,6 +26,17 @@ const NewPassword: React.FC = () => {
   const width = SIZES.width * 1;
   const height = SIZES.height * 0.06;
 
+  const handleNewpassword = () => {
+    navigate({
+      name: NavigationStrings.SIGN_IN as keyof RootStackParamList,
+    })
+    showToast({
+      type: 'success',
+      text1: 'Password reset Successful',
+      text2: 'You have successfully Changed the password !',
+    });
+  };
+
   //   const handleSubmit = async (values: { newPassword: string; confirmPassword: string }) => {
   //     try {
   //       clearAuthError();
@@ -47,7 +58,7 @@ const NewPassword: React.FC = () => {
         text2: 'Your password has been updated successfully',
       });
       navigate({
-        name: NavigationStrings.SIGN_IN as keyof RootStackParamList,
+        name: NavigationStrings.AUTH_STACK as keyof RootStackParamList,
       });
     } else if (error) {
       showToast({
@@ -60,59 +71,57 @@ const NewPassword: React.FC = () => {
   }, [resetPasswordSuccess, loading, error]);
 
   return (
-    <SafeAreaView style={styles.container}>
-    <KeyboardAvoidingView
-      style={styles.keyboardView}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-    >
-        <BackHeader/>
-      <Container scroll={true} style={styles.container}>
-        <Text style={styles.title}>Set New Password</Text>
-        <Text style={styles.instructionText}>
-          Please enter your new password
-        </Text>
 
-        <Formik
-          initialValues={{ newPassword: '', confirmPassword: '' }}
-          onSubmit={() => console.log('OTP:')}
-        >
-          {({ handleChange, handleBlur, handleSubmit, values }) => (
-            <>
-              <View style={styles.content}>
-                <FormInput
-                  label="New Password"
-                  placeholder=""
-                  value={values.newPassword}
-                  onChangeText={handleChange('newPassword')}
-                  onBlur={handleBlur('newPassword')}
-                  isPassword={true}
-                  width={width}
-                  height={SIZES.padding * 3}
-                />
+    <Container scroll={true} style={styles.container}>
 
-                <FormInput
-                  label="Confirm Password"
-                  placeholder="Confirm Password"
-                  value={values.confirmPassword}
-                  onChangeText={handleChange('confirmPassword')}
-                  onBlur={handleBlur('confirmPassword')}
-                  isPassword={true}
-                  width={width}
-                  height={SIZES.padding * 3}
-                />
-              </View>
+      <BackHeader />
+      <Text style={styles.title}>Set New Password</Text>
+      <Text style={styles.instructionText}>
+        Please enter your new password
+      </Text>
 
-              {/* Button that adjusts with keyboard */}
-              <View style={styles.buttonContainer}>
-                <Button onPress={() => handleSubmit()} title="Continue" />
-              </View>
-            </>
-          )}
-        </Formik>
-      </Container>
+      <Formik
+        initialValues={{ newPassword: '', confirmPassword: '' }}
+        onSubmit={() => console.log('OTP:')}
+      >
+        {({ handleChange, handleBlur, handleSubmit, values }) => (
+          <>
+            <View style={styles.content}>
+              <FormInput
+                label="New Password"
+                placeholder=""
+                value={values.newPassword}
+                onChangeText={handleChange('newPassword')}
+                onBlur={handleBlur('newPassword')}
+                isPassword={true}
+                width={width}
+
+                height={SIZES.input * 1.5}
+              />
+
+              <FormInput
+                label="Confirm Password"
+                placeholder=""
+                value={values.confirmPassword}
+                onChangeText={handleChange('confirmPassword')}
+                onBlur={handleBlur('confirmPassword')}
+                isPassword={true}
+                width={width}
+                height={SIZES.input * 1.5}
+              />
+            </View>
+
+            {/* Button that adjusts with keyboard */}
+            <View style={styles.buttonContainer}>
+              <Button onPress={handleNewpassword} title="Continue" />
+            </View>
+          </>
+        )}
+      </Formik>
       {loading && <Loader />}
-    </KeyboardAvoidingView>
-    </SafeAreaView>
+
+    </Container >
+
   );
 };
 

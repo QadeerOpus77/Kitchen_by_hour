@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    ...FONTS.Regular12,
+    ...FONTS.Regular14,
     backgroundColor: COLORS.white,
     color: COLORS.darkGray,
     paddingHorizontal: SIZES.padding * 0.5,

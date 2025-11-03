@@ -75,15 +75,6 @@ const ForgotPassword = () => {
                 </View>
               )}
             </Formik>
-            {/* <TouchableOpacity
-              style={[
-                styles.forgotButton,
-              ]}
-              onPress={OTP}
-            >
-              <Text style={styles.forgotButtonText}>Continue</Text>
-
-            </TouchableOpacity> */}
           </View>
           <Button
             style={styles.buttonContainer}

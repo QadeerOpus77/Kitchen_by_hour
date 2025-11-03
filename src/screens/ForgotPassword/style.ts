@@ -12,7 +12,6 @@ export default StyleSheet.create({
   content: {
     flex: 1,
     paddingHorizontal: SIZES.padding,
-    paddingVertical: SIZES.padding * 0.5,
   },
   title: {
     ...FONTS.Regular20,
