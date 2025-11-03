@@ -1,163 +1,248 @@
-import React, { useEffect, useRef } from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Animated, Easing, Image, StyleSheet, Text, View } from 'react-native';
-import { RootStackParamList } from '../types/RootStackParamList';
+import React, { useRef, useState, useEffect } from 'react';
+import {
+  View,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+  Text,
+  Animated,
+  Keyboard,
+} from 'react-native';
+import { CurvedBottomBar } from 'react-native-curved-bottom-bar';
+import { useNavigationState } from '@react-navigation/native';
 import * as Screens from '../../screens';
-import NavigationStrings from '../NavigationStrings';
 import { COLORS, FONTS, images, SIZES } from '../../constant';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import HomeStack from './HomeStack';
+import NavigationStrings from '../NavigationStrings';
 
-const Tab = createBottomTabNavigator<RootStackParamList>();
+interface TabBarProps {
+  routeName: string;
+  selectedTab: string;
+  navigate: (routeName: string) => void;
+}
 
-function AnimatedTabIcon({
-  focused,
-  icon,
-  title,
-}: {
-  focused: boolean;
-  icon: any;
-  title: string;
-}) {
-  const scale = useRef(new Animated.Value(focused ? 1.15 : 1)).current;
+export default function BottomStack(): React.JSX.Element {
+  const scale = useRef(new Animated.Value(1)).current;
+  const CurvedNavigator: any = CurvedBottomBar.Navigator;
+  type RenderCircleProps = { navigate: (routeName: string) => void };
+
+  const [selectedTab, setSelectedTab] = useState(NavigationStrings.HOME_STACK);
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
+
+  // 👇 Listen to navigation state changes to sync selectedTab
+  const currentRoute = useNavigationState((state) => {
+    if (!state) return NavigationStrings.BOTTOM_STACK;
+    const route = state.routes[state.index];
+    return route.name;
+  });
+
+  // 👇 Update selectedTab when navigation changes (including back button)
+  useEffect(() => {
+    if (currentRoute) {
+      setSelectedTab(currentRoute);
+    }
+  }, [currentRoute]);
 
   useEffect(() => {
-    Animated.timing(scale, {
-      toValue: focused ? 1.15 : 1,
-      duration: 220,
-      easing: Easing.out(Easing.exp),
-      useNativeDriver: true,
-    }).start();
-  }, [focused, scale]);
+    const showSub = Keyboard.addListener('keyboardDidShow', () => setKeyboardVisible(true));
+    const hideSub = Keyboard.addListener('keyboardDidHide', () => setKeyboardVisible(false));
+    return () => {
+      showSub.remove();
+      hideSub.remove();
+    };
+  }, []);
 
-  return (
-    <View style={styles.iconContainer}>
-      <Animated.View style={{ transform: [{ scale }] }}>
+  const handlePress = (navigate: (routeName: string) => void) => {
+    Animated.sequence([
+      Animated.spring(scale, {
+        toValue: 1.2,
+        friction: 2,
+        useNativeDriver: true,
+      }),
+      Animated.spring(scale, {
+        toValue: 1,
+        friction: 3,
+        useNativeDriver: true,
+      }),
+    ]).start(() => navigate(NavigationStrings.CHECKIN));
+  };
+
+  const renderTabBar = ({ routeName, selectedTab, navigate }: TabBarProps) => {
+    const isActive = selectedTab === routeName;
+    return (
+      <TouchableOpacity
+        key={routeName}
+        style={styles.tabButton}
+        activeOpacity={0.8}
+        onPress={() => {
+          setSelectedTab(routeName);
+          navigate(routeName);
+        }}>
         <Image
-          source={icon}
-          style={[
-            styles.iconImage,
-            { tintColor: focused ? COLORS.ThemeColor : COLORS.inActiveColor },
-          ]}
+          source={getTabIcon(routeName)}
+          style={[styles.tabIcon, isActive && styles.activeIcon]}
+          resizeMode="contain"
         />
-      </Animated.View>
-      <Text
-        style={[
-          styles.iconText,
-          { color: focused ? COLORS.ThemeColor : COLORS.inActiveColor },
-        ]}
-      >
-        {title}
-      </Text>
-    </View>
-  );
-}
+        <Text style={[styles.tabText, isActive && styles.activeText]}>
+          {getTabLabel(routeName)}
+        </Text>
+      </TouchableOpacity>
+    );
+  };
 
-export default function BottomStack({ navigation }: any) {
-  const insets = useSafeAreaInsets();
+  // 👇 Hide tab bar when Profile is active or keyboard visible
+  const hideTabBar =
+    selectedTab === NavigationStrings.MORE || keyboardVisible;
 
   return (
-    <Tab.Navigator
-      initialRouteName={NavigationStrings.HOME as keyof RootStackParamList}
-      screenOptions={({ route }) => ({
-        headerShown: false,
-        tabBarShowLabel: false,
-        tabBarStyle: [
-          styles.tabBar,
-          { paddingBottom: insets.bottom ? insets.bottom : 8 },
-        ],
-        tabBarIcon: ({ focused }) => {
-          let icon = images.home;
-          let title = 'Home';
-          switch (route.name) {
-            case NavigationStrings.HOME:
-              icon = images.home;
-              title = 'Home';
-              break;
-            case NavigationStrings.CALENDER:
-              icon = images.calender;
-              title = 'Calendar';
-              break;
-            case NavigationStrings.CHECKIN:
-              icon = images.checkIn;
-              title = 'CheckIn';
-              break;
-            case NavigationStrings.ALERTS:
-              icon = images.alerts;
-              title = 'Alerts';
-              break;
-            case NavigationStrings.MENU:
-              icon = images.menu;
-              title = 'Menu';
-              break;
-          }
-          return <AnimatedTabIcon focused={focused} icon={icon} title={title} />;
-        },
-      })}
-    >
-      <Tab.Screen
-        name={NavigationStrings.HOME as keyof RootStackParamList}
-        component={Screens.Home}
-        listeners={({ navigation }) => ({
-          tabPress: (e) => {
-            const state = navigation.getState();
-            const currentRoute = state.routes[state.index];
-
-            // If user already on Home tab, reload its initial screen
-            if (currentRoute.name === NavigationStrings.HOME) {
-              e.preventDefault();
-              navigation.reset({
-                index: 0,
-                routes: [{ name: NavigationStrings.HOME }],
-              });
-            }
-          },
-        })}
+    <CurvedNavigator
+      type="DOWN"
+      style={[styles.bottomBar, hideTabBar && { display: 'none' }]}
+      height={90}
+      circleWidth={70}
+      bgColor={COLORS.white}
+      initialRouteName={NavigationStrings.HOME_STACK}
+      circlePosition="CENTER"
+      backBehavior="initialRoute"
+      renderCircle={({ navigate }: RenderCircleProps) => (
+        <View style={styles.scanContainer}>
+          <Animated.View style={[styles.btnCircleUp, { transform: [{ scale }] }]}>
+            <TouchableOpacity
+              activeOpacity={0.9}
+              style={styles.button}
+              onPress={() => handlePress(navigate)}>
+              <Image source={images.checkIn} style={styles.centerIcon} resizeMode="contain" />
+            </TouchableOpacity>
+          </Animated.View>
+          <Text style={styles.scanText}>Check In
+          </Text>
+        </View>
+      )}
+      tabBar={renderTabBar}>
+      <CurvedBottomBar.Screen
+        name={NavigationStrings.HOME_STACK}
+        position="LEFT"
+        component={HomeStack}
+        options={{ headerShown: false }}
       />
-      <Tab.Screen
-        name={NavigationStrings.CALENDER as keyof RootStackParamList}
+      <CurvedBottomBar.Screen
+        name={NavigationStrings.CALENDER}
+        position="LEFT"
         component={Screens.Calender}
+        options={{ headerShown: false }}
       />
-      <Tab.Screen
-        name={NavigationStrings.CHECKIN as keyof RootStackParamList}
-        component={Screens.CheckIn}
+      <CurvedBottomBar.Screen
+        name={NavigationStrings.CHECKIN}
+        position="CENTER"
+        component={() => <View />}
+        options={{ headerShown: false }}
       />
-      <Tab.Screen
-        name={NavigationStrings.ALERTS as keyof RootStackParamList}
+      <CurvedBottomBar.Screen
+        name={NavigationStrings.ALERTS}
+        position="RIGHT"
         component={Screens.Alerts}
+        options={{ headerShown: false }}
       />
-      <Tab.Screen
-        name={NavigationStrings.MENU as keyof RootStackParamList}
-        component={Screens.Menu}
+      <CurvedBottomBar.Screen
+        name={NavigationStrings.MORE}
+        position="RIGHT"
+        component={Screens.more}
+        options={{ headerShown: false }}
       />
-    </Tab.Navigator>
+    </CurvedNavigator>
   );
 }
 
+// ✅ Helper functions
+const getTabIcon = (routeName: string): any => {
+  switch (routeName) {
+    case NavigationStrings.HOME_STACK:
+      return images.home;
+    case NavigationStrings.CALENDER:
+      return images.calender;
+    case NavigationStrings.CHECKIN:
+      return images.checkIn;
+    case NavigationStrings.ALERTS:
+      return images.alerts;
+    case NavigationStrings.MORE:
+      return images.menu;
+    default:
+      return images.home;
+  }
+};
+
+const getTabLabel = (routeName: string): string => {
+  switch (routeName) {
+    case NavigationStrings.HOME_STACK:
+      return 'Home';
+    case NavigationStrings.CALENDER:
+      return 'Calender';
+    case NavigationStrings.CHECKIN:
+      return 'Check In';
+    case NavigationStrings.ALERTS:
+      return 'Alerts';
+    case NavigationStrings.MORE:
+      return 'MORE';
+    default:
+      return 'Home';
+  }
+};
+
+// ✅ Styles
 const styles = StyleSheet.create({
-  tabBar: {
-    backgroundColor: COLORS.white,
-    height: SIZES.height * 0.08,
+  bottomBar: {
     position: 'absolute',
+    bottom: 0,
     left: 0,
     right: 0,
-    bottom: 0,
-    elevation: 10,
-    borderTopWidth: 0,
-    padding: SIZES.padding * 2,
   },
-  iconContainer: {
+  scanContainer: {
+    alignItems: 'center',
+    bottom: SIZES.height * 0.02,
+  },
+  btnCircleUp: {
+    borderRadius: SIZES.radius,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: SIZES.h22,
-    width: SIZES.width * 0.18,
   },
-  iconImage: {
-    width: SIZES.h22,
-    height: SIZES.h22,
-    resizeMode: 'contain',
+  button: {
+    width: SIZES.width * 0.15,
+    height: SIZES.width * 0.15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: SIZES.radius * 10,
+    backgroundColor: COLORS.ThemeColor,
   },
-  iconText: {
+  centerIcon: {
+    width: SIZES.large,
+    height: SIZES.large,
+    tintColor: COLORS.white,
+  },
+  scanText: {
+    marginTop: SIZES.margin * 0.5,
+    ...FONTS.Medium11,
+    color: COLORS.ThemeColor,
+    fontWeight: '600',
+  },
+  tabButton: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  tabIcon: {
+    width: SIZES.large,
+    height: SIZES.large,
+    tintColor: COLORS.gray,
+  },
+  activeIcon: {
+    tintColor: COLORS.ThemeColor,
+  },
+  tabText: {
     ...FONTS.Medium10,
-    marginTop: 2,
+    color: COLORS.gray,
+  },
+  activeText: {
+    color: COLORS.black,
+    fontWeight: '600',
   },
 });

@@ -11,3 +11,4 @@ export { default as Alerts } from './Alerts';
 export { default as Calender } from './Calender';
 export { default as Menu } from './Menu';
 export { default as CheckIn } from './CheckIn';
+export { default as more } from './More';

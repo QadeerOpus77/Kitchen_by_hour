@@ -34,7 +34,7 @@ export const COLORS = {
   yellowEyes: '#E8BB1C',
   blue: '#07DBFA',
   darkGray: '#757575',
-  modalColor: '#fff',
+  modalColor: '#ffffff',
   suitColor: '#CDCDCD',
   borderDashedColor: '#3B3B3B',
   lightgray: '#F5F5F5',
