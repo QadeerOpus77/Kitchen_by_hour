@@ -177,8 +177,8 @@ const SignIn = () => {
                         value={rememberMe}
                         onValueChange={handleRememberMeToggle}
                         tintColors={{ true: COLORS.ThemeColor, false: '#ccc' }}
-                        boxType={Platform.OS === 'ios' ? 'square' : undefined}
-                        style={{ width: 22, height: 22 }}
+                        boxType={Platform.OS === 'ios' ? 'circle' : undefined}
+                        style={{ width: SIZES.large, height: SIZES.large }}
                       />
                       <Text style={styles.rememberMeText}>Remember Me</Text>
                     </View>

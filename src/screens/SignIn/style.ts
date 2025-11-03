@@ -44,25 +44,14 @@ export default StyleSheet.create({
     paddingHorizontal: SIZES.h16,
     width: SIZES.width * 0.9,
   },
-  buttonText: {
-    color: COLORS.white,
-    ...FONTS.Regular15,
-    textAlign: 'center',
-  },
-  emailText: {
-    color: COLORS.darkGray,
-    ...FONTS.Regular12,
-    textAlign: 'center',
-    marginTop: SIZES.h20,
-    marginBottom: SIZES.h10,
-  },
+
   inputContainer: {},
   rememberMeContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginHorizontal: SIZES.width * 0.05,
-    marginBottom: SIZES.h30,
+    marginBottom: SIZES.margin,
   },
   rememberMeCheckBoxContainer: {
     flexDirection: 'row',
@@ -70,7 +59,7 @@ export default StyleSheet.create({
     marginTop: SIZES.h10,
   },
   rememberMeText: {
-    marginLeft: SIZES.margin * 0.5,
+    marginLeft: SIZES.margin * 0.3,
     color: COLORS.darkGray,
   },
   forgotPasswordText: {
@@ -78,28 +67,9 @@ export default StyleSheet.create({
     marginTop: SIZES.h10,
     color: COLORS.ThemeColor,
   },
-  checkbox: {
-    marginLeft: SIZES.h10,
-    borderColor: COLORS.darkGray,
-    width: SIZES.large,
-    height: SIZES.large,
-  },
+
   continueWith: {
-    ...FONTS.Regular16,
+    ...FONTS.Regular14,
     textAlign: 'center',
   },
-  //   signupContainer: {
-  //     flexDirection: 'row',
-  //     justifyContent: 'center',
-  //     marginTop: SIZES.padding * 2,
-  //   },
-  //   signupLink: {
-  //     marginLeft: SIZES.h10 * 0.5,
-  //     ...FONTS.Medium14,
-  //     color: COLORS.ThemeColor,
-  //   },
-  //   member: {
-  //     ...FONTS.Regular12,
-  //     color: COLORS.darkGray,
-  //   },
 });

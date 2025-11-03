@@ -140,21 +140,21 @@ const OTP = () => {
           </TouchableOpacity>
         </View>
 
-        {/* Continue Button */}
-        <Button
-          title="Continue"
-          onPress={() =>
-            navigate({
-              name: NavigationStrings.NEW_PASSWORD as keyof RootStackParamList,
-            })
-          }
-          disabled={!isOtpComplete}
-          style={[
-            styles.continueButton,
-            !isOtpComplete && styles.continueButtonDisabled,
-          ]}
-        />
       </ScrollView>
+      {/* Continue Button */}
+      <Button
+        title="Continue"
+        onPress={() =>
+          navigate({
+            name: NavigationStrings.NEW_PASSWORD as keyof RootStackParamList,
+          })
+        }
+        disabled={!isOtpComplete}
+        style={[
+          styles.continueButton,
+          !isOtpComplete && styles.continueButtonDisabled,
+        ]}
+      />
     </KeyboardAwareScrollView>
   );
 };
