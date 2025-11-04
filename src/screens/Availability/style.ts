@@ -1,53 +1,58 @@
-import { StyleSheet, Dimensions } from 'react-native';
-import { SIZES, COLORS, FONTS, commonStyles } from '../../constant';
-import SignIn from '../SignIn';
-
-const { height } = Dimensions.get('window');
+import { StyleSheet } from 'react-native';
+import { FONTS, SIZES } from '../../constant';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    paddingHorizontal: 16,
-    paddingTop: 50,
+    backgroundColor: '#FFFFFF',
   },
-  header: {
-    flexDirection: 'row',
+  dayContainer: {
+    width: SIZES.width * 0.15,
+    height: SIZES.height * 0.1,
+    justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20,
   },
-  backButton: {
-    padding: 6,
-    marginRight: 10,
+  bookedContainer: {
+    backgroundColor: '#0D284A',
   },
-  title: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#0D284A',
+  dayText: {
+    color: '#333333',
   },
-  monthText: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: '#0D284A',
-    textAlign: 'center',
+  disabledText: {
+    color: '#D3D3D3',
+  },
+  bookedText: {
+    color: '#FFFFFF',
+  },
+  bookedTag: {
+    ...FONTS.Regular5,
+    backgroundColor: '#3A8DFF',
+    color: '#FFFFFF',
+    paddingHorizontal: SIZES.padding / 3,
+    paddingVertical: 2,
+    borderRadius: SIZES.radius,
+    marginTop: SIZES.margin,
   },
   legend: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 20,
+    gap: 30,
   },
   legendItem: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   circle: {
-    width: 14,
-    height: 14,
-    borderRadius: 7,
+    width: 16,
+    height: 16,
+    borderRadius: 8,
     marginRight: 6,
   },
   legendText: {
     fontSize: 14,
-    color: '#333',
+    color: '#0D284A',
+    fontWeight: '500',
   },
 });

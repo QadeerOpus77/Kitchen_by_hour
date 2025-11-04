@@ -1,40 +1,39 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { View, Text } from "react-native";
 import { Calendar } from "react-native-calendars";
 import { MarkedDates } from "react-native-calendars/src/types";
-
-// import Icon from "react-native-vector-icons/Ionicons";
+import { BackHeader } from "../../Components";
 import styles from "./style";
-import { images } from "../../constant";
 
 const AvailabilityScreen = () => {
-    // Example booked dates (you can fetch from API in future)
     const [bookedDates] = useState([
-        "2025-08-01",
-        "2025-08-02",
-        "2025-08-03",
-        "2025-08-07",
-        "2025-08-08",
-        "2025-08-09",
-        "2025-08-21",
-        "2025-08-22",
-        "2025-08-23",
-        "2025-08-24",
-        "2025-08-25",
+        "2025-11-01",
+        "2025-11-02",
+        "2025-11-03",
+        "2025-11-07",
+        "2025-11-08",
+        "2025-11-09",
+        "2025-11-21",
+        "2025-11-22",
+        "2025-11-23",
+        "2025-11-24",
+        "2025-11-25",
     ]);
 
-    // Generate markedDates dynamically
+    // Create booked markedDates with "Booked" label inside each booked day
     const markedDates: MarkedDates = bookedDates.reduce((acc, date) => {
         acc[date] = {
-            selected: true,
             customStyles: {
                 container: {
                     backgroundColor: "#0D284A",
                     borderRadius: 6,
+                    justifyContent: "center",
+                    alignItems: "center",
                 },
                 text: {
                     color: "white",
                     fontWeight: "600",
+                    textAlign: "center",
                 },
             },
         };
@@ -44,30 +43,48 @@ const AvailabilityScreen = () => {
     return (
         <View style={styles.container}>
             {/* Header */}
-            <View style={styles.header}>
-                <TouchableOpacity style={styles.backButton}>
-                    <Image source={images.backImage} />
-                </TouchableOpacity>
-                <Text style={styles.title}>Availability</Text>
-            </View>
+            <BackHeader
+                title="Availability"
+                tintColor="black"
+                titleColor="#0D284A"
+            />
 
             {/* Calendar */}
             <Calendar
                 markingType={"custom"}
                 markedDates={markedDates}
+                dayComponent={({ date, state, marking }) => {
+                    const isBooked = date ? bookedDates.includes(date.dateString) : false;
+                    return (
+                        <View
+                            style={[
+                                styles.dayContainer,
+                                isBooked && styles.bookedContainer,
+                            ]}
+                        >
+                            <Text
+                                style={[
+                                    styles.dayText,
+                                    state === "disabled" && styles.disabledText,
+                                    isBooked && styles.bookedText,
+                                ]}
+                            >
+                                {date?.day ?? ''}
+                            </Text>
+                            {isBooked && <Text style={styles.bookedTag}>Booked</Text>}
+                        </View>
+                    );
+                }}
                 theme={{
-                    textMonthFontWeight: "700",
+                    backgroundColor: "white",
+                    calendarBackground: "white",
+                    textSectionTitleColor: "#8C8C8C",
+                    textMonthFontWeight: "600",
                     textMonthFontSize: 18,
                     monthTextColor: "#0D284A",
                     arrowColor: "#0D284A",
                     textDayFontSize: 16,
-                    todayTextColor: "#0D284A",
                 }}
-                renderHeader={(date) => (
-                    <Text style={styles.monthText}>
-                        {date.toString("MMMM yyyy")}
-                    </Text>
-                )}
             />
 
             {/* Legend */}
@@ -86,4 +103,3 @@ const AvailabilityScreen = () => {
 };
 
 export default AvailabilityScreen;
-

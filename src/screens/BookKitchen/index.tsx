@@ -3,6 +3,9 @@ import React from 'react'
 import { Button, Container, Header } from '../../Components'
 import { images } from '../../constant'
 import style from './style'
+import { navigate } from '../../navigation/Stack/NavigationRef'
+import NavigationStrings from '../../navigation/NavigationStrings'
+import { RootStackParamList } from '../../navigation/types/RootStackParamList'
 
 const BookKitchen = () => {
     return (
@@ -17,14 +20,18 @@ const BookKitchen = () => {
                 </Text>
                 <View style={style.formBox}>
                     <Text style={style.formText}>Need to renew your commissary kitchen agreement for farmers market and events?</Text>
-                    <Button style={style.formBtn} title='Fill up Your Form'></Button>
+                    <Button style={style.formBtn} title='Fill up Your Form'
+                    ></Button>
                 </View>
                 <Text style={style.title}>
                     My Bookings
                 </Text>
                 <View style={style.formBox}>
                     <Text style={style.formText}>No upcoming activities.</Text>
-                    <Button style={style.formBtn} title='Get started'></Button>
+                    <Button style={style.formBtn} title='Get started' onPress={() =>
+                        navigate({
+                            name: NavigationStrings.BOOKING_STACK as keyof RootStackParamList,
+                        })}></Button>
                 </View>
             </Container>
             <Image source={images.chat} style={style.chatIcon}></Image>

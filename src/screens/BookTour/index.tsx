@@ -1,3 +1,4 @@
+// src/screens/BookNow/BookNow.tsx
 import React, { useState, useRef } from 'react';
 import {
   View,
@@ -24,6 +25,10 @@ import { navigate } from '../../navigation/Stack/NavigationRef';
 import NavigationStrings from '../../navigation/NavigationStrings';
 import { BackHeader, Button } from '../../Components';
 import { goBack } from '../../navigation/Stack/NavigationRef';
+
+// <-- NEW: role imports
+import { useRoleState } from '../../redux/Hook/useRole';
+import { RoleType } from '../../redux/Enums/RoleEnum';
 
 const { height, width } = Dimensions.get('window');
 
@@ -70,6 +75,9 @@ const BookNow: React.FC = () => {
   const route = useRoute<KitchenDetailRouteProp>();
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const kitchen = kitchenData[route?.params?.id ?? '1'];
+
+  // <-- NEW: get selected role from redux
+  const { selectedRole } = useRoleState();
 
   const [showCard, setShowCard] = useState(false);
   const [showThanks, setShowThanks] = useState(false);
@@ -168,6 +176,13 @@ const BookNow: React.FC = () => {
 
   // Handle Booking
   const handleBooking = () => {
+    // <-- NEW: If admin, navigate to View Availability and return
+    if (selectedRole === RoleType.ADMINISTRATOR) {
+      navigate({ name: NavigationStrings.AVAILABILITY as keyof RootStackParamList });
+      return;
+    }
+
+    // otherwise keep existing behavior (open booking modal / show thanks)
     if (!showCard) {
       toggleCard();
       setIsCardOpen(true);
@@ -310,7 +325,7 @@ const BookNow: React.FC = () => {
         <Text style={style.description}>{kitchen.description}</Text>
       </Animated.View>
 
-      {/* Address / Map */}
+      {/* Address / Map (location container preserved) */}
       <Animated.View
         style={[
           style.addressContainer,
@@ -333,7 +348,7 @@ const BookNow: React.FC = () => {
         </Text>
       </Animated.View>
 
-      {/* Booking Card */}
+      {/* Booking Card (unchanged) */}
       {showCard && (
         <Animated.View
           style={[
@@ -441,8 +456,12 @@ const BookNow: React.FC = () => {
         </Animated.View>
       )}
 
-      {/* Book Button */}
-      <Button title={'Book Tour'} style={style.bookButton} onPress={handleBooking} />
+      {/* Book Button - LABEL CHANGES BASED ON ROLE, BEHAVIOR HANDLED IN handleBooking */}
+      <Button
+        title={selectedRole === RoleType.ADMINISTRATOR ? 'View Availability' : 'Book Tour'}
+        style={style.bookButton}
+        onPress={handleBooking}
+      />
     </SafeAreaView>
   );
 };

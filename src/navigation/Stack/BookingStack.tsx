@@ -15,6 +15,10 @@ export default function BookingStack() {
                 name={NavigationStrings.BOOK_TOUR}
                 component={Screens.BookTour}
             />
+            <Stack.Screen
+                name={NavigationStrings.AVAILABILITY}
+                component={Screens.Avaliblity}
+            />
 
         </Stack.Navigator>
     );

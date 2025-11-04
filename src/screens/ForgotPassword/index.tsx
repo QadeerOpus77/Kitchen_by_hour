@@ -12,7 +12,7 @@ import {
   Platform,
 } from 'react-native';
 import styles from './style';
-import { BackHeader, Button, FormInput } from '../../Components';
+import { BackHeader, Button, Container, FormInput } from '../../Components';
 import { navigate } from '../../navigation/Stack/NavigationRef';
 import NavigationStrings from '../../navigation/NavigationStrings';
 import { RootStackParamList } from '../../navigation/types/RootStackParamList';
@@ -32,7 +32,7 @@ const ForgotPassword = () => {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <SafeAreaView style={styles.container}>
+        <Container style={styles.container}>
           <StatusBar barStyle="dark-content" />
           <BackHeader />
           <View style={styles.content}>
@@ -86,7 +86,7 @@ const ForgotPassword = () => {
           // disabled={!isValid || loading}
           />
 
-        </SafeAreaView>
+        </Container>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView >
   );

@@ -31,8 +31,8 @@ export const styles = StyleSheet.create({
   },
   otpInput: {
     ...FONTS.Regular22,
-    width: SIZES.input * 1,
-    height: SIZES.input * 1.1,
+    width: SIZES.input * 1.2,
+    height: SIZES.input * 1.2,
     borderColor: COLORS.borderColor,
     borderRadius: SIZES.h10,
     textAlign: 'center',

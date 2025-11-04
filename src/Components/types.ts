@@ -97,6 +97,7 @@ export interface BackHeaderProps {
   outfit?: boolean;
   share?: boolean;
   showDownload?: boolean;
+  titleColor?: string;
 }
 
 export interface DropdownComponentProps {
@@ -181,7 +182,7 @@ export interface FamilyMemberCardProps {
 }
 export interface HeaderProps {
   title: string;
-  subtitle:string;
+  subtitle: string;
   onAvatarPress?: () => void;
   avatarSource?: any; // changed type to any to support local images
   onSearchPress?: () => void;

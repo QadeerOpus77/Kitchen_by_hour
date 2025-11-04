@@ -27,30 +27,18 @@ export default function BottomStack(): React.JSX.Element {
   type RenderCircleProps = { navigate: (routeName: string) => void };
 
   const [selectedTab, setSelectedTab] = useState(NavigationStrings.HOME_STACK);
-  const [keyboardVisible, setKeyboardVisible] = useState(false);
 
-  // 👇 Listen to navigation state changes to sync selectedTab
   const currentRoute = useNavigationState((state) => {
     if (!state) return NavigationStrings.BOTTOM_STACK;
     const route = state.routes[state.index];
     return route.name;
   });
 
-  // 👇 Update selectedTab when navigation changes (including back button)
   useEffect(() => {
     if (currentRoute) {
       setSelectedTab(currentRoute);
     }
   }, [currentRoute]);
-
-  useEffect(() => {
-    const showSub = Keyboard.addListener('keyboardDidShow', () => setKeyboardVisible(true));
-    const hideSub = Keyboard.addListener('keyboardDidHide', () => setKeyboardVisible(false));
-    return () => {
-      showSub.remove();
-      hideSub.remove();
-    };
-  }, []);
 
   const handlePress = (navigate: (routeName: string) => void) => {
     Animated.sequence([
@@ -90,14 +78,10 @@ export default function BottomStack(): React.JSX.Element {
     );
   };
 
-  // 👇 Hide tab bar when Profile is active or keyboard visible
-  const hideTabBar =
-    selectedTab === NavigationStrings.MORE || keyboardVisible;
-
   return (
     <CurvedNavigator
       type="DOWN"
-      style={[styles.bottomBar, hideTabBar && { display: 'none' }]}
+      style={styles.bottomBar}
       height={90}
       circleWidth={70}
       bgColor={COLORS.white}
@@ -114,8 +98,7 @@ export default function BottomStack(): React.JSX.Element {
               <Image source={images.checkIn} style={styles.centerIcon} resizeMode="contain" />
             </TouchableOpacity>
           </Animated.View>
-          <Text style={styles.scanText}>Check In
-          </Text>
+          <Text style={styles.scanText}>Check In</Text>
         </View>
       )}
       tabBar={renderTabBar}>
@@ -243,6 +226,5 @@ const styles = StyleSheet.create({
   },
   activeText: {
     color: COLORS.black,
-    // fontWeight: '600',
   },
 });

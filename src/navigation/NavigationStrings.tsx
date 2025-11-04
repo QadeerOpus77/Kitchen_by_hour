@@ -19,6 +19,7 @@ export default {
     MORE: 'more',
     PROFILE: 'Profile',
     BOOK_KITCHEN: 'BookKitchen',
+    AVAILABILITY: 'Availability',
 
 
     // Setting

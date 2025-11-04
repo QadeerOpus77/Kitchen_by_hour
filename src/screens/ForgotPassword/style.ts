@@ -47,9 +47,4 @@ export default StyleSheet.create({
     alignSelf: 'center',
     marginBottom: SIZES.margin,
   },
-  forgotButtonText: {
-    color: COLORS.white,
-    ...FONTS.Regular15,
-    textAlign: 'center',
-  },
 });

@@ -1,6 +1,4 @@
 import { RFValue } from 'react-native-responsive-fontsize';
-import { Dimensions } from 'react-native';
-const { width, height } = Dimensions.get('window');
 
 export const COLORS = {
   primary: '#D5AD60',
@@ -34,7 +32,7 @@ export const COLORS = {
   yellowEyes: '#E8BB1C',
   blue: '#07DBFA',
   darkGray: '#757575',
-  modalColor: '#ffffff',
+  modalColor: '#fff',
   suitColor: '#CDCDCD',
   borderDashedColor: '#3B3B3B',
   lightgray: '#F5F5F5',
@@ -42,61 +40,77 @@ export const COLORS = {
   error: '#df4759',
   lightTheme: '#57aae61e',
 };
+import { Dimensions } from 'react-native';
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
+
+// Base dimensions (iPhone 11 Pro)
+const BASE_WIDTH = 375;
+const BASE_HEIGHT = 812;
+
+// Scaling helpers
+const scale = (size: number) => (SCREEN_WIDTH / BASE_WIDTH) * size;
+const verticalScale = (size: number) => (SCREEN_HEIGHT / BASE_HEIGHT) * size;
+const moderateScale = (size: number, factor = 0.5) =>
+  size + (scale(size) - size) * factor;
 
 export const SIZES = {
   // global sizes
-  small: RFValue(5),
-  base: RFValue(8),
-  medium: RFValue(10),
-  large: RFValue(18),
-  radius: RFValue(10),
-  padding: RFValue(20),
-  margin: RFValue(20),
-  padding2: RFValue(12),
-  input: RFValue(40),
+  small: moderateScale(5),
+  base: moderateScale(8),
+  medium: moderateScale(10),
+  large: moderateScale(18),
+  radius: moderateScale(10),
+  padding: moderateScale(20),
+  margin: moderateScale(20),
+  padding2: moderateScale(12),
+  input: verticalScale(40),
 
-  // font sizes
-  h8: 8,
-  h9: 9,
-  h9_5: 9.5,
-  h10: 10,
-  h11: 11,
-  h12: 12,
-  h13: 13,
-  h14: 14,
-  h15: 15,
-  h16: 16,
-  h17: 17,
-  h18: 18,
-  h19: 19,
-  h20: 20,
-  h21: 21,
-  h22: 22,
-  h23: 23,
-  h24: 24,
-  h25: 25,
-  h26: 26,
-  h27: 27,
-  h28: 28,
-  h30: 30,
-  h32: 32,
-  h33: 33,
-  h38: 38,
-  h40: 40,
-  h45: 45,
-  h48: 48,
-  h50: 50,
-  h52: 52,
-  h55: 55,
-  h60: 60,
-  h65: 65,
-  h70: 70,
-  h80: 80,
-  h150: 150,
+  // font sizes (kept proportional)
+  h5: moderateScale(5),
+  h8: moderateScale(8),
+  h9: moderateScale(9),
+  h9_5: moderateScale(9.5),
+  h10: moderateScale(10),
+  h11: moderateScale(11),
+  h12: moderateScale(12),
+  h13: moderateScale(13),
+  h14: moderateScale(14),
+  h15: moderateScale(15),
+  h16: moderateScale(16),
+  h17: moderateScale(17),
+  h18: moderateScale(18),
+  h19: moderateScale(19),
+  h20: moderateScale(20),
+  h21: moderateScale(21),
+  h22: moderateScale(22),
+  h23: moderateScale(23),
+  h24: moderateScale(24),
+  h25: moderateScale(25),
+  h26: moderateScale(26),
+  h27: moderateScale(27),
+  h28: moderateScale(28),
+  h30: moderateScale(30),
+  h32: moderateScale(32),
+  h33: moderateScale(33),
+  h38: moderateScale(38),
+  h40: moderateScale(40),
+  h45: moderateScale(45),
+  h48: moderateScale(48),
+  h50: moderateScale(50),
+  h52: moderateScale(52),
+  h55: moderateScale(55),
+  h60: moderateScale(60),
+  h65: moderateScale(65),
+  h70: moderateScale(70),
+  h80: moderateScale(80),
+  h150: moderateScale(150),
+
   // app dimensions
-  width,
-  height,
+  width: SCREEN_WIDTH,
+  height: SCREEN_HEIGHT,
 };
+
+export { scale, verticalScale, moderateScale };
 
 export const FONTS = {
   Bold150: {
@@ -283,6 +297,10 @@ export const FONTS = {
   Regular8: {
     fontFamily: 'Poppins-Regular',
     fontSize: RFValue(SIZES.h8),
+  },
+  Regular5: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: RFValue(SIZES.h5),
   },
   light40: {
     fontFamily: 'Poppins-Light',
