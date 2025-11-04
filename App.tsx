@@ -17,10 +17,10 @@ function App(): React.JSX.Element {
     <Provider store={store}>
       <SafeAreaProvider>
         <CustomStatusBar backgroundColor={COLORS.modalColor} />
-        <SafeAreaView style={styles.container}>
-          <MainNavigator />
-          <CustomToast />
-        </SafeAreaView>
+        {/* <SafeAreaView style={styles.container}> */}
+        <MainNavigator />
+        <CustomToast />
+        {/* </SafeAreaView> */}
       </SafeAreaProvider>
     </Provider>
   );

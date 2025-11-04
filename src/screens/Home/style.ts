@@ -15,7 +15,7 @@ export default StyleSheet.create({
   },
   detailContainer: {
     flex: 1,
-    paddingBottom: SIZES.height * 0.25,
+    paddingBottom: SIZES.height * 0.16,
     paddingHorizontal: SIZES.padding,
   },
 });

@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { SIZES, COLORS, FONTS } from '../../constant';
+import { SIZES, COLORS, FONTS, commonStyles } from '../../constant';
 import SignIn from '../SignIn';
 
 const { height } = Dimensions.get('window');
@@ -13,71 +13,69 @@ export default StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
-    width: '100%',
+    width: SIZES.width,
     zIndex: -1, // make sure it’s behind everything
-    borderBottomRightRadius: SIZES.h30,
-    borderBottomLeftRadius: SIZES.h30,
+    borderBottomRightRadius: SIZES.radius * 3,
+    borderBottomLeftRadius: SIZES.radius * 3,
   },
 
   // 🔹 Kitchen Details Section
   detailsContainer: {
     backgroundColor: COLORS.white,
-    marginHorizontal: 20,
+    marginHorizontal: SIZES.margin * 0.5,
     paddingHorizontal: SIZES.padding,
-    paddingVertical: SIZES.padding*.5,
-    borderRadius: SIZES.h20,
+    paddingVertical: SIZES.padding * 0.5,
+    borderRadius: SIZES.radius,
     // position:'relative'
   },
   title: {
     ...FONTS.Bold20,
   },
   price: {
-    ...FONTS.Bold20,
+    ...FONTS.Bold16,
     color: COLORS.ThemeColor,
   },
   duration: {
-    ...FONTS.Medium12,
+    ...FONTS.Regular10,
     color: COLORS.ThemeColor,
   },
   description: {
-    ...FONTS.Regular14,
+    ...FONTS.Regular12,
     color: COLORS.gray,
-    marginBottom: 25,
+    marginBottom: SIZES.margin,
   },
   addressContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    gap: SIZES.base,
+
+    ...commonStyles.alignItemsCenter,
+    ...commonStyles.justifyContentAround,
     backgroundColor: COLORS.white,
     paddingHorizontal: SIZES.padding,
     paddingVertical: SIZES.padding * 0.5,
-    borderRadius: SIZES.h20,
-    marginHorizontal: SIZES.h20,
+    borderRadius: SIZES.radius,
+    marginHorizontal: SIZES.margin * 0.5,
   },
 
   bookButton: {
-    paddingHorizontal: SIZES.padding,
-    paddingVertical: SIZES.padding * 0.7,
-    borderRadius: SIZES.h10,
     backgroundColor: COLORS.ThemeColor,
+    borderRadius: SIZES.radius,
     alignItems: 'center',
-    marginHorizontal: SIZES.h20,
+    justifyContent: 'center',
+    height: SIZES.input,
+    width: SIZES.width * 0.9,
+    alignSelf: 'center',
     marginTop: 'auto',
-    marginBottom: SIZES.h20,
-  },
-  bookButtonText: {
-    ...FONTS.Regular18,
-    color: COLORS.white,
+    marginBottom: SIZES.margin,
   },
   mapIcon: {
-    width: SIZES.width * 0.05,
-    height: SIZES.height * 0.05,
+    width: SIZES.large,
+    height: SIZES.large,
     resizeMode: 'contain',
   },
   address: {
-    ...FONTS.Regular14,
+    ...FONTS.Regular12,
     color: COLORS.gray,
-    paddingHorizontal: SIZES.padding * 0.5,
   },
 
   cardContainer: {
@@ -98,27 +96,27 @@ export default StyleSheet.create({
   // 🔹 Booking Card (Modal)
 
   bookingTitle: {
-    ...FONTS.Bold23,
-    marginBottom: SIZES.padding,
+    ...FONTS.Bold16,
+    marginBottom: SIZES.margin * 0.5,
   },
 
   label: {
-    ...FONTS.Medium16,
-    marginTop: SIZES.h10,
+    ...FONTS.Medium12,
+    marginTop: SIZES.margin / 2,
   },
   inputText: {
-    ...FONTS.Regular16
+    ...FONTS.Regular12,
   },
   inputContainer: {},
   inputBox: {
     borderWidth: 1,
     borderColor: COLORS.borderColor,
-    marginBottom: SIZES.padding*.5,
-    paddingVertical:SIZES.padding*.5,
-    paddingHorizontal:SIZES.padding*.5,
-    borderRadius: SIZES.h10,
+    marginBottom: SIZES.padding * 0.5,
+    paddingVertical: SIZES.padding * 0.5,
+    paddingHorizontal: SIZES.padding * 0.5,
+    borderRadius: SIZES.radius,
     backgroundColor: COLORS.white,
-    justifyContent:'center',
+    justifyContent: 'center',
   },
   rightIconContainer: {
     position: 'absolute',
@@ -130,7 +128,7 @@ export default StyleSheet.create({
     width: SIZES.h24,
     height: SIZES.h25,
     resizeMode: 'contain',
-    tintColor:COLORS.ThemeColor
+    tintColor: COLORS.ThemeColor,
   },
 
   // 🔹 Error Message
@@ -145,22 +143,22 @@ export default StyleSheet.create({
     backgroundColor: COLORS.white,
     justifyContent: 'center',
     alignContent: 'center',
-    width:"auto"
+    width: 'auto',
   },
   thankYou: {
     ...FONTS.Bold30,
     textAlign: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal:SIZES.padding*2,
-    marginBottom:SIZES.height*.3
+    paddingHorizontal: SIZES.padding * 2,
+    marginBottom: SIZES.height * 0.3,
   },
   thankYouImg: {
     resizeMode: 'contain',
     width: SIZES.width * 0.6,
     height: SIZES.height * 0.6,
     alignSelf: 'center',
-    padding:0,
-    marginBottom:-SIZES.height*.2
+    padding: 0,
+    marginBottom: -SIZES.height * 0.2,
   },
 });

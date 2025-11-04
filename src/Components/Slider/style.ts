@@ -5,8 +5,9 @@ export default StyleSheet.create({
   container: {
     // marginTop:SIZES.h10,
     // backgroundColor:COLORS.gray,
-    marginLeft: SIZES.h16,
-    marginBottom: SIZES.h10,
+    marginRight: SIZES.margin * 0.5,
+    paddingHorizontal: SIZES.padding,
+    // marginBottom: SIZES.margin,
   },
   card: {
     backgroundColor: COLORS.white,

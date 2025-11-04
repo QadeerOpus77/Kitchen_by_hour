@@ -5,7 +5,7 @@ import { CustomStatusBarProps } from '../types';
 
 export default function CustomStatusBar({
     backgroundColor,
-    barStyle = 'light-content',
+    barStyle = 'dark-content',
 }: CustomStatusBarProps) {
     const insets = useSafeAreaInsets();
 

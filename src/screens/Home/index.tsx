@@ -22,11 +22,11 @@ const Home = () => {
   };
   return (
     <Container style={style.container}>
+      <Header title="Alex William" subtitle="Warner Bros" />
       {
         selectedKitchen ? (
           // 🧾 Detail Screen
           <View style={style.detailContainer} >
-            <Header title="Alex William" subtitle="Warner Bros" />
 
             <Text style={style.title}>Choose Kitchen</Text>
 
@@ -53,7 +53,6 @@ const Home = () => {
           : (
             // 🏠 Home Screen
             <View style={style.container}>
-              <Header title="Alex William" subtitle="Warner Bros" />
               <Text style={style.title}>Our Kitchens Locations</Text>
               <Slider />
               <LocationCards onExplore={handleExplorePress} />

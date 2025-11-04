@@ -3,29 +3,33 @@ import { FONTS, SIZES, COLORS } from '../../constant';
 
 export default StyleSheet.create({
   headerContainer: {
-    width: '55%',
+    width: '100%',
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: COLORS.white,
+    justifyContent: 'center',
+    paddingVertical: SIZES.padding / 2,
+    position: 'relative',
   },
+
   backButton: {
+    position: 'absolute',
+    left: SIZES.padding,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: SIZES.padding,
+    // padding: SIZES.padding * 0.7,
     borderRadius: SIZES.radius,
   },
+
   arrowIcon: {
     resizeMode: 'contain',
-    width: SIZES.width * 0.05,
-    height: SIZES.width * 0.05,
+    width: SIZES.large,
+    height: SIZES.large,
   },
+
   headerText: {
+    ...FONTS.Medium16,
     color: COLORS.white,
     textAlign: 'center',
-    ...FONTS.Medium16,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignContent: 'center',
+    fontWeight: '600',
   },
 });

@@ -43,12 +43,9 @@ const LocationCards: React.FC<CardsProps> = ({ onExplore }) => {
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.address}>{item.address}</Text>
         <Text style={styles.description}>{item.description}</Text>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => onExplore?.(item.id)}
-        >
-          <Button title='Explore Kitchen' style={styles.button}></Button>
-        </TouchableOpacity>
+        <Button onPress={() => onExplore?.(item.id)}
+          title='Explore Kitchen' style={styles.button}></Button>
+
       </View>
     </View>
   );

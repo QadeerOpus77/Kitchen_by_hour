@@ -3,20 +3,17 @@ import { FONTS, SIZES, COLORS } from '../../constant';
 import { panHandlerName } from 'react-native-gesture-handler/lib/typescript/handlers/PanGestureHandler';
 
 const styles = StyleSheet.create({
-  listContainer: {
-    paddingHorizontal: SIZES.padding,
-    // paddingBottom: SIZES.padding,
-  },
+  listContainer: {},
   cardContainer: {
     marginBottom: SIZES.margin * 0.5,
   },
   image: {
-    borderRadius: SIZES.radius,
+    borderRadius: SIZES.radius * 1.5,
   },
   title: {
     ...FONTS.Regular14,
     backgroundColor: COLORS.white,
-    borderRadius: SIZES.h20,
+    borderRadius: SIZES.radius * 1.5,
     width: 'auto',
     padding: SIZES.padding * 0.5,
     margin: SIZES.padding * 0.5,
@@ -26,9 +23,9 @@ const styles = StyleSheet.create({
   },
   imageBackground: {
     width: '100%',
-    height: SIZES.height * 0.23,
+    height: SIZES.height * 0.2,
     justifyContent: 'flex-end',
-    borderRadius: SIZES.h20,
+    borderRadius: SIZES.radius * 1.5,
   },
 });
 

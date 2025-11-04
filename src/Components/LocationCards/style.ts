@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     paddingHorizontal: SIZES.padding,
-    paddingVertical: SIZES.padding,
+    paddingVertical: SIZES.padding * 0.5,
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: SIZES.height * 0.3,
+    height: SIZES.height * 0.25,
     borderRadius: SIZES.radius,
     overflow: 'hidden',
   },
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     borderRadius: SIZES.radius,
     ...commonStyles.alignItemsCenter,
     ...commonStyles.justifyContentCenter,
+    width: '100%',
   },
 });
 

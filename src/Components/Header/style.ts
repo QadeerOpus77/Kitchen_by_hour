@@ -13,13 +13,13 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   avatarButton: {
-    width: SIZES.large * 2,
-    height: SIZES.large * 2,
+    width: SIZES.large * 2.5,
+    height: SIZES.large * 2.5,
     overflow: 'hidden',
   },
   avatarImage: {
-    width: SIZES.large * 2,
-    height: SIZES.large * 2,
+    width: SIZES.large * 2.5,
+    height: SIZES.large * 2.5,
   },
   headerTitle: {
     marginHorizontal: SIZES.padding * 0.5,
@@ -28,8 +28,7 @@ export default StyleSheet.create({
   },
   headerSubtitle: {
     ...FONTS.Regular12,
-    color: COLORS.gray,
-    marginTop: SIZES.margin * 0.5,
+    color: COLORS.black,
   },
   iconButton: {
     backgroundColor: COLORS.ThemeColor,

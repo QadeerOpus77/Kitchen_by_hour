@@ -10,10 +10,10 @@ export default function BookingStack() {
     return (
         <Stack.Navigator
             screenOptions={{ headerShown: false }}
-            initialRouteName={NavigationStrings.BOOK_NOW}>
+            initialRouteName={NavigationStrings.BOOK_TOUR}>
             <Stack.Screen
-                name={NavigationStrings.BOOK_NOW}
-                component={Screens.BookNow}
+                name={NavigationStrings.BOOK_TOUR}
+                component={Screens.BookTour}
             />
             {/* <Stack.Screen
                 name={NavigationStrings.THANK_YOU}

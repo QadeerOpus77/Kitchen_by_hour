@@ -21,7 +21,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { RootStackParamList } from '../../navigation/types/RootStackParamList';
 import { navigate } from '../../navigation/Stack/NavigationRef';
 import NavigationStrings from '../../navigation/NavigationStrings';
-import { BackHeader } from '../../Components';
+import { BackHeader, Button } from '../../Components';
 
 const { height } = Dimensions.get('window');
 
@@ -87,12 +87,12 @@ const BookNow: React.FC = () => {
   const toggleCard = () => {
     Animated.parallel([
       Animated.timing(slideAnim, {
-        toValue: showCard ? height : height - 700,
+        toValue: showCard ? height : height - 800,
         duration: 400,
         useNativeDriver: true,
       }),
       Animated.timing(imageHeight, {
-        toValue: showCard ? 500 : 250,
+        toValue: showCard ? 500 : 300,
         duration: 400,
         useNativeDriver: false,
       }),
@@ -148,6 +148,7 @@ const BookNow: React.FC = () => {
         source={kitchen.image}
         style={[style.backgroundImage, { height: imageHeight }]}
         resizeMode="cover"
+
       />
 
       {/* Kitchen Details */}
@@ -159,7 +160,7 @@ const BookNow: React.FC = () => {
               {
                 translateY: slideAnim.interpolate({
                   inputRange: [height - 600, height],
-                  outputRange: [100, 400],
+                  outputRange: [100, 350],
                   extrapolate: 'clamp',
                 }),
               },
@@ -185,8 +186,8 @@ const BookNow: React.FC = () => {
             transform: [
               {
                 translateY: slideAnim.interpolate({
-                  inputRange: [height - 500, height],
-                  outputRange: [120, 420],
+                  inputRange: [height - 800, height],
+                  outputRange: [130, 400],
                   extrapolate: 'clamp',
                 }),
               },
@@ -246,9 +247,9 @@ const BookNow: React.FC = () => {
                 <Text style={style.inputText}>
                   {time
                     ? time.toLocaleTimeString([], {
-                        hour: '2-digit',
-                        minute: '2-digit',
-                      })
+                      hour: '2-digit',
+                      minute: '2-digit',
+                    })
                     : '00:00'}
                 </Text>
                 <TouchableOpacity style={style.rightIconContainer}>
@@ -269,15 +270,15 @@ const BookNow: React.FC = () => {
         </Animated.View>
       )}
       {/* Book Button */}
-      <TouchableOpacity style={style.bookButton} onPress={handleBooking}>
-        <Text style={style.bookButtonText}>Book Tour</Text>
-      </TouchableOpacity>
+      <Button title={'Book Tour'} style={style.bookButton} onPress={handleBooking}>
+
+      </Button>
 
       {/* Animated Thank You */}
       {showThanks && (
         <Animated.View
           style={{
-            flex:1,
+            flex: 1,
             position: 'absolute',
             top: 0,
             left: 0,

@@ -5,7 +5,7 @@ export { default as OTP } from './OTP';
 export { default as NewPassword } from './NewPassword';
 export { default as SelectRole } from './SelectRole';
 export { default as Home } from './Home';
-export { default as BookNow } from './BookNow';
+export { default as BookTour } from './BookTour';
 // export { default as ThankYou } from './ThankYou';
 export { default as Alerts } from './Alerts';
 export { default as Calender } from './Calender';
