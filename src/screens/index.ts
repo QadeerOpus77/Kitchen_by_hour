@@ -6,7 +6,7 @@ export { default as NewPassword } from './NewPassword';
 export { default as SelectRole } from './SelectRole';
 export { default as Home } from './Home';
 export { default as BookTour } from './BookTour';
-// export { default as ThankYou } from './ThankYou';
+export { default as BookKitchen } from './BookKitchen';
 export { default as Alerts } from './Alerts';
 export { default as Calender } from './Calender';
 export { default as Menu } from './Menu';

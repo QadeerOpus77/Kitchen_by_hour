@@ -28,6 +28,8 @@ import { RootStackParamList } from '../../navigation/types/RootStackParamList';
 import { useAuthState, useAuthDispatch } from '../../redux/Hook/authHooks';
 import { loginValidationSchema } from '../../utils/validations/auth.validations';
 import localStoreUtil from '../../utils/localStoreUtil';
+import { useRoleState } from '../../redux/Hook/useRole';
+import { RoleType } from '../../redux/Enums/RoleEnum';
 
 const SignIn = () => {
   const [activeButton, setActiveButton] = useState<SocialPlatform | null>(null);
@@ -42,6 +44,8 @@ const SignIn = () => {
     token: '1234',
   });
   const [formKey, setFormKey] = useState(0);
+  const { selectedRole } = useRoleState();
+
 
   useEffect(() => {
     const initializeDeviceData = async () => {
@@ -200,10 +204,22 @@ const SignIn = () => {
 
                     title="Login"
                     colors={[COLORS.ThemeColor, COLORS.ThemeColor]}
-                    onPress={() =>
-                      navigate({
-                        name: NavigationStrings.BOTTOM_STACK as keyof RootStackParamList,
-                      })}
+                    onPress={() => {
+                      if (selectedRole === RoleType.ADMINISTRATOR) {
+                        navigate({
+                          name: NavigationStrings.BOTTOM_STACK as keyof RootStackParamList,
+                          params: {
+                            screen: NavigationStrings.HOME_STACK, params: { screen: NavigationStrings.BOOK_KITCHEN },
+                          }
+                        }
+                        );
+                      } else {
+                        navigate({
+                          name: NavigationStrings.BOTTOM_STACK as keyof RootStackParamList,
+                        }
+                        );
+                      }
+                    }}
                   />
 
                   <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: SIZES.margin }} >

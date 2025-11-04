@@ -18,6 +18,7 @@ export default {
     MENU: 'Menu',
     MORE: 'more',
     PROFILE: 'Profile',
+    BOOK_KITCHEN: 'BookKitchen',
 
 
     // Setting

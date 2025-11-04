@@ -15,7 +15,11 @@ export default function HomeStack() {
                 name={NavigationStrings.HOME}
                 component={Screens.Home}
             />
-            
+            <Stack.Screen
+                name={NavigationStrings.BOOK_KITCHEN}
+                component={Screens.BookKitchen}
+            />
+
         </Stack.Navigator>
     );
 }
