@@ -37,9 +37,9 @@ const KitchenCard: React.FC<KitchenCardsProps> = ({ onSelect }) => {
           imageStyle={styles.image}
           resizeMode="cover"
         >
-          {/* <View style={styles.textContainer}> */}
+
           <Text style={styles.title}>{item.title}</Text>
-          {/* </View> */}
+
         </ImageBackground>
       </TouchableOpacity>
     </View>

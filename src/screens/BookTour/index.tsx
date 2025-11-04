@@ -22,6 +22,8 @@ import { RootStackParamList } from '../../navigation/types/RootStackParamList';
 import { navigate } from '../../navigation/Stack/NavigationRef';
 import NavigationStrings from '../../navigation/NavigationStrings';
 import { BackHeader, Button } from '../../Components';
+import { goBack } from '../../navigation/Stack/NavigationRef';
+
 
 const { height } = Dimensions.get('window');
 
@@ -110,13 +112,11 @@ const BookNow: React.FC = () => {
     setShowThanks(true);
     Animated.timing(thanksAnim, {
       toValue: 1,
-      duration: 800,
+      duration: 400,
       useNativeDriver: true,
     }).start(() => {
       setTimeout(() => {
-        navigate({
-          name: NavigationStrings.BOTTOM_STACK as keyof RootStackParamList,
-        }); // Navigate to home after animation
+        goBack()// Navigate to home after animation
       }, 3000);
     });
   };
@@ -160,7 +160,7 @@ const BookNow: React.FC = () => {
               {
                 translateY: slideAnim.interpolate({
                   inputRange: [height - 600, height],
-                  outputRange: [100, 350],
+                  outputRange: [120, 390],
                   extrapolate: 'clamp',
                 }),
               },
@@ -223,7 +223,7 @@ const BookNow: React.FC = () => {
                   {' '}
                   {date ? date.toLocaleDateString() : 'dd/mm/yy'}
                 </Text>
-                <TouchableOpacity style={style.rightIconContainer}>
+                <TouchableOpacity style={style.rightIconContainer} onPress={() => setShowDatePicker(true)}>
                   <Image source={images.calender} style={style.rightIcon} />
                 </TouchableOpacity>
               </TouchableOpacity>
@@ -252,10 +252,11 @@ const BookNow: React.FC = () => {
                     })
                     : '00:00'}
                 </Text>
-                <TouchableOpacity style={style.rightIconContainer}>
+                <TouchableOpacity style={style.rightIconContainer} onPress={() => setShowTimePicker(true)}
+                >
                   <Image source={images.clock} style={style.rightIcon} />
                 </TouchableOpacity>
-                {/* <Image source={images.clock} style={style.rightIcon}/> */}
+
               </TouchableOpacity>
               {showTimePicker && (
                 <DateTimePicker
@@ -270,9 +271,6 @@ const BookNow: React.FC = () => {
         </Animated.View>
       )}
       {/* Book Button */}
-      <Button title={'Book Tour'} style={style.bookButton} onPress={handleBooking}>
-
-      </Button>
 
       {/* Animated Thank You */}
       {showThanks && (
@@ -296,11 +294,15 @@ const BookNow: React.FC = () => {
           }}
         >
           <View style={style.thankYouContainer}>
+
             <Image source={images.thankYou} style={style.thankYouImg} />
             <Text style={style.thankYou}>Thankyou For Booking a Tour </Text>
           </View>
         </Animated.View>
       )}
+      <Button title={'Book Tour'} style={style.bookButton} onPress={handleBooking}>
+
+      </Button>
     </SafeAreaView>
   );
 };

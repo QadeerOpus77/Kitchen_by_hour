@@ -143,8 +143,12 @@ export const FONTS = {
     fontFamily: 'Poppins-Bold',
     fontSize: RFValue(SIZES.h20),
   },
+  Bold18: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: RFValue(SIZES.h18),
+  },
   Bold17: {
-    fontFamily: 'Roboto-Bold',
+    fontFamily: 'Poppins-Bold',
     fontSize: RFValue(SIZES.h17),
   },
   Bold16: {

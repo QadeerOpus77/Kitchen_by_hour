@@ -29,10 +29,11 @@ export default StyleSheet.create({
     // position:'relative'
   },
   title: {
-    ...FONTS.Bold20,
+    ...FONTS.Bold18,
+    marginVertical: SIZES.margin * 0.3,
   },
   price: {
-    ...FONTS.Bold16,
+    ...FONTS.Bold15,
     color: COLORS.ThemeColor,
   },
   duration: {
@@ -42,7 +43,6 @@ export default StyleSheet.create({
   description: {
     ...FONTS.Regular12,
     color: COLORS.gray,
-    marginBottom: SIZES.margin,
   },
   addressContainer: {
     flexDirection: 'row',
@@ -69,7 +69,7 @@ export default StyleSheet.create({
     marginBottom: SIZES.margin,
   },
   mapIcon: {
-    width: SIZES.large,
+    width: SIZES.medium * 1.5,
     height: SIZES.large,
     resizeMode: 'contain',
   },
@@ -97,7 +97,7 @@ export default StyleSheet.create({
 
   bookingTitle: {
     ...FONTS.Bold16,
-    marginBottom: SIZES.margin * 0.5,
+    marginVertical: SIZES.margin,
   },
 
   label: {

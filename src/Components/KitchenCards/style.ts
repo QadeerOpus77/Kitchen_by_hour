@@ -11,12 +11,12 @@ const styles = StyleSheet.create({
     borderRadius: SIZES.radius * 1.5,
   },
   title: {
-    ...FONTS.Regular14,
+    ...FONTS.Regular12,
     backgroundColor: COLORS.white,
     borderRadius: SIZES.radius * 1.5,
-    width: 'auto',
-    padding: SIZES.padding * 0.5,
-    margin: SIZES.padding * 0.5,
+    // width: 'auto',
+    padding: SIZES.padding * 0.3,
+    margin: SIZES.margin * 0.3,
     textAlign: 'center',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     height: SIZES.height * 0.2,
     justifyContent: 'flex-end',
     borderRadius: SIZES.radius * 1.5,
+    // resizeMode: 'cover',
   },
 });
 
