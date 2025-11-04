@@ -20,6 +20,7 @@ export default StyleSheet.create({
   avatarImage: {
     width: SIZES.large * 2.5,
     height: SIZES.large * 2.5,
+    borderRadius: SIZES.radius * 100,
   },
   headerTitle: {
     marginHorizontal: SIZES.padding * 0.5,

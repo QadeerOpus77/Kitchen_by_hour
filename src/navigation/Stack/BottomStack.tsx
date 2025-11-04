@@ -182,7 +182,7 @@ const getTabLabel = (routeName: string): string => {
     case NavigationStrings.ALERTS:
       return 'Alerts';
     case NavigationStrings.MORE:
-      return 'MORE';
+      return 'More';
     default:
       return 'Home';
   }
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
   },
   scanText: {
     marginTop: SIZES.margin * 0.5,
-    ...FONTS.Medium11,
+    ...FONTS.Medium10,
     color: COLORS.ThemeColor,
     fontWeight: '600',
   },
@@ -243,6 +243,6 @@ const styles = StyleSheet.create({
   },
   activeText: {
     color: COLORS.black,
-    fontWeight: '600',
+    // fontWeight: '600',
   },
 });
