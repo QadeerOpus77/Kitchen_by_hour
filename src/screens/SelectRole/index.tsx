@@ -16,12 +16,17 @@ import NavigationStrings from '../../navigation/NavigationStrings';
 import { RootStackParamList } from '../../navigation/types/RootStackParamList';
 import styles from './style';
 import { useAuthState } from '../../redux/Hook/authHooks'; // 
+import { RoleType } from '../../redux/Enums/RoleEnum';
+import { useRoleDispatch } from '../../redux/Hook/useRole';
+
 
 const SelectRole: React.FC = () => {
   const { loading, error, isAuthenticated } = useAuthState(); // ✅ fetch state values
 
   const opacity = useRef(new Animated.Value(0)).current;
   const scale = useRef(new Animated.Value(0.5)).current;
+
+  const { setRole } = useRoleDispatch();
 
   useEffect(() => {
     Animated.parallel([
@@ -45,6 +50,21 @@ const SelectRole: React.FC = () => {
   };
   const handleHome = () => {
     navigate({ name: NavigationStrings.BOTTOM_STACK as keyof RootStackParamList });
+  };
+
+
+  // 🟢 Handle selecting Administrator
+  const handleSelectAdministrator = () => {
+    setRole(RoleType.ADMINISTRATOR); // Save role in Redux
+    navigate({ name: NavigationStrings.AUTH_STACK as keyof RootStackParamList });
+    console.log('admin')
+  };
+
+  // 🟣 Handle selecting Baker
+  const handleSelectBaker = () => {
+    setRole(RoleType.BAKER); // Save role in Redux
+    navigate({ name: NavigationStrings.AUTH_STACK as keyof RootStackParamList });
+    console.log('baker')
   };
 
   return (
@@ -72,11 +92,11 @@ const SelectRole: React.FC = () => {
           </View>
           <View>
             <Text style={styles.title}>Which best describes you? </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handleSelectAdministrator}>
               <Text style={styles.button}>Kitchen Operator or Administrator</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={handleHome}>
+            <TouchableOpacity onPress={handleSelectBaker}
+            >
               <Text style={styles.button}>
                 Food Maker, Caterer, Baker, Food Truck Operator
               </Text>

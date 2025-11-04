@@ -172,7 +172,7 @@ const SignIn = () => {
                     height={SIZES.input * 1.5} />
 
                   <View style={styles.rememberMeContainer}>
-                    <View style={styles.rememberMeCheckBoxContainer}>
+                    {/* <View style={styles.rememberMeCheckBoxContainer}>
                       <CheckBox
                         value={rememberMe}
                         onValueChange={handleRememberMeToggle}
@@ -181,7 +181,7 @@ const SignIn = () => {
                         style={{ width: SIZES.large, height: SIZES.large }}
                       />
                       <Text style={styles.rememberMeText}>Remember Me</Text>
-                    </View>
+                    </View> */}
                     <TouchableOpacity
                       onPress={() =>
                         navigate({

@@ -48,7 +48,7 @@ export default StyleSheet.create({
   inputContainer: {},
   rememberMeContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     marginHorizontal: SIZES.width * 0.05,
     marginBottom: SIZES.margin,
@@ -64,7 +64,7 @@ export default StyleSheet.create({
   },
   forgotPasswordText: {
     ...FONTS.Regular10,
-    marginTop: SIZES.h10,
+    marginTop: SIZES.margin * 0.5,
     color: COLORS.ThemeColor,
   },
 

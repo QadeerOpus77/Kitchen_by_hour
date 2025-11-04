@@ -146,12 +146,18 @@ export default StyleSheet.create({
     width: 'auto',
   },
   thankYou: {
-    ...FONTS.Bold30,
+    ...FONTS.Bold26,
     textAlign: 'center',
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: SIZES.padding * 2,
-    marginBottom: SIZES.height * 0.3,
+    // marginBottom: SIZES.height * 0.3,
+  },
+  thankYouDesc: {
+    ...FONTS.Medium10,
+    color: COLORS.darkGray,
+    paddingHorizontal: SIZES.padding,
+    textAlign: 'center',
   },
   thankYouImg: {
     resizeMode: 'contain',

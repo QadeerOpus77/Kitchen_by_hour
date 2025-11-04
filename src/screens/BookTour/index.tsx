@@ -8,6 +8,7 @@ import {
   Dimensions,
   SafeAreaView,
   Platform,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import style from './style';
 import {
@@ -24,8 +25,7 @@ import NavigationStrings from '../../navigation/NavigationStrings';
 import { BackHeader, Button } from '../../Components';
 import { goBack } from '../../navigation/Stack/NavigationRef';
 
-
-const { height } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 const kitchenData: Record<
   string,
@@ -57,7 +57,6 @@ const kitchenData: Record<
     description: 'Compact and efficient with a minimalist layout.',
     price: '$110/day',
     duration: 'Month',
-
     image: images.Kitchencard,
   },
 };
@@ -72,7 +71,6 @@ const BookNow: React.FC = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const kitchen = kitchenData[route?.params?.id ?? '1'];
 
-  // Hooks must be top-level
   const [showCard, setShowCard] = useState(false);
   const [showThanks, setShowThanks] = useState(false);
   const [date, setDate] = useState(new Date());
@@ -84,6 +82,22 @@ const BookNow: React.FC = () => {
   const slideAnim = useRef(new Animated.Value(height)).current;
   const imageHeight = useRef(new Animated.Value(550)).current;
   const thanksAnim = useRef(new Animated.Value(0)).current;
+  const thanksScale = useRef(new Animated.Value(0)).current;
+  const thanksRotate = useRef(new Animated.Value(0)).current;
+
+  // Confetti animation values
+  const confetti1 = useRef(new Animated.Value(0)).current;
+  const confetti2 = useRef(new Animated.Value(0)).current;
+  const confetti3 = useRef(new Animated.Value(0)).current;
+  const confetti4 = useRef(new Animated.Value(0)).current;
+
+  // 👇 Close card when tapping outside
+  const handleOutsidePress = () => {
+    if (showCard) {
+      toggleCard();
+      setIsCardOpen(false);
+    }
+  };
 
   // Toggle Booking Card
   const toggleCard = () => {
@@ -101,23 +115,84 @@ const BookNow: React.FC = () => {
     ]).start(() => setShowCard(!showCard));
   };
 
+  // 👇 Celebration animation for thank you modal
+  const startCelebration = () => {
+    Animated.parallel([
+      // Main modal animation
+      Animated.spring(thanksScale, {
+        toValue: 1,
+        friction: 5,
+        tension: 40,
+        useNativeDriver: true,
+      }),
+      Animated.timing(thanksAnim, {
+        toValue: 1,
+        duration: 400,
+        useNativeDriver: true,
+      }),
+      Animated.sequence([
+        Animated.timing(thanksRotate, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+        Animated.timing(thanksRotate, {
+          toValue: 0,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+      ]),
+      // Confetti animations
+      Animated.timing(confetti1, {
+        toValue: 1,
+        duration: 1500,
+        useNativeDriver: true,
+      }),
+      Animated.timing(confetti2, {
+        toValue: 1,
+        duration: 1700,
+        useNativeDriver: true,
+      }),
+      Animated.timing(confetti3, {
+        toValue: 1,
+        duration: 1600,
+        useNativeDriver: true,
+      }),
+      Animated.timing(confetti4, {
+        toValue: 1,
+        duration: 1800,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+
   // Handle Booking
   const handleBooking = () => {
     if (!showCard) {
       toggleCard();
       setIsCardOpen(true);
-      // first open card if not shown
       return;
     }
     setShowThanks(true);
-    Animated.timing(thanksAnim, {
-      toValue: 1,
-      duration: 400,
-      useNativeDriver: true,
-    }).start(() => {
-      setTimeout(() => {
-        goBack()// Navigate to home after animation
-      }, 3000);
+    startCelebration();
+  };
+
+  // 👇 Close thank you modal and go back
+  const handleThankYouClose = () => {
+    Animated.parallel([
+      Animated.timing(thanksAnim, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+      Animated.timing(thanksScale, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+    ]).start(() => {
+      setShowThanks(false);
+      goBack();
     });
   };
 
@@ -139,8 +214,66 @@ const BookNow: React.FC = () => {
     );
   }
 
+  // 👇 Confetti element renderer
+  const renderConfetti = (animValue: Animated.Value, left: number, color: string, delay: number = 0) => {
+    return (
+      <Animated.View
+        style={{
+          position: 'absolute',
+          left: left,
+          top: height * 0.2,
+          width: 10,
+          height: 10,
+          backgroundColor: color,
+          borderRadius: 5,
+          transform: [
+            {
+              translateY: animValue.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0, height * 0.6],
+              }),
+            },
+            {
+              translateX: animValue.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0, (Math.random() - 0.5) * 200],
+              }),
+            },
+            {
+              rotate: animValue.interpolate({
+                inputRange: [0, 1],
+                outputRange: ['0deg', '720deg'],
+              }),
+            },
+          ],
+          opacity: animValue.interpolate({
+            inputRange: [0, 0.5, 1],
+            outputRange: [1, 1, 0],
+          }),
+        }}
+      />
+    );
+  };
+
   return (
     <SafeAreaView style={style.container}>
+      {/* 👇 Touchable overlay to close card */}
+      {showCard && (
+        <TouchableWithoutFeedback onPress={handleOutsidePress}>
+          <View
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(0,0,0,0.0)',
+              zIndex: 0,
+            }}
+          />
+        </TouchableWithoutFeedback>
+      )}
+
       <BackHeader tintColor="white" title={isCardOpen ? 'Book Now' : ''} />
 
       {/* Background Image */}
@@ -148,7 +281,6 @@ const BookNow: React.FC = () => {
         source={kitchen.image}
         style={[style.backgroundImage, { height: imageHeight }]}
         resizeMode="cover"
-
       />
 
       {/* Kitchen Details */}
@@ -206,7 +338,7 @@ const BookNow: React.FC = () => {
         <Animated.View
           style={[
             style.bookingContainer,
-            { transform: [{ translateY: slideAnim }] },
+            { transform: [{ translateY: slideAnim }], zIndex: 2 },
           ]}
         >
           <Text style={style.bookingTitle}>Booking Detail</Text>
@@ -220,10 +352,12 @@ const BookNow: React.FC = () => {
                 onPress={() => setShowDatePicker(true)}
               >
                 <Text style={style.inputText}>
-                  {' '}
                   {date ? date.toLocaleDateString() : 'dd/mm/yy'}
                 </Text>
-                <TouchableOpacity style={style.rightIconContainer} onPress={() => setShowDatePicker(true)}>
+                <TouchableOpacity
+                  style={style.rightIconContainer}
+                  onPress={() => setShowDatePicker(true)}
+                >
                   <Image source={images.calender} style={style.rightIcon} />
                 </TouchableOpacity>
               </TouchableOpacity>
@@ -252,11 +386,12 @@ const BookNow: React.FC = () => {
                     })
                     : '00:00'}
                 </Text>
-                <TouchableOpacity style={style.rightIconContainer} onPress={() => setShowTimePicker(true)}
+                <TouchableOpacity
+                  style={style.rightIconContainer}
+                  onPress={() => setShowTimePicker(true)}
                 >
                   <Image source={images.clock} style={style.rightIcon} />
                 </TouchableOpacity>
-
               </TouchableOpacity>
               {showTimePicker && (
                 <DateTimePicker
@@ -270,9 +405,8 @@ const BookNow: React.FC = () => {
           </View>
         </Animated.View>
       )}
-      {/* Book Button */}
 
-      {/* Animated Thank You */}
+      {/* Animated Thank You with Celebration */}
       {showThanks && (
         <Animated.View
           style={{
@@ -282,27 +416,33 @@ const BookNow: React.FC = () => {
             left: 0,
             right: 0,
             bottom: 0,
+            backgroundColor: 'rgba(0,0,0,0.5)',
             opacity: thanksAnim,
-            transform: [
-              {
-                scale: thanksAnim.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [0.5, 1],
-                }),
-              },
-            ],
+            zIndex: 999,
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
-          <View style={style.thankYouContainer}>
-
+          <Animated.View
+            style={[
+              style.thankYouContainer,
+              {
+                transform: [{ scale: thanksScale }],
+              },
+            ]}
+          >
             <Image source={images.thankYou} style={style.thankYouImg} />
-            <Text style={style.thankYou}>Thankyou For Booking a Tour </Text>
-          </View>
+            <Text style={style.thankYou}>Thank You For Booking a Tour!</Text>
+            <Text style={style.thankYouDesc}>This is dummy copy. It is not meant to be read. It has been placed here solely to demonstrate.</Text>
+
+            {/* 👇 Close button */}
+            <Button title={'Done'} style={style.bookButton} onPress={handleThankYouClose} />
+          </Animated.View>
         </Animated.View>
       )}
-      <Button title={'Book Tour'} style={style.bookButton} onPress={handleBooking}>
 
-      </Button>
+      {/* Book Button */}
+      <Button title={'Book Tour'} style={style.bookButton} onPress={handleBooking} />
     </SafeAreaView>
   );
 };
