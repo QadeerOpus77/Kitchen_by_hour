@@ -6,6 +6,9 @@ import { kitchenCardData } from '../../config'
 import { COLORS, images } from '../../constant'
 import CustomModal from '../../Components/CustomModal'
 import { TextInput } from 'react-native-gesture-handler'
+import { navigate } from '../../navigation/Stack/NavigationRef'
+import NavigationStrings from '../../navigation/NavigationStrings'
+import { RootStackParamList } from '../../navigation/types/RootStackParamList'
 
 const BookingReview = () => {
     const [showCardModal, setShowCardModal] = useState(false);
@@ -54,6 +57,14 @@ const BookingReview = () => {
         ]).start(() => {
             setShowThanks(false);
         });
+        navigate({
+            name: NavigationStrings.BOTTOM_STACK as keyof RootStackParamList,
+            params: {
+                screen: NavigationStrings.HOME_STACK, params: { screen: NavigationStrings.BOOK_KITCHEN },
+            }
+        }
+        )
+
     };
 
     const handleSaveCard = () => {

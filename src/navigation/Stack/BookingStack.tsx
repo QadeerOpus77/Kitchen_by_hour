@@ -27,6 +27,10 @@ export default function BookingStack() {
                 name={NavigationStrings.BOOKING_REVIEW}
                 component={Screens.BookingReview}
             />
+            {/* <Stack.Screen
+                name={NavigationStrings.BOOK_KITCHEN}
+                component={Screens.BookKitchen}
+            /> */}
 
         </Stack.Navigator>
     );
