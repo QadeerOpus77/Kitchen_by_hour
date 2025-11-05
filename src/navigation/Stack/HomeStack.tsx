@@ -19,7 +19,6 @@ export default function HomeStack() {
                 name={NavigationStrings.BOOK_KITCHEN}
                 component={Screens.BookKitchen}
             />
-
         </Stack.Navigator>
     );
 }

@@ -174,13 +174,21 @@ const BookNow: React.FC = () => {
     ]).start();
   };
 
+
+  const handlePress = () => {
+    if (RoleType.ADMINISTRATOR) {
+      navigate({ name: NavigationStrings.AVAILABILITY as keyof RootStackParamList });
+    } else {
+      setShowDatePicker(true);
+    }
+  };
   // Handle Booking
   const handleBooking = () => {
     // <-- NEW: If admin, navigate to View Availability and return
-    if (selectedRole === RoleType.ADMINISTRATOR) {
-      navigate({ name: NavigationStrings.AVAILABILITY as keyof RootStackParamList });
-      return;
-    }
+    // if (selectedRole === RoleType.ADMINISTRATOR) {
+    //   navigate({ name: NavigationStrings.AVAILABILITY as keyof RootStackParamList });
+    //   return;
+    // }
 
     // otherwise keep existing behavior (open booking modal / show thanks)
     if (!showCard) {
@@ -364,14 +372,16 @@ const BookNow: React.FC = () => {
               <Text style={style.label}>Select Date</Text>
               <TouchableOpacity
                 style={style.inputBox}
-                onPress={() => setShowDatePicker(true)}
+                // onPress={() => setShowDatePicker(true)}
+                onPress={handlePress}
               >
                 <Text style={style.inputText}>
                   {date ? date.toLocaleDateString() : 'dd/mm/yy'}
                 </Text>
                 <TouchableOpacity
                   style={style.rightIconContainer}
-                  onPress={() => setShowDatePicker(true)}
+                  // onPress={() => setShowDatePicker(true)}
+                  onPress={handlePress}
                 >
                   <Image source={images.calender} style={style.rightIcon} />
                 </TouchableOpacity>

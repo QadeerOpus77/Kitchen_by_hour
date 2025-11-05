@@ -11,7 +11,7 @@ export type RootStackParamList = {
   BOTTOM_STACK: undefined;
   HOME_STACK: undefined;
   HOME: { id: string };
-  BOOK_NOW: { id: string };
+  BOOK_TOUR: { selectedDate: string };
   BOOKING_STACK: { id: string };
 };
 

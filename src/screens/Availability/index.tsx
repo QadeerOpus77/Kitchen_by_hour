@@ -88,7 +88,7 @@ const AvailabilityScreen = () => {
             />
 
             {/* Legend */}
-            <View style={styles.legend}>
+            {/* <View style={styles.legend}>
                 <View style={styles.legendItem}>
                     <View style={[styles.circle, { backgroundColor: "#0D284A" }]} />
                     <Text style={styles.legendText}>Booked</Text>
@@ -97,7 +97,7 @@ const AvailabilityScreen = () => {
                     <View style={[styles.circle, { backgroundColor: "#E5E5E5" }]} />
                     <Text style={styles.legendText}>Available</Text>
                 </View>
-            </View>
+            </View> */}
         </View>
     );
 };

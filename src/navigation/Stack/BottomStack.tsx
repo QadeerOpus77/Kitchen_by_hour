@@ -82,8 +82,8 @@ export default function BottomStack(): React.JSX.Element {
     <CurvedNavigator
       type="DOWN"
       style={styles.bottomBar}
-      height={90}
-      circleWidth={70}
+      height={80}
+      circleWidth={60}
       bgColor={COLORS.white}
       initialRouteName={NavigationStrings.HOME_STACK}
       circlePosition="CENTER"
@@ -178,15 +178,25 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
+    // backgroundColor: '#fff',
+    shadowColor: '#9f9f9fff',
+    shadowOffset: {
+      width: 1,
+      height: -2, // 👈 negative height means shadow appears on top
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    elevation: 15, // 👈 for Android shadow
   },
+
   scanContainer: {
     alignItems: 'center',
     bottom: SIZES.height * 0.02,
   },
   btnCircleUp: {
-    borderRadius: SIZES.radius,
-    alignItems: 'center',
-    justifyContent: 'center',
+    // borderRadius: SIZES.radius,
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
   button: {
     width: SIZES.width * 0.15,
@@ -197,12 +207,12 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.ThemeColor,
   },
   centerIcon: {
-    width: SIZES.large,
-    height: SIZES.large,
+    width: SIZES.large * 1.5,
+    height: SIZES.large * 2,
     tintColor: COLORS.white,
   },
   scanText: {
-    marginTop: SIZES.margin * 0.5,
+    marginTop: SIZES.margin * 0.4,
     ...FONTS.Medium10,
     color: COLORS.ThemeColor,
     fontWeight: '600',

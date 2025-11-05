@@ -8,8 +8,8 @@ export default StyleSheet.create({
   },
   dayContainer: {
     width: SIZES.width * 0.15,
-    height: SIZES.height * 0.1,
-    justifyContent: 'center',
+    height: SIZES.height * 0.11,
+    justifyContent: 'space-around',
     alignItems: 'center',
   },
   bookedContainer: {
@@ -29,30 +29,30 @@ export default StyleSheet.create({
     backgroundColor: '#3A8DFF',
     color: '#FFFFFF',
     paddingHorizontal: SIZES.padding / 3,
-    paddingVertical: 2,
+    // paddingVertical: 2,
     borderRadius: SIZES.radius,
-    marginTop: SIZES.margin,
+    // marginTop: SIZES.margin,
   },
-  legend: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 20,
-    gap: 30,
-  },
-  legendItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  circle: {
-    width: 16,
-    height: 16,
-    borderRadius: 8,
-    marginRight: 6,
-  },
-  legendText: {
-    fontSize: 14,
-    color: '#0D284A',
-    fontWeight: '500',
-  },
+  // legend: {
+  //   flexDirection: 'row',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   marginTop: 20,
+  //   gap: 30,
+  // },
+  // legendItem: {
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  // },
+  // circle: {
+  //   width: 16,
+  //   height: 16,
+  //   borderRadius: 8,
+  //   marginRight: 6,
+  // },
+  // legendText: {
+  //   fontSize: 14,
+  //   color: '#0D284A',
+  //   fontWeight: '500',
+  // },
 });
