@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { Calendar } from "react-native-calendars";
 import { MarkedDates } from "react-native-calendars/src/types";
 import { BackHeader } from "../../Components";
 import styles from "./style";
+import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { setSelectedDate } from "../../redux/Slices/bookingSlice";
 
 const AvailabilityScreen = () => {
+    const navigation = useNavigation();
+    const dispatch = useDispatch();
+
     const [bookedDates] = useState([
         "2025-11-01",
         "2025-11-02",
@@ -20,7 +26,17 @@ const AvailabilityScreen = () => {
         "2025-11-25",
     ]);
 
-    // Create booked markedDates with "Booked" label inside each booked day
+    const handleDayPress = (date: { dateString: string }) => {
+        const isBooked = bookedDates.includes(date.dateString);
+        if (!isBooked) {
+            // Save selected date in Redux
+            dispatch(setSelectedDate(date.dateString));
+            // Navigate back to BookNow screen
+            navigation.goBack();
+        }
+    };
+
+    // Create booked markedDates with "Booked" label
     const markedDates: MarkedDates = bookedDates.reduce((acc, date) => {
         acc[date] = {
             customStyles: {
@@ -43,20 +59,19 @@ const AvailabilityScreen = () => {
     return (
         <View style={styles.container}>
             {/* Header */}
-            <BackHeader
-                title="Availability"
-                tintColor="black"
-                titleColor="#0D284A"
-            />
+            <BackHeader title="Availability" tintColor="black" titleColor="#0D284A" />
 
             {/* Calendar */}
             <Calendar
                 markingType={"custom"}
                 markedDates={markedDates}
-                dayComponent={({ date, state, marking }) => {
+                onDayPress={handleDayPress}
+                dayComponent={({ date, state }) => {
                     const isBooked = date ? bookedDates.includes(date.dateString) : false;
                     return (
-                        <View
+                        <TouchableOpacity
+                            disabled={isBooked}
+                            onPress={() => handleDayPress(date!)}
                             style={[
                                 styles.dayContainer,
                                 isBooked && styles.bookedContainer,
@@ -69,10 +84,10 @@ const AvailabilityScreen = () => {
                                     isBooked && styles.bookedText,
                                 ]}
                             >
-                                {date?.day ?? ''}
+                                {date?.day ?? ""}
                             </Text>
                             {isBooked && <Text style={styles.bookedTag}>Booked</Text>}
-                        </View>
+                        </TouchableOpacity>
                     );
                 }}
                 theme={{
@@ -86,18 +101,6 @@ const AvailabilityScreen = () => {
                     textDayFontSize: 16,
                 }}
             />
-
-            {/* Legend */}
-            {/* <View style={styles.legend}>
-                <View style={styles.legendItem}>
-                    <View style={[styles.circle, { backgroundColor: "#0D284A" }]} />
-                    <Text style={styles.legendText}>Booked</Text>
-                </View>
-                <View style={styles.legendItem}>
-                    <View style={[styles.circle, { backgroundColor: "#E5E5E5" }]} />
-                    <Text style={styles.legendText}>Available</Text>
-                </View>
-            </View> */}
         </View>
     );
 };

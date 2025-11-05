@@ -6,7 +6,9 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { CustomStatusBar, CustomToast } from './src/Components';
 import { COLORS } from './src/constant';
 import { Provider } from 'react-redux';
-import { store } from './src/redux/Store';
+import { store, persistor } from './src/redux/Store';
+import { PersistGate } from 'redux-persist/integration/react';
+
 
 function App(): React.JSX.Element {
   useEffect(() => {
@@ -15,13 +17,17 @@ function App(): React.JSX.Element {
 
   return (
     <Provider store={store}>
-      <SafeAreaProvider>
-        <CustomStatusBar backgroundColor={COLORS.modalColor} />
-        {/* <SafeAreaView style={styles.container}> */}
-        <MainNavigator />
-        <CustomToast />
-        {/* </SafeAreaView> */}
-      </SafeAreaProvider>
+      <PersistGate loading={null} persistor={persistor}>
+
+        <SafeAreaProvider>
+          <CustomStatusBar backgroundColor={COLORS.modalColor} />
+          {/* <SafeAreaView style={styles.container}> */}
+          <MainNavigator />
+          <CustomToast />
+          {/* </SafeAreaView> */}
+        </SafeAreaProvider>
+      </PersistGate>
+
     </Provider>
   );
 }

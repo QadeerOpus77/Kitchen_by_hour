@@ -21,10 +21,14 @@ import {
 import { COLORS, images } from '../../constant';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { RootStackParamList } from '../../navigation/types/RootStackParamList';
-import { navigate } from '../../navigation/Stack/NavigationRef';
+
 import NavigationStrings from '../../navigation/NavigationStrings';
 import { BackHeader, Button } from '../../Components';
 import { goBack } from '../../navigation/Stack/NavigationRef';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../redux/store';
+
+
 
 // <-- NEW: role imports
 import { useRoleState } from '../../redux/Hook/useRole';
@@ -72,6 +76,26 @@ type KitchenDetailRouteProp = RouteProp<
 >;
 
 const BookNow: React.FC = () => {
+
+
+  const dispatch = useDispatch();
+  const selectedDateFromRedux = useSelector((state: RootState) => state.booking.selectedDate);
+
+  // Sync local date when Redux date changes
+  function parseLocalDate(dateString: string) {
+    const [year, month, day] = dateString.split('-').map(Number);
+    return new Date(year, month - 1, day); // month -1 since Date months are 0-indexed
+  }
+
+
+  React.useEffect(() => {
+    if (selectedDateFromRedux) {
+      setDate(parseLocalDate(selectedDateFromRedux));
+    }
+  }, [selectedDateFromRedux]);
+
+
+
   const route = useRoute<KitchenDetailRouteProp>();
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const kitchen = kitchenData[route?.params?.id ?? '1'];
@@ -94,10 +118,10 @@ const BookNow: React.FC = () => {
   const thanksRotate = useRef(new Animated.Value(0)).current;
 
   // Confetti animation values
-  const confetti1 = useRef(new Animated.Value(0)).current;
-  const confetti2 = useRef(new Animated.Value(0)).current;
-  const confetti3 = useRef(new Animated.Value(0)).current;
-  const confetti4 = useRef(new Animated.Value(0)).current;
+  // const confetti1 = useRef(new Animated.Value(0)).current;
+  // const confetti2 = useRef(new Animated.Value(0)).current;
+  // const confetti3 = useRef(new Animated.Value(0)).current;
+  // const confetti4 = useRef(new Animated.Value(0)).current;
 
   // 👇 Close card when tapping outside
   const handleOutsidePress = () => {
@@ -151,37 +175,41 @@ const BookNow: React.FC = () => {
         }),
       ]),
       // Confetti animations
-      Animated.timing(confetti1, {
-        toValue: 1,
-        duration: 1500,
-        useNativeDriver: true,
-      }),
-      Animated.timing(confetti2, {
-        toValue: 1,
-        duration: 1700,
-        useNativeDriver: true,
-      }),
-      Animated.timing(confetti3, {
-        toValue: 1,
-        duration: 1600,
-        useNativeDriver: true,
-      }),
-      Animated.timing(confetti4, {
-        toValue: 1,
-        duration: 1800,
-        useNativeDriver: true,
-      }),
+      // Animated.timing(confetti1, {
+      //   toValue: 1,
+      //   duration: 1500,
+      //   useNativeDriver: true,
+      // }),
+      // Animated.timing(confetti2, {
+      //   toValue: 1,
+      //   duration: 1700,
+      //   useNativeDriver: true,
+      // }),
+      // Animated.timing(confetti3, {
+      //   toValue: 1,
+      //   duration: 1600,
+      //   useNativeDriver: true,
+      // }),
+      // Animated.timing(confetti4, {
+      //   toValue: 1,
+      //   duration: 1800,
+      //   useNativeDriver: true,
+      // }),
     ]).start();
   };
 
 
+  // --- inside BookNow.tsx ---
+
   const handlePress = () => {
-    if (RoleType.ADMINISTRATOR) {
-      navigate({ name: NavigationStrings.AVAILABILITY as keyof RootStackParamList });
+    if (selectedRole === RoleType.ADMINISTRATOR) {
+      navigation.navigate(NavigationStrings.AVAILABILITY as never);
     } else {
       setShowDatePicker(true);
     }
   };
+
+
   // Handle Booking
   const handleBooking = () => {
     // <-- NEW: If admin, navigate to View Availability and return
@@ -457,7 +485,7 @@ const BookNow: React.FC = () => {
             ]}
           >
             <Image source={images.thankYou} style={style.thankYouImg} />
-            <Text style={style.thankYou}>Thank You For Booking a Tour!</Text>
+            <Text style={style.thankYou}>{selectedRole === RoleType.ADMINISTRATOR ? 'Thankyou For Booking a Kitchen' : 'Thankyou For Booking a Tour'}</Text>
             <Text style={style.thankYouDesc}>This is dummy copy. It is not meant to be read. It has been placed here solely to demonstrate.</Text>
 
             {/* 👇 Close button */}
@@ -468,7 +496,7 @@ const BookNow: React.FC = () => {
 
       {/* Book Button - LABEL CHANGES BASED ON ROLE, BEHAVIOR HANDLED IN handleBooking */}
       <Button
-        title={selectedRole === RoleType.ADMINISTRATOR ? 'View Availability' : 'Book Tour'}
+        title={selectedRole === RoleType.ADMINISTRATOR ? 'Book Kitchen' : 'Book Tour'}
         style={style.bookButton}
         onPress={handleBooking}
       />
