@@ -230,21 +230,26 @@ const BookNow: React.FC = () => {
 
   // 👇 Close thank you modal and go back
   const handleThankYouClose = () => {
-    Animated.parallel([
-      Animated.timing(thanksAnim, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: true,
-      }),
-      Animated.timing(thanksScale, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: true,
-      }),
-    ]).start(() => {
-      setShowThanks(false);
-      goBack();
-    });
+    if (selectedRole === RoleType.ADMINISTRATOR) {
+      navigation.navigate(NavigationStrings.BOOKING_DETAIL as never);
+    } else {
+
+      Animated.parallel([
+        Animated.timing(thanksAnim, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+        }),
+        Animated.timing(thanksScale, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+        }),
+      ]).start(() => {
+        setShowThanks(false);
+        goBack();
+      });
+    }
   };
 
   const onChangeDate = (event: any, selectedDate?: Date) => {
@@ -489,7 +494,7 @@ const BookNow: React.FC = () => {
             <Text style={style.thankYouDesc}>This is dummy copy. It is not meant to be read. It has been placed here solely to demonstrate.</Text>
 
             {/* 👇 Close button */}
-            <Button title={'Done'} style={style.bookButton} onPress={handleThankYouClose} />
+            <Button title={selectedRole === RoleType.ADMINISTRATOR ? 'View Booking Detail' : 'Done'} style={style.bookButton} onPress={handleThankYouClose} />
           </Animated.View>
         </Animated.View>
       )}

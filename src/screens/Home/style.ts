@@ -17,5 +17,6 @@ export default StyleSheet.create({
     flex: 1,
     paddingBottom: SIZES.height * 0.16,
     paddingHorizontal: SIZES.padding,
+    // width: '100%',
   },
 });

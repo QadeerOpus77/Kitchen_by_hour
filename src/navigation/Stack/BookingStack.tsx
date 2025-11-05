@@ -19,6 +19,10 @@ export default function BookingStack() {
                 name={NavigationStrings.AVAILABILITY}
                 component={Screens.Avaliblity}
             />
+            <Stack.Screen
+                name={NavigationStrings.BOOKING_DETAIL}
+                component={Screens.BookingDetail}
+            />
 
         </Stack.Navigator>
     );

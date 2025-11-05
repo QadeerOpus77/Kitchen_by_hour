@@ -14,3 +14,4 @@ export { default as CheckIn } from './CheckIn';
 export { default as more } from './More';
 export { default as Profile } from './Profile';
 export { default as Avaliblity } from './Availability';
+export { default as BookingDetail } from './BookingDetail';

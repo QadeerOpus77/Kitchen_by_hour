@@ -194,6 +194,7 @@ export interface KitchenCards {
   id: string;
   title: string;
   image: any;
+  price: number;
 }
 export interface KitchenCardsProps {
   onSelect?: (id: string) => void;

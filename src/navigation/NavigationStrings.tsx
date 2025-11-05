@@ -20,6 +20,7 @@ export default {
     PROFILE: 'Profile',
     BOOK_KITCHEN: 'BookKitchen',
     AVAILABILITY: 'Availability',
+    BOOKING_DETAIL: 'BookingDetail',
 
 
     // Setting

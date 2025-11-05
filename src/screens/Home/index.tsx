@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import Header from '../../Components/Header';
 import style from './style';
 import { Slider, LocationCards, KitchenCards, Container } from '../../Components';
+import { kitchenCardData } from '../../config';
 
 
 const Home = () => {
@@ -18,7 +19,7 @@ const Home = () => {
 
   const handleSelect = (id: string) => {
 
-    // console.log('Selected Station:', id);
+
   };
   return (
     <Container style={style.container}>
@@ -36,14 +37,21 @@ const Home = () => {
 
             {selectedKitchen === '1' && (
               <View>
-                <KitchenCards onSelect={handleSelect} />
+                <KitchenCards
+                  data={kitchenCardData}
+                  onSelect={handleSelect}
+                />
               </View>
             )}
 
             {
               selectedKitchen === '2' && (
                 <View>
-                  <KitchenCards onSelect={handleSelect} />
+
+                  <KitchenCards
+                    data={kitchenCardData}
+                    onSelect={handleSelect}
+                  />
                 </View>
               )
             }
@@ -59,7 +67,7 @@ const Home = () => {
             </View>
           )}
     </Container >
-  );
+  )
 };
 
 export default Home;
