@@ -17,11 +17,13 @@ interface DynamicKitchenCardProps {
   data: KitchenCards[];                     // 👈 dynamic list of kitchens
   onSelect?: (id: string) => void;          // optional custom handler
   showNavigation?: boolean;                 // optional toggle for navigation
+  showPrice?: boolean
 }
 
 const KitchenCard: React.FC<DynamicKitchenCardProps> = ({
   data,
   onSelect,
+  showPrice = false,
   showNavigation = true,
 }) => {
   const handlePress = (id: string) => {
@@ -44,13 +46,20 @@ const KitchenCard: React.FC<DynamicKitchenCardProps> = ({
           imageStyle={styles.image}
           resizeMode="cover"
         >
-          <View style={styles.overlay}>
-
+          <View
+            style={[
+              styles.textContainer,
+              showPrice && styles.textContainerWithPrice, // change layout when price shown
+            ]}
+          >
             <Text style={styles.title}>{item.title}</Text>
-            <View style={styles.priceContainer}>
 
-              <Text style={styles.price}>${item.price}</Text><Text style={styles.permonth}>/Month</Text>
-            </View>
+            {showPrice && (
+              <Text>
+
+                <Text style={styles.price}>${item.price}</Text><Text style={styles.permonth}>/Month</Text>
+              </Text>
+            )}
           </View>
         </ImageBackground>
       </TouchableOpacity>

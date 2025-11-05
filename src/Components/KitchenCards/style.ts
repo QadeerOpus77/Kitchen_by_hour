@@ -34,8 +34,17 @@ const styles = StyleSheet.create({
     borderRadius: SIZES.radius * 1.5,
     resizeMode: 'cover',
   },
-  overlay: {
+  textContainerWithPrice: {
     flexDirection: 'row',
+    ...commonStyles.alignItemsCenter,
+    ...commonStyles.justifyContentBetween,
+    backgroundColor: COLORS.white,
+    borderRadius: SIZES.radius * 2,
+    paddingVertical: SIZES.padding * 0.3,
+    paddingHorizontal: SIZES.padding,
+    margin: SIZES.margin * 0.3,
+  },
+  textContainer: {
     ...commonStyles.alignItemsCenter,
     ...commonStyles.justifyContentBetween,
     backgroundColor: COLORS.white,

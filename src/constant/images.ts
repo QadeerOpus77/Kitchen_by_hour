@@ -20,6 +20,7 @@ const images = {
   thankYou: require('../assets/images/thankYou.png'),
   clock: require('../assets/images/clock.png'),
   chat: require('../assets/images/chat.png'),
+  upload: require('../assets/images/upload.png'),
   // hemberger: require('../assets/images/hemberger.png'),
   // notification: require('../assets/images/notification.png'),
   // background: require('../assets/images/background.jpeg'),
