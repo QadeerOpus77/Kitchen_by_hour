@@ -1,9 +1,12 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { BackHeader, Container, KitchenCards } from '../../Components'
+import { BackHeader, Button, Container, KitchenCards } from '../../Components'
 import style from './style'
 import { kitchenCardData } from '../../config'
 import { images } from '../../constant'
+import { navigate } from '../../navigation/Stack/NavigationRef'
+import NavigationStrings from '../../navigation/NavigationStrings'
+import { RootStackParamList } from '../../navigation/types/RootStackParamList'
 
 
 const BookingDetail = () => {
@@ -44,6 +47,10 @@ const BookingDetail = () => {
                 </View>
 
             </Container>
+            <Button title='Continue' style={style.button} onPress={() =>
+                navigate({
+                    name: NavigationStrings.BOOKING_REVIEW as keyof RootStackParamList,
+                })}></Button>
         </Container>
     )
 }

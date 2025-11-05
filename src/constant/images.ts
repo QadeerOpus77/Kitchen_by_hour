@@ -21,6 +21,7 @@ const images = {
   clock: require('../assets/images/clock.png'),
   chat: require('../assets/images/chat.png'),
   upload: require('../assets/images/upload.png'),
+  masterCard: require('../assets/images/masterCard.png'),
   // hemberger: require('../assets/images/hemberger.png'),
   // notification: require('../assets/images/notification.png'),
   // background: require('../assets/images/background.jpeg'),

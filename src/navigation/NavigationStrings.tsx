@@ -21,6 +21,7 @@ export default {
     BOOK_KITCHEN: 'BookKitchen',
     AVAILABILITY: 'Availability',
     BOOKING_DETAIL: 'BookingDetail',
+    BOOKING_REVIEW: 'Bookingreview',
 
 
     // Setting

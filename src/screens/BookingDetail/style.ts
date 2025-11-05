@@ -13,26 +13,26 @@ export default StyleSheet.create({
   },
   addressContainer: {
     flexDirection: 'row',
-    gap: SIZES.base,
+    gap: SIZES.large,
     ...commonStyles.alignItemsCenter,
     ...commonStyles.justifyContentAround,
     backgroundColor: COLORS.white,
-    paddingHorizontal: SIZES.padding,
+    paddingHorizontal: SIZES.padding * 1.5,
     paddingVertical: SIZES.padding * 0.5,
     borderRadius: SIZES.radius,
     marginHorizontal: SIZES.margin * 0.5,
   },
   mapIcon: {
-    width: SIZES.medium * 1.5,
-    height: SIZES.large,
+    width: SIZES.large,
+    height: SIZES.large * 1.5,
     resizeMode: 'contain',
   },
   address: {
-    ...FONTS.Regular11,
+    ...FONTS.Regular10,
     color: COLORS.gray,
   },
   title: {
-    ...FONTS.Medium15,
+    ...FONTS.Medium13,
     marginVertical: SIZES.margin,
   },
   timeDate: {
@@ -48,11 +48,11 @@ export default StyleSheet.create({
     ...commonStyles.alignItemsCenter,
   },
   option: {
-    ...FONTS.Regular12,
+    ...FONTS.Regular10,
     color: COLORS.darkGray,
   },
   value: {
-    ...FONTS.Regular12,
+    ...FONTS.Regular10,
   },
   uploadBoxWrapper: {
     alignItems: 'center',
@@ -62,7 +62,7 @@ export default StyleSheet.create({
     ...commonStyles.justifyContentCenter,
     ...commonStyles.alignItemsCenter,
     width: SIZES.width * 0.9,
-    height: SIZES.height * 0.1,
+    height: SIZES.height * 0.15,
     borderRadius: SIZES.radius,
     borderWidth: 2,
     borderColor: COLORS.borderColor,
@@ -80,5 +80,16 @@ export default StyleSheet.create({
     fontSize: 14,
     color: '#666',
     textAlign: 'center',
+  },
+  button: {
+    backgroundColor: COLORS.ThemeColor,
+    borderRadius: SIZES.radius,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: SIZES.input,
+    width: SIZES.width * 0.9,
+    alignSelf: 'center',
+    marginTop: 'auto',
+    marginBottom: SIZES.margin,
   },
 });

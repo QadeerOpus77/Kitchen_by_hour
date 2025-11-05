@@ -23,6 +23,10 @@ export default function BookingStack() {
                 name={NavigationStrings.BOOKING_DETAIL}
                 component={Screens.BookingDetail}
             />
+            <Stack.Screen
+                name={NavigationStrings.BOOKING_REVIEW}
+                component={Screens.BookingReview}
+            />
 
         </Stack.Navigator>
     );

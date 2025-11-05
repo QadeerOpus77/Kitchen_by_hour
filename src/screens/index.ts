@@ -15,3 +15,4 @@ export { default as more } from './More';
 export { default as Profile } from './Profile';
 export { default as Avaliblity } from './Availability';
 export { default as BookingDetail } from './BookingDetail';
+export { default as BookingReview } from './BookingReview';
