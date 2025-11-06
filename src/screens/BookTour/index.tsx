@@ -23,7 +23,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { RootStackParamList } from '../../navigation/types/RootStackParamList';
 
 import NavigationStrings from '../../navigation/NavigationStrings';
-import { BackHeader, Button } from '../../Components';
+import { BackHeader, Button, Container } from '../../Components';
 import { goBack } from '../../navigation/Stack/NavigationRef';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
@@ -117,12 +117,6 @@ const BookNow: React.FC = () => {
   const thanksScale = useRef(new Animated.Value(0)).current;
   const thanksRotate = useRef(new Animated.Value(0)).current;
 
-  // Confetti animation values
-  // const confetti1 = useRef(new Animated.Value(0)).current;
-  // const confetti2 = useRef(new Animated.Value(0)).current;
-  // const confetti3 = useRef(new Animated.Value(0)).current;
-  // const confetti4 = useRef(new Animated.Value(0)).current;
-
   // 👇 Close card when tapping outside
   const handleOutsidePress = () => {
     if (showCard) {
@@ -150,7 +144,7 @@ const BookNow: React.FC = () => {
   // 👇 Celebration animation for thank you modal
   const startCelebration = () => {
     Animated.parallel([
-      // Main modal animation
+
       Animated.spring(thanksScale, {
         toValue: 1,
         friction: 5,
@@ -174,27 +168,6 @@ const BookNow: React.FC = () => {
           useNativeDriver: true,
         }),
       ]),
-      // Confetti animations
-      // Animated.timing(confetti1, {
-      //   toValue: 1,
-      //   duration: 1500,
-      //   useNativeDriver: true,
-      // }),
-      // Animated.timing(confetti2, {
-      //   toValue: 1,
-      //   duration: 1700,
-      //   useNativeDriver: true,
-      // }),
-      // Animated.timing(confetti3, {
-      //   toValue: 1,
-      //   duration: 1600,
-      //   useNativeDriver: true,
-      // }),
-      // Animated.timing(confetti4, {
-      //   toValue: 1,
-      //   duration: 1800,
-      //   useNativeDriver: true,
-      // }),
     ]).start();
   };
 
@@ -270,201 +243,164 @@ const BookNow: React.FC = () => {
     );
   }
 
-  // 👇 Confetti element renderer
-  const renderConfetti = (animValue: Animated.Value, left: number, color: string, delay: number = 0) => {
-    return (
-      <Animated.View
-        style={{
-          position: 'absolute',
-          left: left,
-          top: height * 0.2,
-          width: 10,
-          height: 10,
-          backgroundColor: color,
-          borderRadius: 5,
-          transform: [
-            {
-              translateY: animValue.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0, height * 0.6],
-              }),
-            },
-            {
-              translateX: animValue.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0, (Math.random() - 0.5) * 200],
-              }),
-            },
-            {
-              rotate: animValue.interpolate({
-                inputRange: [0, 1],
-                outputRange: ['0deg', '720deg'],
-              }),
-            },
-          ],
-          opacity: animValue.interpolate({
-            inputRange: [0, 0.5, 1],
-            outputRange: [1, 1, 0],
-          }),
-        }}
-      />
-    );
-  };
 
   return (
-    <SafeAreaView style={style.container}>
-      {/* 👇 Touchable overlay to close card */}
-      {showCard && (
-        <TouchableWithoutFeedback onPress={handleOutsidePress}>
-          <View
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: 'rgba(0,0,0,0.0)',
-              zIndex: 0,
-            }}
-          />
-        </TouchableWithoutFeedback>
-      )}
+    <Container style={style.container}>
 
-      <BackHeader tintColor="white" title={isCardOpen ? 'Book Now' : ''} />
+      <SafeAreaView style={style.container}>
+        {/* 👇 Touchable overlay to close card */}
+        {showCard && (
+          <TouchableWithoutFeedback onPress={handleOutsidePress}>
+            <View
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: 'rgba(0,0,0,0.0)',
+                zIndex: 0,
+              }}
+            />
+          </TouchableWithoutFeedback>
+        )}
 
-      {/* Background Image */}
-      <Animated.Image
-        source={kitchen.image}
-        style={[style.backgroundImage, { height: imageHeight }]}
-        resizeMode="cover"
-      />
+        <BackHeader tintColor="white" title={isCardOpen ? 'Book Now' : ''} />
 
-      {/* Kitchen Details */}
-      <Animated.View
-        style={[
-          style.detailsContainer,
-          {
-            transform: [
-              {
-                translateY: slideAnim.interpolate({
-                  inputRange: [height - 600, height],
-                  outputRange: [120, 390],
-                  extrapolate: 'clamp',
-                }),
-              },
-            ],
-          },
-        ]}
-      >
-        <View style={style.cardContainer}>
-          <Text style={style.title}>{kitchen.title}</Text>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Text style={style.price}>{kitchen.price}</Text>
-            <Text style={style.duration}>{kitchen.duration}</Text>
-          </View>
-        </View>
-        <Text style={style.description}>{kitchen.description}</Text>
-      </Animated.View>
+        {/* Background Image */}
+        <Animated.Image
+          source={kitchen.image}
+          style={[style.backgroundImage, { height: imageHeight }]}
+          resizeMode="cover"
+        />
 
-      {/* Address / Map (location container preserved) */}
-      <Animated.View
-        style={[
-          style.addressContainer,
-          {
-            transform: [
-              {
-                translateY: slideAnim.interpolate({
-                  inputRange: [height - 800, height],
-                  outputRange: [130, 400],
-                  extrapolate: 'clamp',
-                }),
-              },
-            ],
-          },
-        ]}
-      >
-        <Image style={style.mapIcon} source={images.mapIcon} />
-        <Text style={style.address}>
-          1234 Elmwood Drive, Springfield, IL 62704, USA
-        </Text>
-      </Animated.View>
-
-      {/* Booking Card (unchanged) */}
-      {showCard && (
+        {/* Kitchen Details */}
         <Animated.View
           style={[
-            style.bookingContainer,
-            { transform: [{ translateY: slideAnim }], zIndex: 2 },
+            style.detailsContainer,
+            {
+              transform: [
+                {
+                  translateY: slideAnim.interpolate({
+                    inputRange: [height - 600, height],
+                    outputRange: [120, 390],
+                    extrapolate: 'clamp',
+                  }),
+                },
+              ],
+            },
           ]}
         >
-          <Text style={style.bookingTitle}>Booking Detail</Text>
+          <View style={style.cardContainer}>
+            <Text style={style.title}>{kitchen.title}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <Text style={style.price}>{kitchen.price}</Text>
+              <Text style={style.duration}>{kitchen.duration}</Text>
+            </View>
+          </View>
+          <Text style={style.description}>{kitchen.description}</Text>
+        </Animated.View>
 
-          <View style={style.cardData}>
-            {/* Date Picker */}
-            <View style={style.inputContainer}>
-              <Text style={style.label}>Select Date</Text>
-              <TouchableOpacity
-                style={style.inputBox}
-                // onPress={() => setShowDatePicker(true)}
-                onPress={handlePress}
-              >
-                <Text style={style.inputText}>
-                  {date ? date.toLocaleDateString() : 'dd/mm/yy'}
-                </Text>
+        {/* Address / Map (location container preserved) */}
+        <Animated.View
+          style={[
+            style.addressContainer,
+            {
+              transform: [
+                {
+                  translateY: slideAnim.interpolate({
+                    inputRange: [height - 800, height],
+                    outputRange: [130, 400],
+                    extrapolate: 'clamp',
+                  }),
+                },
+              ],
+            },
+          ]}
+        >
+          <Image style={style.mapIcon} source={images.mapIcon} />
+          <Text style={style.address}>
+            1234 Elmwood Drive, Springfield, IL 62704, USA
+          </Text>
+        </Animated.View>
+
+        {/* Booking Card (unchanged) */}
+        {showCard && (
+          <Animated.View
+            style={[
+              style.bookingContainer,
+              { transform: [{ translateY: slideAnim }], zIndex: 2 },
+            ]}
+          >
+            <Text style={style.bookingTitle}>Booking Detail</Text>
+
+            <View style={style.cardData}>
+              {/* Date Picker */}
+              <View style={style.inputContainer}>
+                <Text style={style.label}>Select Date</Text>
                 <TouchableOpacity
-                  style={style.rightIconContainer}
+                  style={style.inputBox}
                   // onPress={() => setShowDatePicker(true)}
                   onPress={handlePress}
                 >
-                  <Image source={images.calender} style={style.rightIcon} />
+                  <Text style={style.inputText}>
+                    {date ? date.toLocaleDateString() : 'dd/mm/yy'}
+                  </Text>
+                  <TouchableOpacity
+                    style={style.rightIconContainer}
+                    // onPress={() => setShowDatePicker(true)}
+                    onPress={handlePress}
+                  >
+                    <Image source={images.calender} style={style.rightIcon} />
+                  </TouchableOpacity>
                 </TouchableOpacity>
-              </TouchableOpacity>
-              {showDatePicker && (
-                <DateTimePicker
-                  value={date}
-                  mode="date"
-                  display="default"
-                  onChange={onChangeDate}
-                />
-              )}
-            </View>
+                {showDatePicker && (
+                  <DateTimePicker
+                    value={date}
+                    mode="date"
+                    display="default"
+                    onChange={onChangeDate}
+                  />
+                )}
+              </View>
 
-            {/* Time Picker */}
-            <View style={style.inputContainer}>
-              <Text style={style.label}>Select Time</Text>
-              <TouchableOpacity
-                style={style.inputBox}
-                onPress={() => setShowTimePicker(true)}
-              >
-                <Text style={style.inputText}>
-                  {time
-                    ? time.toLocaleTimeString([], {
-                      hour: '2-digit',
-                      minute: '2-digit',
-                    })
-                    : '00:00'}
-                </Text>
+              {/* Time Picker */}
+              <View style={style.inputContainer}>
+                <Text style={style.label}>Select Time</Text>
                 <TouchableOpacity
-                  style={style.rightIconContainer}
+                  style={style.inputBox}
                   onPress={() => setShowTimePicker(true)}
                 >
-                  <Image source={images.clock} style={style.rightIcon} />
+                  <Text style={style.inputText}>
+                    {time
+                      ? time.toLocaleTimeString([], {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })
+                      : '00:00'}
+                  </Text>
+                  <TouchableOpacity
+                    style={style.rightIconContainer}
+                    onPress={() => setShowTimePicker(true)}
+                  >
+                    <Image source={images.clock} style={style.rightIcon} />
+                  </TouchableOpacity>
                 </TouchableOpacity>
-              </TouchableOpacity>
-              {showTimePicker && (
-                <DateTimePicker
-                  value={time}
-                  mode="time"
-                  display="default"
-                  onChange={onChangeTime}
-                />
-              )}
+                {showTimePicker && (
+                  <DateTimePicker
+                    value={time}
+                    mode="time"
+                    display="default"
+                    onChange={onChangeTime}
+                  />
+                )}
+              </View>
             </View>
-          </View>
-        </Animated.View>
-      )}
+          </Animated.View>
+        )}
 
-      {/* Animated Thank You with Celebration */}
+        {/* Animated Thank You with Celebration */}
+      </SafeAreaView>
       {showThanks && (
         <Animated.View
           style={{
@@ -505,7 +441,7 @@ const BookNow: React.FC = () => {
         style={style.bookButton}
         onPress={handleBooking}
       />
-    </SafeAreaView>
+    </Container>
   );
 };
 

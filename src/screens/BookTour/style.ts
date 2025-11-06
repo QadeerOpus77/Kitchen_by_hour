@@ -143,10 +143,10 @@ export default StyleSheet.create({
     backgroundColor: COLORS.white,
     justifyContent: 'center',
     alignContent: 'center',
-    width: 'auto',
+    // width: 'auto',
   },
   thankYou: {
-    ...FONTS.Bold26,
+    ...FONTS.Bold23,
     textAlign: 'center',
     justifyContent: 'center',
     alignItems: 'center',
