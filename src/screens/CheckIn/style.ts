@@ -34,6 +34,7 @@ const style = StyleSheet.create({
   counter: {
     ...FONTS.Medium32,
     color: COLORS.darkBlue,
+    marginBottom: SIZES.margin,
   },
   btn: {
     backgroundColor: COLORS.ThemeColor,
@@ -63,6 +64,7 @@ const style = StyleSheet.create({
   },
   timeCard: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     backgroundColor: COLORS.white,
     borderRadius: 12,
     padding: 20,
@@ -85,14 +87,12 @@ const style = StyleSheet.create({
     paddingBottom: 15,
   },
   dayText: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    ...FONTS.Regular10,
     color: COLORS.black,
-    marginBottom: 4,
+    // marginBottom: 4,
   },
   dateText: {
-    fontSize: 14,
-    color: COLORS.darkGray || '#757575',
+    ...FONTS.Regular10,
   },
   timeSection: {
     // flexDirection: 'row',
@@ -101,8 +101,7 @@ const style = StyleSheet.create({
     marginBottom: 15,
   },
   time: {
-    fontSize: 16,
-    fontWeight: '600',
+    ...FONTS.Medium10,
     color: COLORS.black,
   },
   labelContainer: {

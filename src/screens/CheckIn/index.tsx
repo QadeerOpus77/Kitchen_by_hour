@@ -64,10 +64,11 @@ const CheckIn = () => {
 
         {/* Time Card Section */}
         <View style={style.timeCard}>
-          {/* <View style={style.date}> */}
-          <Text style={style.dayText}>{formatDay(currentDate)}</Text>
-          <Text style={style.dateText}>{formatDate(currentDate)}</Text>
-          {/* </View> */}
+          <View >
+
+            <Text style={style.dayText}>{formatDay(currentDate)}Time</Text>
+            <Text style={style.dateText}>{formatDate(currentDate)}</Text>
+          </View>
 
           <View style={style.timeSection}>
             <Text style={style.time}>
