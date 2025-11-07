@@ -131,6 +131,51 @@ export const notifications = [
     unread: false,
   },
 ];
+export const menuItems = [
+  {
+    id: 1,
+    label: 'Personal Information',
+    icon: images.personal,
+    // navigateTo: NavigationStrings.PERSONAL_INFO,
+  },
+  {
+    id: 2,
+    label: 'Change Password',
+    icon: images.password,
+    // navigateTo: NavigationStrings.CHANGE_PASSWORD,
+  },
+  {
+    id: 3,
+    label: 'My Document',
+    icon: images.payments,
+    // navigateTo: NavigationStrings.MANAGE_PAYMENT,
+  },
+  {
+    id: 4,
+    label: 'My Booking',
+    icon: images.payments,
+    // navigateTo: NavigationStrings.MANAGE_PAYMENT,
+  },
+  {
+    id: 5,
+    label: 'Push Notifications',
+    type: 'switch',
+    icon: images.bell,
+  },
+  {
+    id: 6,
+    label: 'Terms & Conditions',
+    icon: images.terms,
+    // navigateTo: NavigationStrings.TERMS_CONDITIONS,
+  },
+  {
+    id: 7,
+    label: 'Help & Support',
+    icon: images.support,
+    // navigateTo: NavigationStrings.HELP_SUPPORT,
+  },
+];
+
 // export const homeItems: HomeItem[] = [
 // {
 //     id: '1',

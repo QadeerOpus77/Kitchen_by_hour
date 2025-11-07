@@ -15,7 +15,7 @@ export default StyleSheet.create({
     top: 0,
     left: 0,
     width: SIZES.width,
-    // zIndex: -1, // make sure it’s behind everything
+    zIndex: -1, // make sure it’s behind everything
     borderBottomRightRadius: SIZES.radius * 3,
     borderBottomLeftRadius: SIZES.radius * 3,
   },
@@ -43,7 +43,7 @@ export default StyleSheet.create({
     color: COLORS.ThemeColor,
   },
   description: {
-    ...FONTS.Regular12,
+    ...FONTS.Regular10,
     color: COLORS.gray,
   },
   addressContainer: {
@@ -76,7 +76,7 @@ export default StyleSheet.create({
     resizeMode: 'contain',
   },
   address: {
-    ...FONTS.Regular12,
+    ...FONTS.Regular10,
     color: COLORS.gray,
   },
 
@@ -98,16 +98,16 @@ export default StyleSheet.create({
   // 🔹 Booking Card (Modal)
 
   bookingTitle: {
-    ...FONTS.Bold16,
+    ...FONTS.Medium14,
     marginVertical: SIZES.margin,
   },
 
   label: {
-    ...FONTS.Medium12,
+    ...FONTS.Medium10,
     marginTop: SIZES.margin / 2,
   },
   inputText: {
-    ...FONTS.Regular12,
+    ...FONTS.Regular10,
   },
   inputContainer: {},
   inputBox: {

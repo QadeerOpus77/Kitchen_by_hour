@@ -22,6 +22,17 @@ const images = {
   chat: require('../assets/images/chat.png'),
   upload: require('../assets/images/upload.png'),
   masterCard: require('../assets/images/masterCard.png'),
+  password: require('../assets/images/password.png'),
+  support: require('../assets/images/support.png'),
+  delete: require('../assets/images/delete.png'),
+  camera: require('../assets/images/camera.png'),
+
+  arrow: require('../assets/images/arrow.png'),
+  terms: require('../assets/images/terms.png'),
+  payments: require('../assets/images/payments.png'),
+  personal: require('../assets/images/personal.png'),
+  bell: require('../assets/images/bell.png'),
+
   // hemberger: require('../assets/images/hemberger.png'),
   notification: require('../assets/images/notification.png'),
   // background: require('../assets/images/background.jpeg'),
@@ -52,7 +63,7 @@ const images = {
   // suit14: require('../assets/images/suit14.png'),
   // tick: require('../assets/images/tick.png'),
   // plus: require('../assets/images/plus.png'),
-  // delete: require('../assets/images/delete.png'),
+
   // search: require('../assets/images/search.png'),
   // mage_filter: require('../assets/images/mage_filter.png'),
   // editIcon: require('../assets/images/editIcon.png'),

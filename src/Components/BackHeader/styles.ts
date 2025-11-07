@@ -9,6 +9,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: SIZES.padding / 2,
     position: 'relative',
+    backgroundColor: COLORS.white,
   },
 
   backButton: {

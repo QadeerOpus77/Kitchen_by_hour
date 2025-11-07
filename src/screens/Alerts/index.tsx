@@ -21,7 +21,7 @@ const NotificationScreen = () => {
 
   return (
     <Container style={styles.container}>
-      <BackHeader title="Notifications" titleColor='black' />
+      <BackHeader title="Alerts" titleColor='black' />
       <View style={styles.tabRow}>
         {['all', 'unread', 'read'].map(tab => (
           <TouchableOpacity

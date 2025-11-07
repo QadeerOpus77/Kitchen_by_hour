@@ -129,7 +129,7 @@ const Booking: React.FC = () => {
   const toggleCard = () => {
     Animated.parallel([
       Animated.timing(slideAnim, {
-        toValue: showCard ? height : height - 800,
+        toValue: showCard ? height : height - 750,
         duration: 400,
         useNativeDriver: true,
       }),
