@@ -23,7 +23,7 @@ const images = {
   upload: require('../assets/images/upload.png'),
   masterCard: require('../assets/images/masterCard.png'),
   // hemberger: require('../assets/images/hemberger.png'),
-  // notification: require('../assets/images/notification.png'),
+  notification: require('../assets/images/notification.png'),
   // background: require('../assets/images/background.jpeg'),
   // camera: require('../assets/images/camera.png'),
   // bulb: require('../assets/images/bulb.png'),

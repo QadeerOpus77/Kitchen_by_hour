@@ -13,6 +13,7 @@ export const COLORS = {
   red: 'red',
   ThemeColor: '#3994FF',
   lightBlue: '#3994FF',
+  darkBlue: '#173046',
   buttonColor: 'rgba(0, 218, 255, 1)',
   socialButtonColor: 'rgba(21, 28, 22, 1)',
   facebookButtonColor: 'rgba(60, 90, 141, 1)',
@@ -192,6 +193,10 @@ export const FONTS = {
   Bold9: {
     fontFamily: 'Poppins-Bold',
     fontSize: RFValue(SIZES.h9),
+  },
+  Medium32: {
+    fontFamily: 'Poppins-Medium',
+    fontSize: RFValue(SIZES.h32),
   },
   Medium22: {
     fontFamily: 'Poppins-Medium',

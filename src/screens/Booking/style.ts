@@ -7,6 +7,7 @@ const { height } = Dimensions.get('window');
 export default StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: COLORS.lightgray,
   },
   backgroundImage: {
     flex: 1,
@@ -14,13 +15,14 @@ export default StyleSheet.create({
     top: 0,
     left: 0,
     width: SIZES.width,
-    zIndex: -1, // make sure it’s behind everything
+    // zIndex: -1, // make sure it’s behind everything
     borderBottomRightRadius: SIZES.radius * 3,
     borderBottomLeftRadius: SIZES.radius * 3,
   },
 
   // 🔹 Kitchen Details Section
   detailsContainer: {
+    ...commonStyles.commonShadow,
     backgroundColor: COLORS.white,
     marginHorizontal: SIZES.margin * 0.5,
     paddingHorizontal: SIZES.padding,
@@ -47,7 +49,7 @@ export default StyleSheet.create({
   addressContainer: {
     flexDirection: 'row',
     gap: SIZES.base,
-
+    ...commonStyles.commonShadow,
     ...commonStyles.alignItemsCenter,
     ...commonStyles.justifyContentAround,
     backgroundColor: COLORS.white,

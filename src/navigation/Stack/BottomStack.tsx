@@ -117,7 +117,7 @@ export default function BottomStack(): React.JSX.Element {
       <CurvedBottomBar.Screen
         name={NavigationStrings.CHECKIN}
         position="CENTER"
-        component={() => <View />}
+        component={Screens.CheckIn}
         options={{ headerShown: false }}
       />
       <CurvedBottomBar.Screen
@@ -178,8 +178,8 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    // backgroundColor: '#fff',
-    shadowColor: '#9f9f9fff',
+
+    shadowColor: '#7c7c7cff',
     shadowOffset: {
       width: 1,
       height: -2, // 👈 negative height means shadow appears on top
