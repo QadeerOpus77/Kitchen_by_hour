@@ -10,7 +10,7 @@ export default {
     HOME: 'Home',
     CHOOSE_KITCHEN: 'ChooseKitchen',
     KITCHEN_DETAILS: 'KitchenDetails',
-    BOOK_TOUR: 'BookTour',
+    BOOKING: 'Booking',
     THANK_YOU: 'ThankYou',
     CALENDER: 'Calender',
     CHECKIN: 'CheckIn',
@@ -21,7 +21,7 @@ export default {
     BOOK_KITCHEN: 'BookKitchen',
     AVAILABILITY: 'Availability',
     BOOKING_DETAIL: 'BookingDetail',
-    BOOKING_REVIEW: 'Bookingreview',
+    PAYMENT: 'Payment',
 
 
     // Setting

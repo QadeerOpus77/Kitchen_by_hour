@@ -12,7 +12,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    ...FONTS.Medium20,
+    ...FONTS.Medium18,
     textAlign: 'center',
   },
   socialContainer: {

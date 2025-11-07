@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
   label: {
     color: COLORS.black,
-    ...FONTS.Regular12,
+    ...FONTS.Regular10,
   },
   passwordIcon: {
     width: SIZES.large,

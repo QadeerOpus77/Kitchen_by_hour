@@ -75,7 +75,7 @@ type KitchenDetailRouteProp = RouteProp<
   'KitchenDetail'
 >;
 
-const BookNow: React.FC = () => {
+const Booking: React.FC = () => {
 
 
   const dispatch = useDispatch();
@@ -445,4 +445,4 @@ const BookNow: React.FC = () => {
   );
 };
 
-export default BookNow;
+export default Booking;

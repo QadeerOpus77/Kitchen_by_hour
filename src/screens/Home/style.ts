@@ -9,9 +9,9 @@ export default StyleSheet.create({
     paddingBottom: SIZES.padding,
   },
   title: {
-    ...FONTS.Medium16,
+    ...FONTS.Medium14,
     paddingHorizontal: SIZES.padding,
-    paddingVertical: SIZES.padding * 0.5,
+    paddingTop: SIZES.padding,
   },
   detailContainer: {
     flex: 1,

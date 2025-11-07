@@ -10,7 +10,7 @@ import { navigate } from '../../navigation/Stack/NavigationRef'
 import NavigationStrings from '../../navigation/NavigationStrings'
 import { RootStackParamList } from '../../navigation/types/RootStackParamList'
 
-const BookingReview = () => {
+const Payment = () => {
     const [showCardModal, setShowCardModal] = useState(false);
     const [showThanks, setShowThanks] = useState(false);
     const thanksAnim = useRef(new Animated.Value(0)).current;
@@ -273,4 +273,4 @@ const BookingReview = () => {
     );
 };
 
-export default BookingReview;
+export default Payment;

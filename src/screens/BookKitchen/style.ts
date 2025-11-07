@@ -22,7 +22,7 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
   title: {
-    ...FONTS.Medium18,
+    ...FONTS.Medium16,
     marginVertical: SIZES.margin,
   },
   formBox: {
@@ -34,7 +34,7 @@ export default StyleSheet.create({
     gap: SIZES.margin,
   },
   formText: {
-    ...FONTS.Medium14,
+    ...FONTS.Medium12,
     textAlign: 'center',
     color: COLORS.darkGray,
   },

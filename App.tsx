@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { SafeAreaView, StyleSheet, Text } from 'react-native';
+import { Platform, SafeAreaView, StyleSheet, Text } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import MainNavigator from './src/navigation/Stack/MainNavigator';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -21,10 +21,16 @@ function App(): React.JSX.Element {
 
         <SafeAreaProvider>
           <CustomStatusBar backgroundColor={COLORS.modalColor} />
-          {/* <SafeAreaView style={styles.container}> */}
-          <MainNavigator />
-          <CustomToast />
-          {/* </SafeAreaView> */}
+          <SafeAreaView
+            style={[
+              styles.container,
+              Platform.OS === 'android' && styles.androidSafeArea
+            ]}
+
+          >
+            <MainNavigator />
+            <CustomToast />
+          </SafeAreaView>
         </SafeAreaProvider>
       </PersistGate>
 
@@ -35,6 +41,12 @@ function App(): React.JSX.Element {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: COLORS.white
+  },
+  androidSafeArea: {
+    flex: 1,
+    paddingTop: Platform.OS === 'android' ? 15 : 0, // Adjust this value as needed
+    paddingBottom: Platform.OS === 'android' ? 15 : 0 // Adjust this value as needed
   },
 });
 

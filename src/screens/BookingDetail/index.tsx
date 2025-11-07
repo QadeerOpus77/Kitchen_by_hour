@@ -46,11 +46,11 @@ const BookingDetail = () => {
                     </TouchableOpacity>
                 </View>
 
+                <Button title='Continue' style={style.button} onPress={() =>
+                    navigate({
+                        name: NavigationStrings.PAYMENT as keyof RootStackParamList,
+                    })}></Button>
             </Container>
-            <Button title='Continue' style={style.button} onPress={() =>
-                navigate({
-                    name: NavigationStrings.BOOKING_REVIEW as keyof RootStackParamList,
-                })}></Button>
         </Container>
     )
 }
