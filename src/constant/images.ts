@@ -26,6 +26,8 @@ const images = {
   support: require('../assets/images/support.png'),
   delete: require('../assets/images/delete.png'),
   camera: require('../assets/images/camera.png'),
+  bookings: require('../assets/images/bookings.png'),
+  documents: require('../assets/images/documents.png'),
 
   arrow: require('../assets/images/arrow.png'),
   terms: require('../assets/images/terms.png'),

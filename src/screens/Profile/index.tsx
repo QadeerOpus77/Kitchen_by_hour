@@ -145,7 +145,7 @@ const Profile = () => {
             />
 
             {/* ===== Deactivate Modal ===== */}
-            <CustomModal
+            {/* <CustomModal
                 isVisible={isModalVisible}
                 onClose={() => setIsModalVisible(false)}
                 title="Are you sure you want to deactivate your account?"
@@ -159,7 +159,7 @@ const Profile = () => {
                 style={styles.modalCard}
                 iconStyle={styles.modalIcon}
                 IconConatinerStyle={styles.iconContainer}
-            />
+            /> */}
         </Container>
     );
 };

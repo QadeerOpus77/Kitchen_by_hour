@@ -147,13 +147,13 @@ export const menuItems = [
   {
     id: 3,
     label: 'My Document',
-    icon: images.payments,
+    icon: images.documents,
     // navigateTo: NavigationStrings.MANAGE_PAYMENT,
   },
   {
     id: 4,
     label: 'My Booking',
-    icon: images.payments,
+    icon: images.bookings,
     // navigateTo: NavigationStrings.MANAGE_PAYMENT,
   },
   {
