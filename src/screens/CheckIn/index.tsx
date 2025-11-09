@@ -44,6 +44,7 @@ const CheckIn = () => {
           title='Check In'
           tintColor={COLORS.transparent}
           titleColor={COLORS.white}
+
         />
       </ImageBackground>
 
@@ -63,31 +64,25 @@ const CheckIn = () => {
         <Text style={style.title}>Past Check In</Text>
 
         {/* Time Card Section */}
-        <View style={style.timeCard}>
-          <View >
 
-            <Text style={style.dayText}>{formatDay(currentDate)}Time</Text>
-            <Text style={style.dateText}>{formatDate(currentDate)}</Text>
+        <View style={style.timeDate}>
+          <View style={style.row}>
+            <Text style={style.option}>{formatDay(currentDate)} Time</Text>
+            <Text style={style.value}>{formatDate(currentDate)}</Text>
           </View>
-
-          <View style={style.timeSection}>
-            <Text style={style.time}>
-              {checkInTime ? checkInTime : '9:00 AM'}
-            </Text>
-            <View style={style.labelContainer}>
-
-              <Text style={style.label}>Check in</Text>
+          <View style={style.valueRow}>
+            <View style={style.checkInTime}>
+              <Text >{checkInTime ? checkInTime : '9:00 AM'}</Text>
+              <Text style={style.value}>Check in</Text>
             </View>
-          </View>
-
-          <View style={style.timeSection}>
-            <Text style={style.time}>6:00 PM</Text>
-            <View style={style.labelContainer}>
-
-              <Text style={style.label}>Check out</Text>
+            <View style={style.checkInTime}>
+              <Text >{checkInTime ? checkInTime : '9:00 AM'}</Text>
+              <Text style={style.value}>Check out</Text>
             </View>
           </View>
         </View>
+
+
       </View>
     </Container>
   )

@@ -118,6 +118,30 @@ const style = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
+
+  timeDate: {
+    flexDirection: 'row',
+    ...commonStyles.justifyContentBetween,
+    padding: SIZES.padding,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.borderColor,
+    ...commonStyles.alignItemsCenter,
+    backgroundColor: COLORS.white,
+    borderRadius: SIZES.radius,
+  },
+  row: {},
+  valueRow: {
+    flexDirection: 'row',
+    gap: SIZES.margin,
+  },
+  checkInTime: {},
+  option: {
+    ...FONTS.Regular10,
+  },
+  value: {
+    ...FONTS.Regular10,
+    color: COLORS.ThemeColor,
+  },
 });
 
 export default style;

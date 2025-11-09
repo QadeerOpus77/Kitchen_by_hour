@@ -98,6 +98,7 @@ export interface BackHeaderProps {
   share?: boolean;
   showDownload?: boolean;
   titleColor?: string;
+  backgroundColor?: string;
 }
 
 export interface DropdownComponentProps {

@@ -21,7 +21,7 @@ const NotificationScreen = () => {
 
   return (
     <Container style={styles.container}>
-      <BackHeader title="Alerts" titleColor='black' />
+      <BackHeader title="Alerts" titleColor='black' backgroundColor='white' />
       <View style={styles.tabRow}>
         {['all', 'unread', 'read'].map(tab => (
           <TouchableOpacity
@@ -47,7 +47,7 @@ const NotificationScreen = () => {
       </View>
 
       {/* ===== Notification List ===== */}
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
         <Text style={styles.sectionTitle}>Today</Text>
 
         {filteredNotifications

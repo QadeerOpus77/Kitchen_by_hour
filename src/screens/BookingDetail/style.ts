@@ -13,11 +13,12 @@ export default StyleSheet.create({
   },
   addressContainer: {
     flexDirection: 'row',
-    gap: SIZES.large,
+    gap: SIZES.base,
+    ...commonStyles.commonShadow,
     ...commonStyles.alignItemsCenter,
     ...commonStyles.justifyContentAround,
     backgroundColor: COLORS.white,
-    paddingHorizontal: SIZES.padding * 1.5,
+    paddingHorizontal: SIZES.padding / 2,
     paddingVertical: SIZES.padding * 0.5,
     borderRadius: SIZES.radius,
     marginHorizontal: SIZES.margin * 0.5,
@@ -68,6 +69,7 @@ export default StyleSheet.create({
     borderColor: COLORS.borderColor,
     borderStyle: 'dashed',
     backgroundColor: COLORS.white,
+    marginBottom: SIZES.margin / 2,
   },
   addIcon: {
     width: SIZES.large * 3,

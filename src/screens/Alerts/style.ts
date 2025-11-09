@@ -5,9 +5,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.lightgray,
+    paddingBottom: SIZES.padding * 4,
   },
+  scrollView: {},
   header: {
-    paddingVertical: SIZES.padding,
+    marginBottom: SIZES.padding,
   },
   tabRow: {
     alignSelf: 'center',
@@ -15,7 +17,7 @@ const styles = StyleSheet.create({
     ...commonStyles.alignItemsCenter,
     flexDirection: 'row',
     backgroundColor: COLORS.white,
-
+    marginTop: SIZES.margin,
     borderRadius: SIZES.radius,
     width: SIZES.width * 0.9,
   },

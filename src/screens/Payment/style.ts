@@ -14,14 +14,14 @@ export default StyleSheet.create({
   addressContainer: {
     flexDirection: 'row',
     gap: SIZES.base,
+    ...commonStyles.commonShadow,
     ...commonStyles.alignItemsCenter,
     ...commonStyles.justifyContentAround,
     backgroundColor: COLORS.white,
-    paddingHorizontal: SIZES.padding,
+    paddingHorizontal: SIZES.padding / 2,
     paddingVertical: SIZES.padding * 0.5,
     borderRadius: SIZES.radius,
     marginHorizontal: SIZES.margin * 0.5,
-    marginBottom: SIZES.margin,
   },
   mapIcon: {
     width: SIZES.medium * 1.5,
@@ -29,7 +29,7 @@ export default StyleSheet.create({
     resizeMode: 'contain',
   },
   address: {
-    ...FONTS.Regular11,
+    ...FONTS.Regular10,
     color: COLORS.gray,
   },
   paymentRow: {

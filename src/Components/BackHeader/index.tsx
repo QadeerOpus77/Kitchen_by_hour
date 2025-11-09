@@ -5,7 +5,7 @@ import { BackHeaderProps } from '../types';
 import { goBack } from '../../navigation/Stack/NavigationRef';
 import styles from './styles';
 
-const BackHeader: React.FC<BackHeaderProps> = ({ title, tintColor, background = false, outfit = false, share = false, showDownload = false, titleColor, }) => {
+const BackHeader: React.FC<BackHeaderProps> = ({ title, tintColor, background = false, outfit = false, share = false, showDownload = false, titleColor, backgroundColor, }) => {
 
     const onBackPress = () => {
         goBack();
@@ -13,7 +13,7 @@ const BackHeader: React.FC<BackHeaderProps> = ({ title, tintColor, background = 
 
 
     return (
-        <View style={styles.headerContainer}>
+        <View style={[styles.headerContainer, { backgroundColor: backgroundColor }]} >
             <TouchableOpacity style={[styles.backButton, background && { backgroundColor: COLORS.black }, outfit && { backgroundColor: COLORS.white }]} onPress={onBackPress}>
                 <Image source={images.backImage} style={[styles.arrowIcon, { tintColor: tintColor }]} />
             </TouchableOpacity>
