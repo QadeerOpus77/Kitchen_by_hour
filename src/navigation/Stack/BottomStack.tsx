@@ -14,6 +14,8 @@ import { COLORS, FONTS, images, SIZES } from '../../constant';
 import HomeStack from './HomeStack';
 import NavigationStrings from '../NavigationStrings';
 import BookedStack from './BookedStack';
+import { navigate } from './NavigationRef';
+import { RootStackParamList } from '../types/RootStackParamList';
 
 interface TabBarProps {
   routeName: string;
@@ -40,23 +42,27 @@ export default function BottomStack(): React.JSX.Element {
     }
   }, [currentRoute]);
 
-  const handlePress = (navigate: (routeName: string) => void) => {
-    Animated.sequence([
-      Animated.spring(scale, {
-        toValue: 1.2,
-        friction: 2,
-        useNativeDriver: true,
-      }),
-      Animated.spring(scale, {
-        toValue: 1,
-        friction: 3,
-        useNativeDriver: true,
-      }),
-    ]).start(() => {
-      setSelectedTab(NavigationStrings.BOOKING_STACK);
-      navigate(NavigationStrings.BOOKED_STACK);
-    });
-  };
+  // const handlePress = (navigate: (routeName: string) => void) => {
+  //   Animated.sequence([
+  //     Animated.spring(scale, {
+  //       toValue: 1.2,
+  //       friction: 2,
+  //       useNativeDriver: true,
+  //     }),
+  //     Animated.spring(scale, {
+  //       toValue: 1,
+  //       friction: 3,
+  //       useNativeDriver: true,
+  //     }),
+  //   ]).start(() => {
+  //     setSelectedTab(NavigationStrings.BOOKING_STACK);
+  //     navigate(NavigationStrings.BOOKED_STACK);
+  //   });
+  // };
+  const handlePress = () => navigate({
+    name: NavigationStrings.BOOKED_STACK as keyof RootStackParamList,
+
+  })
 
   const renderTabBar = ({ routeName, selectedTab, navigate }: TabBarProps) => {
     const isActive = selectedTab === routeName;
@@ -97,7 +103,7 @@ export default function BottomStack(): React.JSX.Element {
             <TouchableOpacity
               activeOpacity={0.9}
               style={styles.button}
-              onPress={() => handlePress(navigate)}>
+              onPress={() => handlePress()}>
               <Image source={images.checkIn} style={styles.centerIcon} resizeMode="contain" />
             </TouchableOpacity>
           </Animated.View>
