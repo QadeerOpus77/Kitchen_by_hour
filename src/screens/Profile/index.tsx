@@ -11,7 +11,7 @@ import { BackHeader, Button, Container, Header, showToast } from '../../Componen
 import { COLORS, SIZES, images } from '../../constant';
 import styles from './style';
 import NavigationStrings from '../../navigation/NavigationStrings';
-import { navigate } from '../../navigation/stack/NavigationRef';
+import { navigate } from '../../navigation/Stack/NavigationRef';
 import { RootStackParamList } from '../../navigation/types/RootStackParamList';
 import { menuItems } from '../../config';
 import { useRoleState } from '../../redux/Hook/useRole';
@@ -37,6 +37,11 @@ const Profile = () => {
         });
         setIsModalVisible(false);
         // navigate(NavigationStrings.AUTH_STACK as keyof RootStackParamList);
+    };
+    const handleNavigation = (routeName: string) => {
+        navigate({
+            name: routeName as keyof RootStackParamList
+        });
     };
 
     return (
@@ -84,8 +89,9 @@ const Profile = () => {
                                 style={styles.menuItem}
                                 activeOpacity={item.type === 'switch' ? 1 : 0.8}
                                 {...(item.type !== 'switch' && {
-                                    // onPress: () => navigate(item.navigateTo as keyof RootStackParamList),
+                                    onPress: () => handleNavigation(item.navigateTo || 'DEFAULT_ROUTE')
                                 })}
+
                             >
                                 <View style={{ flexDirection: 'row', gap: SIZES.h10 }}>
                                     <Image source={item.icon} style={styles.menuicon} />
@@ -138,9 +144,11 @@ const Profile = () => {
             <Button
                 title="Logout"
                 colors={[COLORS.ThemeColor, COLORS.ThemeColor]}
-                // onPress={() =>
-                //     navigate(NavigationStrings.AUTH_STACK as keyof RootStackParamList)
-                // }
+                onPress={() =>
+                    navigate({
+                        name: NavigationStrings.AUTH_STACK as keyof RootStackParamList
+                    })
+                }
                 style={styles.logout}
             />
 
@@ -160,7 +168,7 @@ const Profile = () => {
                 iconStyle={styles.modalIcon}
                 IconConatinerStyle={styles.iconContainer}
             /> */}
-        </Container>
+        </Container >
     );
 };
 

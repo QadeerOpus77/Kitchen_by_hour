@@ -9,6 +9,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: SIZES.padding / 2,
     position: 'relative',
+    zIndex: 12,
   },
 
   backButton: {
@@ -27,7 +28,7 @@ export default StyleSheet.create({
   },
 
   headerText: {
-    ...FONTS.Medium16,
+    ...FONTS.Regular16,
     color: COLORS.white,
     textAlign: 'center',
     fontWeight: '600',

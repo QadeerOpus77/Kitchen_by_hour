@@ -1,5 +1,6 @@
 import { KitchenCards } from '../screens/types';
 import { images } from '../constant';
+import NavigationStrings from '../navigation/NavigationStrings';
 
 export const kitchenCardData: KitchenCards[] = [
   {
@@ -136,25 +137,23 @@ export const menuItems = [
     id: 1,
     label: 'Personal Information',
     icon: images.personal,
-    // navigateTo: NavigationStrings.PERSONAL_INFO,
   },
   {
     id: 2,
     label: 'Change Password',
     icon: images.password,
-    // navigateTo: NavigationStrings.CHANGE_PASSWORD,
+    navigateTo: NavigationStrings.CHANGE_PASSWORD,
   },
   {
     id: 3,
     label: 'My Document',
     icon: images.documents,
-    // navigateTo: NavigationStrings.MANAGE_PAYMENT,
   },
   {
     id: 4,
     label: 'My Booking',
     icon: images.bookings,
-    // navigateTo: NavigationStrings.MANAGE_PAYMENT,
+    navigateTo: NavigationStrings.MY_BOOKINGS,
   },
   {
     id: 5,
@@ -166,13 +165,11 @@ export const menuItems = [
     id: 6,
     label: 'Terms & Conditions',
     icon: images.terms,
-    // navigateTo: NavigationStrings.TERMS_CONDITIONS,
   },
   {
     id: 7,
     label: 'Help & Support',
     icon: images.support,
-    // navigateTo: NavigationStrings.HELP_SUPPORT,
   },
 ];
 
@@ -218,3 +215,24 @@ export const menuItems = [
 //     title: 'Suggestions',
 // },
 // ];
+
+export const BookedKitchens: KitchenCards[] = [
+  {
+    id: '1',
+    title: 'Shared Station',
+    image: images.kitchenA,
+    price: 500,
+  },
+  {
+    id: '2',
+    title: 'Dedicated Station',
+    image: images.kitchenA,
+    price: 500,
+  },
+  {
+    id: '3',
+    title: 'Dedicated Station',
+    image: images.kitchenA,
+    price: 500,
+  },
+];

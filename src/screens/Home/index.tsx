@@ -4,9 +4,12 @@ import Header from '../../Components/Header';
 import style from './style';
 import { Slider, LocationCards, KitchenCards, Container } from '../../Components';
 import { kitchenCardData } from '../../config';
+import NavigationStrings from '../../navigation/NavigationStrings';
+import { useNavigation } from '@react-navigation/native';
 
 
 const Home = () => {
+  const navigation = useNavigation<any>();
   const [selectedKitchen, setSelectedKitchen] = useState<string | null>(null);
 
   const handleExplorePress = (id: string) => {
@@ -39,7 +42,9 @@ const Home = () => {
               <View>
                 <KitchenCards
                   data={kitchenCardData}
-                  onSelect={handleSelect}
+                  onPress={() => navigation.navigate(NavigationStrings.BOOKING_STACK)}
+
+                // onSelect={handleSelect}
                 />
               </View>
             )}
@@ -50,7 +55,8 @@ const Home = () => {
 
                   <KitchenCards
                     data={kitchenCardData}
-                    onSelect={handleSelect}
+                    onPress={() => navigation.navigate(NavigationStrings.BOOKING_STACK)}
+                  // onSelect={handleSelect}
                   />
                 </View>
               )

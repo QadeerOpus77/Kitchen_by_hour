@@ -15,7 +15,7 @@ export default StyleSheet.create({
     top: 0,
     left: 0,
     width: SIZES.width,
-    zIndex: -1, // make sure it’s behind everything
+    // zIndex: -1, // make sure it’s behind everything
     borderBottomRightRadius: SIZES.radius * 3,
     borderBottomLeftRadius: SIZES.radius * 3,
   },

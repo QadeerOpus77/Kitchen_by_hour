@@ -26,18 +26,17 @@ export default StyleSheet.create({
   title: {
     marginBottom: SIZES.margin,
     color: COLORS.black,
-    ...FONTS.Regular22,
+    ...FONTS.Regular18,
     textAlign: 'center',
-    fontSize: SIZES.h24,
   },
   button: {
     backgroundColor: COLORS.ThemeColor,
     margin: SIZES.h10,
     paddingVertical: SIZES.padding * 0.5,
-    paddingHorizontal: SIZES.padding * 2,
+    paddingHorizontal: SIZES.padding * 3,
     textAlign: 'center',
     borderRadius: SIZES.radius,
-    ...FONTS.Regular14,
+    ...FONTS.Regular12,
     color: COLORS.white,
   },
   signupContainer: {

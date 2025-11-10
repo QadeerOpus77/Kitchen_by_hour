@@ -52,7 +52,7 @@ export default StyleSheet.create({
     height: SIZES.large * 3,
     resizeMode: 'contain',
     position: 'absolute',
-    right: SIZES.h25,
+    right: SIZES.h10,
     bottom: SIZES.h10 * 10,
     zIndex: 2,
   },

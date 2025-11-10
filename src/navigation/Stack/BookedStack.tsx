@@ -6,18 +6,19 @@ import NavigationStrings from '../NavigationStrings';
 
 const Stack = createStackNavigator();
 
-export default function HomeStack() {
+export default function BookedStack() {
     return (
         <Stack.Navigator
             screenOptions={{ headerShown: false }}
-            initialRouteName={NavigationStrings.PROFILE}>
+            initialRouteName={NavigationStrings.SELECT_KITCHEN}>
+
             <Stack.Screen
-                name={NavigationStrings.PROFILE}
-                component={Screens.Profile}
+                name={NavigationStrings.SELECT_KITCHEN}
+                component={Screens.SelectKitchen}
             />
             <Stack.Screen
-                name={NavigationStrings.MY_BOOKINGS}
-                component={Screens.MyBookings}
+                name={NavigationStrings.CHECKIN}
+                component={Screens.CheckIn}
             />
 
         </Stack.Navigator>

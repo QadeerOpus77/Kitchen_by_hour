@@ -6,7 +6,6 @@ import {
   StyleSheet,
   Text,
   Animated,
-  Keyboard,
 } from 'react-native';
 import { CurvedBottomBar } from 'react-native-curved-bottom-bar';
 import { useNavigationState } from '@react-navigation/native';
@@ -14,6 +13,7 @@ import * as Screens from '../../screens';
 import { COLORS, FONTS, images, SIZES } from '../../constant';
 import HomeStack from './HomeStack';
 import NavigationStrings from '../NavigationStrings';
+import BookedStack from './BookedStack';
 
 interface TabBarProps {
   routeName: string;
@@ -52,7 +52,10 @@ export default function BottomStack(): React.JSX.Element {
         friction: 3,
         useNativeDriver: true,
       }),
-    ]).start(() => navigate(NavigationStrings.CHECKIN));
+    ]).start(() => {
+      setSelectedTab(NavigationStrings.BOOKING_STACK);
+      navigate(NavigationStrings.BOOKED_STACK);
+    });
   };
 
   const renderTabBar = ({ routeName, selectedTab, navigate }: TabBarProps) => {
@@ -115,9 +118,9 @@ export default function BottomStack(): React.JSX.Element {
         options={{ headerShown: false }}
       />
       <CurvedBottomBar.Screen
-        name={NavigationStrings.CHECKIN}
+        name={NavigationStrings.BOOKED_STACK} // Changed to BOOKING_STACK
         position="CENTER"
-        component={Screens.CheckIn}
+        component={BookedStack} // Use BookingStack component
         options={{ headerShown: false }}
       />
       <CurvedBottomBar.Screen
@@ -136,14 +139,14 @@ export default function BottomStack(): React.JSX.Element {
   );
 }
 
-// ✅ Helper functions
+// ✅ Helper functions - Updated to use BOOKING_STACK
 const getTabIcon = (routeName: string): any => {
   switch (routeName) {
     case NavigationStrings.HOME_STACK:
       return images.home;
     case NavigationStrings.CALENDER:
       return images.calender;
-    case NavigationStrings.CHECKIN:
+    case NavigationStrings.BOOKED_STACK: // Updated
       return images.checkIn;
     case NavigationStrings.ALERTS:
       return images.alerts;
@@ -160,7 +163,7 @@ const getTabLabel = (routeName: string): string => {
       return 'Home';
     case NavigationStrings.CALENDER:
       return 'Calender';
-    case NavigationStrings.CHECKIN:
+    case NavigationStrings.BOOKED_STACK: // Updated
       return 'Check In';
     case NavigationStrings.ALERTS:
       return 'Alerts';
@@ -171,33 +174,27 @@ const getTabLabel = (routeName: string): string => {
   }
 };
 
-// ✅ Styles
+// ✅ Styles (same as before)
 const styles = StyleSheet.create({
   bottomBar: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-
     shadowColor: '#7c7c7cff',
     shadowOffset: {
       width: 1,
-      height: -2, // 👈 negative height means shadow appears on top
+      height: -2,
     },
     shadowOpacity: 0.3,
     shadowRadius: 6,
-    elevation: 15, // 👈 for Android shadow
+    elevation: 15,
   },
-
   scanContainer: {
     alignItems: 'center',
     bottom: SIZES.height * 0.02,
   },
-  btnCircleUp: {
-    // borderRadius: SIZES.radius,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
+  btnCircleUp: {},
   button: {
     width: SIZES.width * 0.15,
     height: SIZES.width * 0.15,

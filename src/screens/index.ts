@@ -16,3 +16,5 @@ export { default as Profile } from './Profile';
 export { default as Avaliblity } from './Availability';
 export { default as BookingDetail } from './BookingDetail';
 export { default as Payment } from './Payment';
+export { default as SelectKitchen } from './SelectKitchen';
+export { default as MyBookings } from './MyBookings';

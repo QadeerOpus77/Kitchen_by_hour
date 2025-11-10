@@ -10,6 +10,8 @@ import HomeStack from './HomeStack';
 import BottomStack from './BottomStack';
 import BookingStack from './BookingStack'
 import ProfileStack from './ProfileStack'
+import BookedStack from './BookedStack';
+
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -43,6 +45,10 @@ const MainNavigator: React.FC = () => {
         <Stack.Screen
           name={NavigationStrings.PROFILE_STACK as keyof RootStackParamList}
           component={ProfileStack}
+        />
+        <Stack.Screen
+          name={NavigationStrings.BOOKED_STACK as keyof RootStackParamList}
+          component={BookedStack}
         />
       </Stack.Navigator>
     </NavigationContainer>

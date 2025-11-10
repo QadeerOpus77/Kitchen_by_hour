@@ -107,7 +107,7 @@ export default StyleSheet.create({
     width: SIZES.width * 0.9,
     alignSelf: 'center',
     marginTop: 'auto',
-    marginBottom: SIZES.margin,
+    marginBottom: SIZES.margin / 2,
   },
 
   //modal

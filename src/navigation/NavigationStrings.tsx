@@ -21,7 +21,9 @@ export default {
     BOOK_KITCHEN: 'BookKitchen',
     AVAILABILITY: 'Availability',
     BOOKING_DETAIL: 'BookingDetail',
+    SELECT_KITCHEN: 'SelectKitchen',
     PAYMENT: 'Payment',
+    MY_BOOKINGS: 'MyBookings',
 
 
     // Setting
@@ -33,6 +35,7 @@ export default {
     BOTTOM_STACK: 'BottomStack',
     HOME_STACK: 'HomeStack',
     BOOKING_STACK: 'BookingStack',
-    PROFILE_STACK: 'ProfileStack'
+    PROFILE_STACK: 'ProfileStack',
+    BOOKED_STACK: 'BookedStack'
 
 };

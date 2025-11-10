@@ -45,15 +45,7 @@ const style = StyleSheet.create({
     width: SIZES.width * 0.6,
     alignSelf: 'center',
   },
-  disabledBtn: {
-    backgroundColor: COLORS.inActiveColor,
-    borderRadius: SIZES.radius,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: SIZES.input,
-    width: SIZES.width * 0.6,
-    alignSelf: 'center',
-  },
+
   history: {
     flex: 1,
     paddingTop: SIZES.height * 0.1,
@@ -61,62 +53,7 @@ const style = StyleSheet.create({
   },
   title: {
     ...FONTS.Medium15,
-  },
-  timeCard: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: COLORS.white,
-    borderRadius: 12,
-    padding: 20,
-    margin: 16,
-    // Shadow for iOS
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    // Shadow for Android
-    elevation: 3,
-  },
-  header: {
-    marginBottom: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.lightgray || '#F5F5F5',
-    paddingBottom: 15,
-  },
-  dayText: {
-    ...FONTS.Regular10,
-    color: COLORS.black,
-    // marginBottom: 4,
-  },
-  dateText: {
-    ...FONTS.Regular10,
-  },
-  timeSection: {
-    // flexDirection: 'row',
-    // justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 15,
-  },
-  time: {
-    ...FONTS.Medium10,
-    color: COLORS.black,
-  },
-  labelContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-
-  label: {
-    fontSize: 14,
-    color: COLORS.darkGray || '#757575',
-    fontWeight: '500',
-  },
-  buttonContainer: {
-    alignItems: 'center',
-    padding: 20,
+    marginVertical: SIZES.margin,
   },
 
   timeDate: {
@@ -141,6 +78,15 @@ const style = StyleSheet.create({
   value: {
     ...FONTS.Regular10,
     color: COLORS.ThemeColor,
+  },
+  chatIcon: {
+    width: SIZES.large * 3,
+    height: SIZES.large * 3,
+    resizeMode: 'contain',
+    position: 'absolute',
+    right: SIZES.h10,
+    bottom: SIZES.h10 * 10,
+    zIndex: 2,
   },
 });
 
