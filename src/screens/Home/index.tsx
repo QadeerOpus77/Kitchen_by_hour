@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import Header from '../../Components/Header';
 import style from './style';
 import { Slider, LocationCards, KitchenCards, Container } from '../../Components';
 import { kitchenCardData } from '../../config';
 import NavigationStrings from '../../navigation/NavigationStrings';
 import { useNavigation } from '@react-navigation/native';
+import { images } from '../../constant';
 
 
 const Home = () => {
@@ -65,6 +66,7 @@ const Home = () => {
               <LocationCards onExplore={handleExplorePress} />
             </View>
           )}
+      <Image source={images.chat} style={style.chatIcon} />
     </Container >
   )
 };

@@ -18,4 +18,13 @@ export default StyleSheet.create({
     paddingBottom: SIZES.height * 0.15,
     paddingHorizontal: SIZES.padding,
   },
+  chatIcon: {
+    width: SIZES.large * 3,
+    height: SIZES.large * 3,
+    resizeMode: 'contain',
+    position: 'absolute',
+    right: SIZES.h10,
+    bottom: SIZES.h10 * 10,
+    zIndex: 2,
+  },
 });
