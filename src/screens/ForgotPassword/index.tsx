@@ -2,9 +2,6 @@ import React from 'react';
 import {
   View,
   Text,
-  TextInput,
-  TouchableOpacity,
-  SafeAreaView,
   StatusBar,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
@@ -80,9 +77,6 @@ const ForgotPassword = () => {
             style={styles.buttonContainer}
             onPress={OTP}
             title="Continue"
-          // colors={[COLORS.ThemeColor, COLORS.ThemeColor]}
-          // start={{ x: 0, y: 0 }}
-          // end={{ x: 1, y: 0 }}
           // disabled={!isValid || loading}
           />
 

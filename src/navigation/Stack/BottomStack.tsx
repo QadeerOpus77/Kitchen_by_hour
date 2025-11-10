@@ -181,13 +181,13 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    shadowColor: '#7c7c7cff',
+    shadowColor: '#515151ff',
     shadowOffset: {
-      width: 1,
-      height: -2,
+      width: 0,
+      height: -5,
     },
-    shadowOpacity: 0.3,
-    shadowRadius: 6,
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
     elevation: 15,
   },
   scanContainer: {

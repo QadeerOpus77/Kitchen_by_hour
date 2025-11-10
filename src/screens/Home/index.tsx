@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 import Header from '../../Components/Header';
 import style from './style';
 import { Slider, LocationCards, KitchenCards, Container } from '../../Components';
@@ -34,17 +34,11 @@ const Home = () => {
 
             <Text style={style.title}>Choose Kitchen</Text>
 
-            {/* <TouchableOpacity onPress={handleBackPress}>
-            <Text style={style.backButton}>← Back</Text>
-          </TouchableOpacity> */}
-
             {selectedKitchen === '1' && (
               <View>
                 <KitchenCards
                   data={kitchenCardData}
                   onPress={() => navigation.navigate(NavigationStrings.BOOKING_STACK)}
-
-                // onSelect={handleSelect}
                 />
               </View>
             )}
@@ -56,7 +50,6 @@ const Home = () => {
                   <KitchenCards
                     data={kitchenCardData}
                     onPress={() => navigation.navigate(NavigationStrings.BOOKING_STACK)}
-                  // onSelect={handleSelect}
                   />
                 </View>
               )

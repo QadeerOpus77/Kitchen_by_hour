@@ -17,12 +17,6 @@ const MyBookings = () => {
             <Container style={style.subContainer}>
                 <View>
                     <KitchenCards data={BookedKitchens} showPrice
-                    // onPress={() => navigate({
-                    //     name: NavigationStrings.BOOKED_STACK as keyof RootStackParamList,
-                    //     params: {
-                    //         screen: NavigationStrings.CHECKIN
-                    //     }
-                    // })}
                     />
                 </View>
             </Container>

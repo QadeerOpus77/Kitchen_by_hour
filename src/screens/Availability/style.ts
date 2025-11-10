@@ -29,30 +29,6 @@ export default StyleSheet.create({
     backgroundColor: '#3A8DFF',
     color: '#FFFFFF',
     paddingHorizontal: SIZES.padding / 3,
-    // paddingVertical: 2,
     borderRadius: SIZES.radius,
-    // marginTop: SIZES.margin,
   },
-  // legend: {
-  //   flexDirection: 'row',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   marginTop: 20,
-  //   gap: 30,
-  // },
-  // legendItem: {
-  //   flexDirection: 'row',
-  //   alignItems: 'center',
-  // },
-  // circle: {
-  //   width: 16,
-  //   height: 16,
-  //   borderRadius: 8,
-  //   marginRight: 6,
-  // },
-  // legendText: {
-  //   fontSize: 14,
-  //   color: '#0D284A',
-  //   fontWeight: '500',
-  // },
 });

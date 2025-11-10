@@ -2,7 +2,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import * as Screens from '../../screens';
 import NavigationStrings from '../NavigationStrings';
-// import DrawerStack from './DrawerStack';
+
 
 const Stack = createStackNavigator();
 

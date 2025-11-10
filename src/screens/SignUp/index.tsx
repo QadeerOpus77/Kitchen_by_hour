@@ -46,10 +46,6 @@ const SignUp: React.FC<SignInProps> = ({ route }) => {
         text2: 'Your account has been created successfully!',
       });
 
-      // navigate({
-      //     name: NavigationStrings.HOME_STACK as keyof RootStackParamList,
-      //     params: { screen: NavigationStrings.HOME },
-      // });
     } else if (error) {
       showToast({
         type: 'error',
@@ -225,41 +221,10 @@ const SignUp: React.FC<SignInProps> = ({ route }) => {
                       />
                     </View>
 
-                    {/* <View style={styles.checkboxContainer}>
-                      <CheckBox
-                        value={rememberMe}
-                        onValueChange={setRememberMe}
-                        boxType="square"
-                        style={styles.checkbox}
-                        onCheckColor={COLORS.ThemeColor}
-                        onTintColor={COLORS.ThemeColor}
-                      />
-                      <Text style={styles.termsText}>
-                        By Signing up, you agree to our{' '}
-                        <Text style={{ color: COLORS.ThemeColor }}>
-                          Terms of Services
-                        </Text>{' '}
-                        and{' '}
-                        <Text style={{ color: COLORS.ThemeColor }}>
-                          Privacy Policy
-                        </Text>
-                      </Text>
-                    </View>
-
-                    {!rememberMe && (
-                      <Text style={styles.errorText}>
-                        You must agree to the terms and conditions
-                      </Text>
-                    )} */}
-
                     <Button
-                      // style={styles.buttonContainer}
                       onPress={() => handleSubmit()}
                       title="Register"
                       colors={[COLORS.ThemeColor, COLORS.ThemeColor]}
-                    // start={{ x: 0, y: 0 }}
-                    // end={{ x: 1, y: 0 }}
-                    // disabled={!isValid || loading}
                     />
                   </View>
                 )}

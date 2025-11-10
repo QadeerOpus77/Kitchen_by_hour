@@ -272,20 +272,6 @@ const SignIn = () => {
                 </View>
               )}
             </Formik>
-
-            {/* <View style={styles.signupContainer}>
-              <Text style={styles.member}>Not a member?</Text>
-              <Text
-                style={styles.signupLink}
-                onPress={() =>
-                  navigate({
-                    name: NavigationStrings.SIGN_UP as keyof RootStackParamList,
-                  })
-                }
-              >
-                Sign up now
-              </Text>
-            </View> */}
           </View>
           <AuthFooter
             message="Not a member?"

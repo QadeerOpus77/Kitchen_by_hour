@@ -36,7 +36,7 @@ const Profile = () => {
             visibilityTime: 2000,
         });
         setIsModalVisible(false);
-        // navigate(NavigationStrings.AUTH_STACK as keyof RootStackParamList);
+
     };
     const handleNavigation = (routeName: string) => {
         navigate({
@@ -53,7 +53,7 @@ const Profile = () => {
             <View style={styles.profileContainer}>
                 <View style={styles.imageWrapper}>
                     <Image
-                        // source={isVendor ? images.user1 : images.user}
+
                         source={images.user}
                         style={styles.profileImage}
                     />
@@ -62,10 +62,8 @@ const Profile = () => {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.User}>
-                    {/* <Text style={styles.name}>{isVendor ? 'Alex Doe' : 'Susan Doe'}</Text> */}
                     <Text style={styles.name}>Glenn Powell</Text>
                     <Text style={styles.email}>
-                        {/* {isVendor ? 'alexdoe@example.com' : 'susan.doe@example.com'} */}
                         glennpowell@example.com
                     </Text>
                 </View>

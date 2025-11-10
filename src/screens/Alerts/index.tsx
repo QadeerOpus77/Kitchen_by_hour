@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { BackHeader, Container, Header } from '../../Components';
-import { COLORS, SIZES, images } from '../../constant';
+import { images } from '../../constant';
 import styles from './style';
 import { notifications } from '../../config';
 
