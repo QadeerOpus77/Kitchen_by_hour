@@ -1,11 +1,24 @@
+// src/redux/slices/bookingSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+interface BookedKitchen {
+  id: string;
+  title: string;
+  price: string;
+  duration: string;
+  image: any;
+  bookedDate: string;
+  bookedTime: string;
+}
+
 interface BookingState {
-  selectedDate: string | null;
+  selectedDate: string;
+  bookedKitchens: BookedKitchen[];
 }
 
 const initialState: BookingState = {
-  selectedDate: null,
+  selectedDate: '',
+  bookedKitchens: [],
 };
 
 const bookingSlice = createSlice({
@@ -15,11 +28,15 @@ const bookingSlice = createSlice({
     setSelectedDate: (state, action: PayloadAction<string>) => {
       state.selectedDate = action.payload;
     },
-    clearSelectedDate: state => {
-      state.selectedDate = null;
+    addBookedKitchen: (state, action: PayloadAction<BookedKitchen>) => {
+      state.bookedKitchens.push(action.payload);
+    },
+    clearBookedKitchens: state => {
+      state.bookedKitchens = [];
     },
   },
 });
 
-export const { setSelectedDate, clearSelectedDate } = bookingSlice.actions;
+export const { setSelectedDate, addBookedKitchen, clearBookedKitchens } =
+  bookingSlice.actions;
 export default bookingSlice.reducer;

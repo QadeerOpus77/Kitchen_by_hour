@@ -1,13 +1,20 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, ScrollView } from 'react-native'
 import React from 'react'
-import { Button, Container, Header } from '../../Components'
+import { Button, Container, Header, } from '../../Components'
 import { images } from '../../constant'
 import style from './style'
 import { navigate } from '../../navigation/Stack/NavigationRef'
 import NavigationStrings from '../../navigation/NavigationStrings'
 import { RootStackParamList } from '../../navigation/types/RootStackParamList'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
+import BookedKitchenCard from '../../Components/BookedKitchenCard'
+
 
 const BookKitchen = () => {
+    // Get booked kitchens from Redux
+    const bookedKitchens = useSelector((state: RootState) => state.booking.bookedKitchens);
+
     return (
         <Container style={style.container}>
             <View style={style.location}>
@@ -26,15 +33,49 @@ const BookKitchen = () => {
                 <Text style={style.title}>
                     My Bookings
                 </Text>
-                <View style={style.formBox}>
-                    <Text style={style.formText}>No upcoming activities.</Text>
-                    <Button style={style.formBtn} title='Get started' onPress={() =>
-                        navigate({
-                            name: NavigationStrings.BOOKING_STACK as keyof RootStackParamList,
-                        })}></Button>
-                </View>
+
+                {/* Show booked kitchens if they exist, otherwise show empty state */}
+                {bookedKitchens.length > 0 ? (
+                    <ScrollView
+                        style={style.bookingsContainer}
+                        showsVerticalScrollIndicator={false}
+                    >
+                        {bookedKitchens.map((kitchen, index) => (
+                            <BookedKitchenCard
+                                key={`${kitchen.id}-${index}`}
+                                title={kitchen.title}
+                                price={kitchen.price}
+                                duration={kitchen.duration}
+                                image={kitchen.image}
+                                bookedDate={kitchen.bookedDate}
+                                bookedTime={kitchen.bookedTime}
+                                onPress={() =>
+                                    navigate({
+                                        name: NavigationStrings.BOOKING_STACK as keyof RootStackParamList,
+                                        params: {
+                                            screen: NavigationStrings.MY_BOOKINGS
+                                        }
+                                    })
+                                }
+                            />
+                        ))}
+                    </ScrollView>
+                ) : (
+                    <View style={style.formBox}>
+                        <Text style={style.formText}>No upcoming activities.</Text>
+                        <Button
+                            style={style.formBtn}
+                            title='Get started'
+                            onPress={() =>
+                                navigate({
+                                    name: NavigationStrings.BOOKING_STACK as keyof RootStackParamList,
+                                })
+                            }
+                        />
+                    </View>
+                )}
             </Container>
-            <Image source={images.chat} style={style.chatIcon}></Image>
+            <Image source={images.chat} style={style.chatIcon} />
         </Container>
     )
 }

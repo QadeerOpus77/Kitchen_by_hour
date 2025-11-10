@@ -28,10 +28,10 @@ export default function BookingStack() {
                 component={Screens.Payment}
             />
 
-            {/* <Stack.Screen
-                name={NavigationStrings.CHECKIN}
-                component={Screens.CheckIn}
-            /> */}
+            <Stack.Screen
+                name={NavigationStrings.MY_BOOKINGS}
+                component={Screens.MyBookings}
+            />
 
         </Stack.Navigator>
     );

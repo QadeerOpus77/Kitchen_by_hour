@@ -47,6 +47,10 @@ export default StyleSheet.create({
     width: '100%',
     alignSelf: 'center',
   },
+  bookingsContainer: {
+    maxHeight: 400, // Adjust as needed
+    marginBottom: SIZES.margin,
+  },
   chatIcon: {
     width: SIZES.large * 3,
     height: SIZES.large * 3,

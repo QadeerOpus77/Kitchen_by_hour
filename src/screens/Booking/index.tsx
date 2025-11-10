@@ -21,18 +21,14 @@ import {
 import { COLORS, images } from '../../constant';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { RootStackParamList } from '../../navigation/types/RootStackParamList';
-
 import NavigationStrings from '../../navigation/NavigationStrings';
 import { BackHeader, Button, Container } from '../../Components';
 import { goBack } from '../../navigation/Stack/NavigationRef';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
-
-
-
-// <-- NEW: role imports
 import { useRoleState } from '../../redux/Hook/useRole';
 import { RoleType } from '../../redux/Enums/RoleEnum';
+import { addBookedKitchen } from '../../redux/Slices/bookingSlice'; // Import the action
 
 const { height, width } = Dimensions.get('window');
 
@@ -76,17 +72,14 @@ type KitchenDetailRouteProp = RouteProp<
 >;
 
 const Booking: React.FC = () => {
-
-
   const dispatch = useDispatch();
   const selectedDateFromRedux = useSelector((state: RootState) => state.booking.selectedDate);
 
   // Sync local date when Redux date changes
   function parseLocalDate(dateString: string) {
     const [year, month, day] = dateString.split('-').map(Number);
-    return new Date(year, month - 1, day); // month -1 since Date months are 0-indexed
+    return new Date(year, month - 1, day);
   }
-
 
   React.useEffect(() => {
     if (selectedDateFromRedux) {
@@ -94,13 +87,9 @@ const Booking: React.FC = () => {
     }
   }, [selectedDateFromRedux]);
 
-
-
   const route = useRoute<KitchenDetailRouteProp>();
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const kitchen = kitchenData[route?.params?.id ?? '1'];
-
-  // <-- NEW: get selected role from redux
   const { selectedRole } = useRoleState();
 
   const [showCard, setShowCard] = useState(false);
@@ -144,7 +133,6 @@ const Booking: React.FC = () => {
   // 👇 Celebration animation for thank you modal
   const startCelebration = () => {
     Animated.parallel([
-
       Animated.spring(thanksScale, {
         toValue: 1,
         friction: 5,
@@ -171,9 +159,6 @@ const Booking: React.FC = () => {
     ]).start();
   };
 
-
-  // --- inside BookNow.tsx ---
-
   const handlePress = () => {
     if (selectedRole === RoleType.ADMINISTRATOR) {
       navigation.navigate(NavigationStrings.AVAILABILITY as never);
@@ -182,31 +167,41 @@ const Booking: React.FC = () => {
     }
   };
 
-
-  // Handle Booking
+  // Handle Booking - UPDATED to save booked kitchen
   const handleBooking = () => {
-    // <-- NEW: If admin, navigate to View Availability and return
-    // if (selectedRole === RoleType.ADMINISTRATOR) {
-    //   navigate({ name: NavigationStrings.AVAILABILITY as keyof RootStackParamList });
-    //   return;
-    // }
-
-    // otherwise keep existing behavior (open booking modal / show thanks)
     if (!showCard) {
       toggleCard();
       setIsCardOpen(true);
       return;
     }
+
+    // For ADMIN: Save the booked kitchen to Redux
+    if (selectedRole === RoleType.ADMINISTRATOR) {
+      const bookedKitchen = {
+        id: route?.params?.id ?? '1',
+        title: kitchen.title,
+        price: kitchen.price,
+        duration: kitchen.duration,
+        image: kitchen.image,
+        bookedDate: date.toLocaleDateString(),
+        bookedTime: time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      };
+
+      // Save to Redux
+      dispatch(addBookedKitchen(bookedKitchen));
+    }
+
     setShowThanks(true);
     startCelebration();
   };
 
-  // 👇 Close thank you modal and go back
+  // 👇 Close thank you modal and navigate - UPDATED
   const handleThankYouClose = () => {
     if (selectedRole === RoleType.ADMINISTRATOR) {
-      navigation.navigate(NavigationStrings.BOOKING_DETAIL as never);
-    } else {
+      // Navigate to BOOKED_STACK (BookKitchen screen) for admin to see their bookings
+      goBack()
 
+    } else {
       Animated.parallel([
         Animated.timing(thanksAnim, {
           toValue: 0,
@@ -243,10 +238,8 @@ const Booking: React.FC = () => {
     );
   }
 
-
   return (
     <Container style={style.container}>
-
       <SafeAreaView style={style.container}>
         {/* 👇 Touchable overlay to close card */}
         {showCard && (
@@ -301,7 +294,7 @@ const Booking: React.FC = () => {
           <Text style={style.description}>{kitchen.description}</Text>
         </Animated.View>
 
-        {/* Address / Map (location container preserved) */}
+        {/* Address / Map */}
         <Animated.View
           style={[
             style.addressContainer,
@@ -324,7 +317,7 @@ const Booking: React.FC = () => {
           </Text>
         </Animated.View>
 
-        {/* Booking Card (unchanged) */}
+        {/* Booking Card */}
         {showCard && (
           <Animated.View
             style={[
@@ -340,7 +333,6 @@ const Booking: React.FC = () => {
                 <Text style={style.label}>Select Date</Text>
                 <TouchableOpacity
                   style={style.inputBox}
-                  // onPress={() => setShowDatePicker(true)}
                   onPress={handlePress}
                 >
                   <Text style={style.inputText}>
@@ -348,7 +340,6 @@ const Booking: React.FC = () => {
                   </Text>
                   <TouchableOpacity
                     style={style.rightIconContainer}
-                    // onPress={() => setShowDatePicker(true)}
                     onPress={handlePress}
                   >
                     <Image source={images.calender} style={style.rightIcon} />
@@ -430,12 +421,16 @@ const Booking: React.FC = () => {
             <Text style={style.thankYouDesc}>This is dummy copy. It is not meant to be read. It has been placed here solely to demonstrate.</Text>
 
             {/* 👇 Close button */}
-            <Button title={selectedRole === RoleType.ADMINISTRATOR ? 'View Booking Detail' : 'Done'} style={style.bookButton} onPress={handleThankYouClose} />
+            <Button
+              title={selectedRole === RoleType.ADMINISTRATOR ? 'View My Bookings' : 'Done'}
+              style={style.bookButton}
+              onPress={handleThankYouClose}
+            />
           </Animated.View>
         </Animated.View>
       )}
 
-      {/* Book Button - LABEL CHANGES BASED ON ROLE, BEHAVIOR HANDLED IN handleBooking */}
+      {/* Book Button */}
       <Button
         title={selectedRole === RoleType.ADMINISTRATOR ? 'Book Kitchen' : 'Book Tour'}
         style={style.bookButton}
