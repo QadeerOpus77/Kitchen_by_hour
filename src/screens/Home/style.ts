@@ -6,7 +6,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.lightgray,
-    paddingBottom: SIZES.padding,
+    // paddingBottom: SIZES.padding,
   },
   title: {
     ...FONTS.Medium14,
@@ -15,7 +15,7 @@ export default StyleSheet.create({
   },
   detailContainer: {
     flex: 1,
-    paddingBottom: SIZES.height * 0.16,
+    paddingBottom: SIZES.height * 0.15,
     paddingHorizontal: SIZES.padding,
   },
 });
