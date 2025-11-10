@@ -33,15 +33,15 @@ export default StyleSheet.create({
   },
   iconButton: {
     backgroundColor: COLORS.ThemeColor,
-    height: SIZES.large * 2.5,
-    width: SIZES.large * 2.5,
+    height: SIZES.large * 2,
+    width: SIZES.large * 2,
     borderRadius: SIZES.radius * 10,
     justifyContent: 'center',
     alignItems: 'center',
   },
   iconImage: {
-    height: SIZES.large * 1.5,
-    width: SIZES.large * 1.5,
+    height: SIZES.large,
+    width: SIZES.large,
   },
   // searchBox: {
   //   flexDirection: 'row',
