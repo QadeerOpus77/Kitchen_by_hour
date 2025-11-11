@@ -14,7 +14,7 @@ const MyBookings = () => {
     return (
         <Container style={style.container}>
             <BackHeader title="My Bookings" tintColor="black" titleColor="#0D284A" />
-            <Container style={style.subContainer}>
+            <Container style={style.subContainer} >
                 <View>
                     <KitchenCards data={BookedKitchens} showPrice
                     />

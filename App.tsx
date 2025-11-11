@@ -19,18 +19,20 @@ function App(): React.JSX.Element {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
 
-        <SafeAreaProvider>
+        <SafeAreaProvider style={[
+          styles.container,
+          Platform.OS === 'android' && styles.androidSafeArea
+        ]}>
           <CustomStatusBar backgroundColor={COLORS.modalColor} />
-          <SafeAreaView
+          {/* <SafeAreaView
             style={[
               styles.container,
               Platform.OS === 'android' && styles.androidSafeArea
             ]}
-
-          >
-            <MainNavigator />
-            <CustomToast />
-          </SafeAreaView>
+          > */}
+          <MainNavigator />
+          <CustomToast />
+          {/* </SafeAreaView> */}
         </SafeAreaProvider>
       </PersistGate>
 
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
   androidSafeArea: {
     flex: 1,
     paddingTop: Platform.OS === 'android' ? 15 : 0, // Adjust this value as needed
-    paddingBottom: Platform.OS === 'android' ? 15 : 0 // Adjust this value as needed
+    paddingBottom: Platform.OS === 'android' ? 10 : 0// Adjust this value as needed
   },
 });
 

@@ -10,6 +10,9 @@ export default StyleSheet.create({
   },
   subContainer: {
     paddingHorizontal: SIZES.padding,
+    paddingTop: SIZES.padding,
+    paddingBottom: SIZES.height * 0.1,
+    flex: 1,
   },
   chatIcon: {
     width: SIZES.large * 3,

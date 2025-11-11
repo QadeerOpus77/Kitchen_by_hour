@@ -91,8 +91,8 @@ export default function BottomStack(): React.JSX.Element {
     <CurvedNavigator
       type="DOWN"
       style={styles.bottomBar}
-      height={80}
-      circleWidth={60}
+      height={70}
+      circleWidth={50}
       bgColor={COLORS.white}
       initialRouteName={NavigationStrings.HOME_STACK}
       circlePosition="CENTER"
@@ -101,7 +101,7 @@ export default function BottomStack(): React.JSX.Element {
         <View style={styles.scanContainer}>
           <Animated.View style={[styles.btnCircleUp, { transform: [{ scale }] }]}>
             <TouchableOpacity
-              activeOpacity={0.9}
+              activeOpacity={0.5}
               style={styles.button}
               onPress={() => handlePress()}>
               <Image source={images.checkIn} style={styles.centerIcon} resizeMode="contain" />
@@ -187,14 +187,21 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    shadowColor: '#515151ff',
+
+    // iOS shadow
+    shadowColor: '#656565ff',
     shadowOffset: {
       width: 0,
-      height: -5,
+      height: -2,
     },
-    shadowOpacity: 0.2,
-    shadowRadius: 10,
-    elevation: 15,
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+
+    // Android shadow
+    elevation: 10, // Lower = crisper, Higher = blurrier (try between 6–10)
+    backgroundColor: 'transparent', // Required for elevation to cast correctly on Android
+    // borderTopLeftRadius: 12,
+    // borderTopRightRadius: 12,
   },
   scanContainer: {
     alignItems: 'center',
@@ -215,7 +222,7 @@ const styles = StyleSheet.create({
     tintColor: COLORS.white,
   },
   scanText: {
-    marginTop: SIZES.margin * 0.4,
+    // marginTop: SIZES.margin / 9,
     ...FONTS.Medium10,
     color: COLORS.ThemeColor,
     fontWeight: '600',

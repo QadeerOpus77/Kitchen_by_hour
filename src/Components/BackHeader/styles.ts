@@ -10,6 +10,7 @@ export default StyleSheet.create({
     paddingVertical: SIZES.padding / 2,
     position: 'relative',
     zIndex: 12,
+    marginBottom: SIZES.margin,
   },
 
   backButton: {

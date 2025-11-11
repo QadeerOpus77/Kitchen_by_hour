@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     marginVertical: SIZES.margin / 2,
     padding: SIZES.padding / 2,
     borderRadius: SIZES.radius,
+    gap: 10,
   },
   imageWrapper: {},
   profileImage: {
@@ -37,8 +38,8 @@ const styles = StyleSheet.create({
   },
   cameraicon: {
     tintColor: COLORS.white,
-    width: SIZES.medium,
-    height: SIZES.medium,
+    width: SIZES.medium * 1.5,
+    height: SIZES.medium * 1.5,
     resizeMode: 'contain',
   },
   name: {
@@ -49,13 +50,12 @@ const styles = StyleSheet.create({
     marginHorizontal: SIZES.margin / 2,
     ...FONTS.Regular10,
     color: COLORS.ThemeColor,
-    marginBottom: SIZES.margin * 0.5,
   },
 
   menuItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // alignItems: 'center',
+    alignItems: 'center',
     paddingHorizontal: SIZES.padding,
     paddingVertical: SIZES.padding / 2,
     borderColor: COLORS.lightgray,
@@ -65,17 +65,17 @@ const styles = StyleSheet.create({
   },
   menuicon: {
     width: SIZES.medium * 2,
-    height: SIZES.medium * 2.5,
+    height: SIZES.large * 1.5,
     resizeMode: 'contain',
     tintColor: COLORS.ThemeColor,
   },
   menuLabel: {
-    ...FONTS.Regular10,
-    marginTop: SIZES.margin / 4,
+    ...FONTS.Regular11,
+    marginTop: SIZES.margin / 5,
   },
   arrow: {
-    width: SIZES.medium,
-    height: SIZES.large,
+    width: SIZES.large,
+    height: SIZES.medium,
     resizeMode: 'contain',
     tintColor: COLORS.ThemeColor,
   },

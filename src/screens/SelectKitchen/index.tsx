@@ -16,7 +16,7 @@ const SelectKitchen = () => {
             <BackHeader title="Select Kitchen For Check In" tintColor="black" titleColor="#0D284A" />
             <Container style={style.subContainer}>
                 <View>
-                    <KitchenCards data={[kitchenCardData[0], kitchenCardData[1]]} showPrice
+                    <KitchenCards data={kitchenCardData} showPrice
                         onPress={() => navigate({
                             name: NavigationStrings.BOOKED_STACK as keyof RootStackParamList,
                             params: {

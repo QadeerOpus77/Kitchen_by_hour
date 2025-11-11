@@ -47,13 +47,12 @@ const Profile = () => {
     return (
         <Container scroll={true} style={styles.container}>
             {/* ===== Header ===== */}
-            <BackHeader title="Profile" titleColor='black' />
+            <BackHeader title="Profile" titleColor='black' backgroundColor='white' />
 
             {/* ===== Profile Section ===== */}
             <View style={styles.profileContainer}>
                 <View style={styles.imageWrapper}>
                     <Image
-
                         source={images.user}
                         style={styles.profileImage}
                     />
