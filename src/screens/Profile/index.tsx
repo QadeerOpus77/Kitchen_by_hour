@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
     ScrollView,
 } from 'react-native';
-import { BackHeader, Button, Container, Header, showToast } from '../../Components';
+import { BackHeader, Button, Container, showToast } from '../../Components';
 import { COLORS, SIZES, images } from '../../constant';
 import styles from './style';
 import NavigationStrings from '../../navigation/NavigationStrings';
@@ -15,14 +15,21 @@ import { navigate } from '../../navigation/Stack/NavigationRef';
 import { RootStackParamList } from '../../navigation/types/RootStackParamList';
 import { menuItems } from '../../config';
 import { useRoleState } from '../../redux/Hook/useRole';
-import { RoleType } from '../../redux/Enums/RoleEnum';
 import CustomModal from '../../Components/CustomModal';
+
+// Define a flexible navigation type that supports both flat and nested navigation
+type NavigationTarget =
+    | keyof RootStackParamList
+    | {
+        stack: keyof RootStackParamList;
+        screen: string;
+        params?: Record<string, any>;
+    };
 
 const Profile = () => {
     const [isPushEnabled, setIsPushEnabled] = useState(true);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const { selectedRole } = useRoleState();
-
 
     const handleDeactivate = () => {
         setIsModalVisible(true);
@@ -36,35 +43,44 @@ const Profile = () => {
             visibilityTime: 2000,
         });
         setIsModalVisible(false);
-
     };
-    const handleNavigation = (routeName: string) => {
-        navigate({
-            name: routeName as keyof RootStackParamList
-        });
+
+    // ✅ Type-safe navigation handler
+    const handleNavigation = (navigateTo?: NavigationTarget) => {
+        if (!navigateTo) return;
+
+        if (typeof navigateTo === 'string') {
+            // simple route
+            navigate({ name: navigateTo as keyof RootStackParamList });
+        } else if (
+            typeof navigateTo === 'object' &&
+            navigateTo.stack &&
+            navigateTo.screen
+        ) {
+            // nested stack navigation
+            navigate({
+                name: navigateTo.stack as keyof RootStackParamList,
+                params: { screen: navigateTo.screen, ...navigateTo.params },
+            });
+        }
     };
 
     return (
         <Container scroll={true} style={styles.container}>
             {/* ===== Header ===== */}
-            <BackHeader title="Profile" titleColor='black' backgroundColor='white' />
+            <BackHeader title="Profile" titleColor="black" backgroundColor="white" />
 
             {/* ===== Profile Section ===== */}
             <View style={styles.profileContainer}>
                 <View style={styles.imageWrapper}>
-                    <Image
-                        source={images.user}
-                        style={styles.profileImage}
-                    />
-                    <TouchableOpacity style={styles.editIcon}>
+                    <Image source={images.user} style={styles.profileImage} />
+                    {/* <TouchableOpacity style={styles.editIcon}>
                         <Image source={images.camera} style={styles.cameraicon} />
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                 </View>
                 <View style={styles.User}>
                     <Text style={styles.name}>Glenn Powell</Text>
-                    <Text style={styles.email}>
-                        glennpowell@example.com
-                    </Text>
+                    <Text style={styles.email}>glennpowell@example.com</Text>
                 </View>
             </View>
 
@@ -78,7 +94,8 @@ const Profile = () => {
             >
                 <View>
                     {menuItems.map((item) => {
-                        const Wrapper: any = item.type === 'switch' ? View : TouchableOpacity;
+                        const Wrapper: any =
+                            item.type === 'switch' ? View : TouchableOpacity;
 
                         return (
                             <Wrapper
@@ -86,9 +103,12 @@ const Profile = () => {
                                 style={styles.menuItem}
                                 activeOpacity={item.type === 'switch' ? 1 : 0.8}
                                 {...(item.type !== 'switch' && {
-                                    onPress: () => handleNavigation(item.navigateTo || 'DEFAULT_ROUTE')
+                                    onPress: () =>
+                                        handleNavigation(
+                                            (item.navigateTo as NavigationTarget) ||
+                                            ('CHANGE_PASSWORD' as keyof RootStackParamList)
+                                        ),
                                 })}
-
                             >
                                 <View style={{ flexDirection: 'row', gap: SIZES.h10 }}>
                                     <Image source={item.icon} style={styles.menuicon} />
@@ -106,7 +126,11 @@ const Profile = () => {
                                         }}
                                     />
                                 ) : (
-                                    <Image source={images.arrow} style={styles.arrow} tintColor={COLORS.ThemeColor} />
+                                    <Image
+                                        source={images.arrow}
+                                        style={styles.arrow}
+                                        tintColor={COLORS.ThemeColor}
+                                    />
                                 )}
                             </Wrapper>
                         );
@@ -123,14 +147,7 @@ const Profile = () => {
                                 source={images.delete}
                                 style={[styles.menuicon, { tintColor: COLORS.ThemeColor }]}
                             />
-                            <Text
-                                style={[
-                                    styles.menuLabel,
-
-                                ]}
-                            >
-                                Deactivate My Account
-                            </Text>
+                            <Text style={styles.menuLabel}>Deactivate My Account</Text>
                         </View>
                         <Image source={images.arrow} style={styles.arrow} />
                     </TouchableOpacity>
@@ -143,14 +160,14 @@ const Profile = () => {
                 colors={[COLORS.ThemeColor, COLORS.ThemeColor]}
                 onPress={() =>
                     navigate({
-                        name: NavigationStrings.AUTH_STACK as keyof RootStackParamList
+                        name: NavigationStrings.AUTH_STACK as keyof RootStackParamList,
                     })
                 }
                 style={styles.logout}
             />
 
             {/* ===== Deactivate Modal ===== */}
-            {/* <CustomModal
+            <CustomModal
                 isVisible={isModalVisible}
                 onClose={() => setIsModalVisible(false)}
                 title="Are you sure you want to deactivate your account?"
@@ -164,8 +181,8 @@ const Profile = () => {
                 style={styles.modalCard}
                 iconStyle={styles.modalIcon}
                 IconConatinerStyle={styles.iconContainer}
-            /> */}
-        </Container >
+            />
+        </Container>
     );
 };
 

@@ -6,7 +6,7 @@ export default StyleSheet.create({
     // alignSelf: 'center',
     marginTop: SIZES.h20,
     width: SIZES.width,
-    paddingHorizontal: SIZES.padding * 0.5,
+    paddingHorizontal: SIZES.padding * 0.95,
   },
 
   label: {

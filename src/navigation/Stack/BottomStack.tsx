@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   Animated,
+  Keyboard,
 } from 'react-native';
 import { CurvedBottomBar } from 'react-native-curved-bottom-bar';
 import { useNavigationState } from '@react-navigation/native';
@@ -29,10 +30,14 @@ export default function BottomStack(): React.JSX.Element {
   type RenderCircleProps = { navigate: (routeName: string) => void };
 
   const [selectedTab, setSelectedTab] = useState(NavigationStrings.HOME_STACK);
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
 
   const currentRoute = useNavigationState((state) => {
-    if (!state) return NavigationStrings.BOTTOM_STACK;
     const route = state.routes[state.index];
+    if ('state' in route && route.state && 'routes' in route.state) {
+      const nested = route.state as any;
+      return nested.routes[nested.index]?.name || route.name;
+    }
     return route.name;
   });
 
@@ -42,27 +47,19 @@ export default function BottomStack(): React.JSX.Element {
     }
   }, [currentRoute]);
 
-  // const handlePress = (navigate: (routeName: string) => void) => {
-  //   Animated.sequence([
-  //     Animated.spring(scale, {
-  //       toValue: 1.2,
-  //       friction: 2,
-  //       useNativeDriver: true,
-  //     }),
-  //     Animated.spring(scale, {
-  //       toValue: 1,
-  //       friction: 3,
-  //       useNativeDriver: true,
-  //     }),
-  //   ]).start(() => {
-  //     setSelectedTab(NavigationStrings.BOOKING_STACK);
-  //     navigate(NavigationStrings.BOOKED_STACK);
-  //   });
-  // };
+  // 👇 Handle keyboard visibility
+  useEffect(() => {
+    const showSub = Keyboard.addListener('keyboardDidShow', () => setKeyboardVisible(true));
+    const hideSub = Keyboard.addListener('keyboardDidHide', () => setKeyboardVisible(false));
+    return () => {
+      showSub.remove();
+      hideSub.remove();
+    };
+  }, []);
+
   const handlePress = () => navigate({
     name: NavigationStrings.BOOKED_STACK as keyof RootStackParamList,
-
-  })
+  });
 
   const renderTabBar = ({ routeName, selectedTab, navigate }: TabBarProps) => {
     const isActive = selectedTab === routeName;
@@ -87,30 +84,35 @@ export default function BottomStack(): React.JSX.Element {
     );
   };
 
+  const shouldHideTabBar = currentRoute?.includes('Profile') || keyboardVisible;
+
   return (
     <CurvedNavigator
       type="DOWN"
-      style={styles.bottomBar}
-      height={70}
+      height={60}
       circleWidth={50}
       bgColor={COLORS.white}
       initialRouteName={NavigationStrings.HOME_STACK}
       circlePosition="CENTER"
       backBehavior="initialRoute"
       renderCircle={({ navigate }: RenderCircleProps) => (
-        <View style={styles.scanContainer}>
-          <Animated.View style={[styles.btnCircleUp, { transform: [{ scale }] }]}>
-            <TouchableOpacity
-              activeOpacity={0.5}
-              style={styles.button}
-              onPress={() => handlePress()}>
-              <Image source={images.checkIn} style={styles.centerIcon} resizeMode="contain" />
-            </TouchableOpacity>
-          </Animated.View>
-          <Text style={styles.scanText}>Check In</Text>
-        </View>
+        !shouldHideTabBar && (
+          <View style={styles.scanContainer}>
+            <Animated.View style={[styles.btnCircleUp, { transform: [{ scale }] }]}>
+              <TouchableOpacity
+                activeOpacity={0.5}
+                style={styles.button}
+                onPress={handlePress}>
+                <Image source={images.checkIn} style={styles.centerIcon} resizeMode="contain" />
+              </TouchableOpacity>
+            </Animated.View>
+            <Text style={styles.scanText}>Check In</Text>
+          </View>
+        )
       )}
-      tabBar={renderTabBar}>
+      tabBar={shouldHideTabBar ? () => null : renderTabBar}
+      style={shouldHideTabBar ? { display: 'none' } : styles.bottomBar}
+    >
       <CurvedBottomBar.Screen
         name={NavigationStrings.HOME_STACK}
         position="LEFT"
@@ -124,9 +126,9 @@ export default function BottomStack(): React.JSX.Element {
         options={{ headerShown: false }}
       />
       <CurvedBottomBar.Screen
-        name={NavigationStrings.BOOKED_STACK} // Changed to BOOKING_STACK
+        name={NavigationStrings.BOOKED_STACK}
         position="CENTER"
-        component={BookedStack} // Use BookingStack component
+        component={BookedStack}
         options={{ headerShown: false }}
       />
       <CurvedBottomBar.Screen
@@ -136,28 +138,28 @@ export default function BottomStack(): React.JSX.Element {
         options={{ headerShown: false }}
       />
       <CurvedBottomBar.Screen
-        name={NavigationStrings.MORE}
+        name={NavigationStrings.PROFILE_STACK}
         position="RIGHT"
-        component={Screens.more}
+        component={Screens.Profile}
         options={{ headerShown: false }}
       />
     </CurvedNavigator>
   );
 }
 
-// ✅ Helper functions - Updated to use BOOKING_STACK
+// ✅ Helper functions
 const getTabIcon = (routeName: string): any => {
   switch (routeName) {
     case NavigationStrings.HOME_STACK:
       return images.home;
     case NavigationStrings.CALENDER:
       return images.calender;
-    case NavigationStrings.BOOKED_STACK: // Updated
+    case NavigationStrings.BOOKED_STACK:
       return images.checkIn;
     case NavigationStrings.ALERTS:
       return images.alerts;
-    case NavigationStrings.MORE:
-      return images.menu;
+    case NavigationStrings.PROFILE_STACK:
+      return images.user;
     default:
       return images.home;
   }
@@ -169,39 +171,30 @@ const getTabLabel = (routeName: string): string => {
       return 'Home';
     case NavigationStrings.CALENDER:
       return 'Calender';
-    case NavigationStrings.BOOKED_STACK: // Updated
+    case NavigationStrings.BOOKED_STACK:
       return 'Check In';
     case NavigationStrings.ALERTS:
       return 'Alerts';
-    case NavigationStrings.MORE:
-      return 'More';
+    case NavigationStrings.PROFILE_STACK:
+      return 'Profile';
     default:
       return 'Home';
   }
 };
 
-// ✅ Styles (same as before)
+// ✅ Styles
 const styles = StyleSheet.create({
   bottomBar: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-
-    // iOS shadow
     shadowColor: '#656565ff',
-    shadowOffset: {
-      width: 0,
-      height: -2,
-    },
+    shadowOffset: { width: 0, height: -2 },
     shadowOpacity: 0.1,
     shadowRadius: 6,
-
-    // Android shadow
-    elevation: 10, // Lower = crisper, Higher = blurrier (try between 6–10)
-    backgroundColor: 'transparent', // Required for elevation to cast correctly on Android
-    // borderTopLeftRadius: 12,
-    // borderTopRightRadius: 12,
+    elevation: 10,
+    backgroundColor: 'transparent',
   },
   scanContainer: {
     alignItems: 'center',
@@ -209,8 +202,8 @@ const styles = StyleSheet.create({
   },
   btnCircleUp: {},
   button: {
-    width: SIZES.width * 0.15,
-    height: SIZES.width * 0.15,
+    width: SIZES.width * 0.13,
+    height: SIZES.width * 0.13,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: SIZES.radius * 10,
@@ -218,11 +211,11 @@ const styles = StyleSheet.create({
   },
   centerIcon: {
     width: SIZES.large * 1.5,
-    height: SIZES.large * 2,
+    height: SIZES.large * 1.5,
     tintColor: COLORS.white,
   },
   scanText: {
-    // marginTop: SIZES.margin / 9,
+    marginTop: SIZES.margin / 2.5,
     ...FONTS.Medium10,
     color: COLORS.ThemeColor,
     fontWeight: '600',
@@ -236,6 +229,7 @@ const styles = StyleSheet.create({
     width: SIZES.large,
     height: SIZES.large,
     tintColor: COLORS.gray,
+    marginTop: SIZES.margin
   },
   activeIcon: {
     tintColor: COLORS.ThemeColor,

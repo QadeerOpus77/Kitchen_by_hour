@@ -5,8 +5,7 @@ import { panHandlerName } from 'react-native-gesture-handler/lib/typescript/hand
 const styles = StyleSheet.create({
   listContainer: {},
   cardContainer: {
-    marginVertical: SIZES.margin,
-
+    marginBottom: SIZES.margin,
     // width: SIZES.width * 0.9,
   },
   image: {

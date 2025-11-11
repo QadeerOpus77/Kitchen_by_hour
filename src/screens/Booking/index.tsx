@@ -349,7 +349,7 @@ const Booking: React.FC = () => {
                   <DateTimePicker
                     value={date}
                     mode="date"
-                    display="default"
+                    display="spinner"
                     onChange={onChangeDate}
                   />
                 )}
@@ -381,7 +381,7 @@ const Booking: React.FC = () => {
                   <DateTimePicker
                     value={time}
                     mode="time"
-                    display="default"
+                    display="inline"
                     onChange={onChangeTime}
                   />
                 )}

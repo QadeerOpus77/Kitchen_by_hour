@@ -21,9 +21,17 @@ export default StyleSheet.create({
     ...FONTS.Regular10,
     textAlign: 'center',
   },
+  titlerow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
   title: {
     ...FONTS.Medium16,
     marginVertical: SIZES.margin,
+  },
+  viewall: {
+    color: COLORS.ThemeColor,
   },
   formBox: {
     ...commonStyles.alignItemsCenter,

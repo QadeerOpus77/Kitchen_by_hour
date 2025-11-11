@@ -74,7 +74,7 @@ const Home = () => {
       ) : (
         // 🏠 Home Screen - Locations
         <View style={style.container}>
-          <Text style={style.title}>Our Kitchens Locations</Text>
+          <Text style={style.title2}>Our Kitchens Locations</Text>
           <Slider />
           <LocationCards onExplore={handleExplorePress} />
         </View>

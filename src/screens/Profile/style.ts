@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
   },
   profileContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: COLORS.white,
     marginHorizontal: SIZES.margin,
     marginVertical: SIZES.margin / 2,

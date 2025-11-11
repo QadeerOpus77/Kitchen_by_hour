@@ -13,7 +13,7 @@ const SelectKitchen = () => {
 
     return (
         <Container style={style.container}>
-            <BackHeader title="Select Kitchen For Check In" tintColor="black" titleColor="#0D284A" />
+            <BackHeader title="Select Kitchen For Check In" tintColor="black" backgroundColor='white' titleColor="#0D284A" />
             <Container style={style.subContainer}>
                 <View>
                     <KitchenCards data={kitchenCardData} showPrice

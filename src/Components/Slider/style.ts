@@ -3,11 +3,8 @@ import { FONTS, SIZES, COLORS } from '../../constant';
 
 export default StyleSheet.create({
   container: {
-    marginTop: SIZES.h10,
-    // backgroundColor:COLORS.gray,
-    marginRight: SIZES.margin * 0.5,
     paddingHorizontal: SIZES.padding,
-    marginBottom: SIZES.margin,
+    marginBottom: SIZES.h10,
   },
   card: {
     backgroundColor: COLORS.white,

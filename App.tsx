@@ -24,19 +24,19 @@ function App(): React.JSX.Element {
           Platform.OS === 'android' && styles.androidSafeArea
         ]}>
           <CustomStatusBar backgroundColor={COLORS.modalColor} />
-          {/* <SafeAreaView
+          <SafeAreaView
             style={[
               styles.container,
               Platform.OS === 'android' && styles.androidSafeArea
             ]}
-          > */}
-          <MainNavigator />
-          <CustomToast />
-          {/* </SafeAreaView> */}
+          >
+            <MainNavigator />
+            <CustomToast />
+          </SafeAreaView>
         </SafeAreaProvider>
       </PersistGate>
 
-    </Provider>
+    </Provider >
   );
 }
 

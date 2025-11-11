@@ -112,71 +112,67 @@ const SignIn = () => {
 
   return (
     <Container style={{ flex: 1, backgroundColor: COLORS.white }}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        style={{ flex: 1 }}
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
       >
-        <ScrollView
-          contentContainerStyle={{ flexGrow: 1 }}
-          keyboardShouldPersistTaps="handled"
-          showsVerticalScrollIndicator={false}
-        >
-          <View style={styles.container}>
-            <LogoContainer />
-            <Text style={styles.text}>It’s Go time, Chef!</Text>
+        <View style={styles.container}>
+          <LogoContainer />
+          <Text style={styles.text}>It’s Go time, Chef!</Text>
 
-            <Formik
-              key={formKey}
-              initialValues={initialValues}
-              validationSchema={loginValidationSchema}
-              onSubmit={async values => {
-                clearAuthError();
-                if (rememberMe) {
-                  await localStoreUtil.storeData('userCredentials', {
-                    email: values.email,
-                    password: values.password,
-                    rememberMe: true,
-                  });
-                } else {
-                  await localStoreUtil.removeData('userCredentials');
-                }
-                await login(values);
-              }}
-              enableReinitialize
-            >
-              {({
-                handleChange,
-                handleBlur,
-                handleSubmit,
-                values,
-                errors,
-                touched,
-              }) => (
-                <View style={styles.inputContainer}>
-                  <FormInput
-                    label="Email Address"
-                    placeholder=""
-                    value={values.email}
-                    onChangeText={handleChange('email')}
-                    onBlur={handleBlur('email')}
-                    error={touched.email && errors.email}
-                    width={width}
-                    height={SIZES.input * 1.5}
-                  // height={SIZES.padding * 3}
-                  />
-                  <FormInput
-                    label="Password"
-                    placeholder=""
-                    value={values.password}
-                    onChangeText={handleChange('password')}
-                    onBlur={handleBlur('password')}
-                    error={touched.password && errors.password}
-                    isPassword
-                    width={width}
-                    height={SIZES.input * 1.5} />
+          <Formik
+            key={formKey}
+            initialValues={initialValues}
+            validationSchema={loginValidationSchema}
+            onSubmit={async values => {
+              clearAuthError();
+              if (rememberMe) {
+                await localStoreUtil.storeData('userCredentials', {
+                  email: values.email,
+                  password: values.password,
+                  rememberMe: true,
+                });
+              } else {
+                await localStoreUtil.removeData('userCredentials');
+              }
+              await login(values);
+            }}
+            enableReinitialize
+          >
+            {({
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              values,
+              errors,
+              touched,
+            }) => (
+              <View style={styles.inputContainer}>
+                <FormInput
+                  label="Email Address"
+                  placeholder=""
+                  value={values.email}
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                  error={touched.email && errors.email}
+                  width={width}
+                  height={SIZES.input * 1.5}
+                // height={SIZES.padding * 3}
+                />
+                <FormInput
+                  label="Password"
+                  placeholder=""
+                  value={values.password}
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                  error={touched.password && errors.password}
+                  isPassword
+                  width={width}
+                  height={SIZES.input * 1.5} />
 
-                  <View style={styles.rememberMeContainer}>
-                    {/* <View style={styles.rememberMeCheckBoxContainer}>
+                <View style={styles.rememberMeContainer}>
+                  {/* <View style={styles.rememberMeCheckBoxContainer}>
                       <CheckBox
                         value={rememberMe}
                         onValueChange={handleRememberMeToggle}
@@ -186,100 +182,100 @@ const SignIn = () => {
                       />
                       <Text style={styles.rememberMeText}>Remember Me</Text>
                     </View> */}
-                    <TouchableOpacity
-                      onPress={() =>
-                        navigate({
-                          name: NavigationStrings.FORGOT_PASSWORD as keyof RootStackParamList,
-                        })
-                      }
-                    >
-                      <Text style={styles.forgotPasswordText}>
-                        Forgot Password?
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-
-                  <Button
-                    // onPress={handleSubmit}
-
-                    title="Login"
-                    colors={[COLORS.ThemeColor, COLORS.ThemeColor]}
-                    onPress={() => {
-                      if (selectedRole === RoleType.ADMINISTRATOR) {
-                        navigate({
-                          name: NavigationStrings.BOTTOM_STACK as keyof RootStackParamList,
-                          params: {
-                            screen: NavigationStrings.HOME_STACK, params: { screen: NavigationStrings.BOOK_KITCHEN },
-                          }
-                        }
-                        );
-                      } else {
-                        navigate({
-                          name: NavigationStrings.BOTTOM_STACK as keyof RootStackParamList,
-                        }
-                        );
-                      }
-                    }}
-                  />
-
-                  <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: SIZES.margin }} >
-                    <View style={{ marginHorizontal: SIZES.margin, flex: 1, height: 1, backgroundColor: '#000000ff', }} />
-                    <Text style={styles.continueWith}>or continue with</Text>
-                    <View style={{ marginHorizontal: SIZES.margin, flex: 1, height: 1, backgroundColor: '#000000ff', }} />
-                  </View>
-
-                  <View style={styles.socialContainer}>
-                    {socials.map(platform => {
-                      const isApple = platform === 'apple';
-                      const isGoogle = platform === 'google';
-                      return (
-                        <TouchableOpacity
-                          key={platform}
-                          style={[
-                            styles.socialButton,
-                            isGoogle && { backgroundColor: '#F5F5F5' },
-                            isApple && { backgroundColor: '#000' },
-                          ]}
-                        >
-                          <View style={styles.socialContent}>
-                            <Image
-                              source={
-                                isGoogle
-                                  ? images.google
-                                  : isApple
-                                    ? images.apple
-                                    : null
-                              }
-                              style={styles.socialIcon}
-                              resizeMode="contain"
-                            />
-                            <Text
-                              style={[
-                                styles.socialText,
-                                isApple && { color: '#fff' },
-                                isGoogle && { color: '#000' },
-                              ]}
-                            >
-                              {isGoogle
-                                ? 'Login with Google'
-                                : 'Login with Apple'}
-                            </Text>
-                          </View>
-                        </TouchableOpacity>
-                      );
-                    })}
-                  </View>
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigate({
+                        name: NavigationStrings.FORGOT_PASSWORD as keyof RootStackParamList,
+                      })
+                    }
+                  >
+                    <Text style={styles.forgotPasswordText}>
+                      Forgot Password?
+                    </Text>
+                  </TouchableOpacity>
                 </View>
-              )}
-            </Formik>
-          </View>
-          <AuthFooter
-            message="Not a member?"
-            linkText="Sign up"
-            targetScreen={NavigationStrings.SIGN_UP}
-          />
-        </ScrollView>
-      </KeyboardAvoidingView>
+
+                <Button
+                  // onPress={handleSubmit}
+
+                  title="Login"
+                  colors={[COLORS.ThemeColor, COLORS.ThemeColor]}
+                  onPress={() => {
+                    if (selectedRole === RoleType.ADMINISTRATOR) {
+                      navigate({
+                        name: NavigationStrings.BOTTOM_STACK as keyof RootStackParamList,
+                        params: {
+                          screen: NavigationStrings.HOME_STACK, params: { screen: NavigationStrings.BOOK_KITCHEN },
+                        }
+                      }
+                      );
+                    } else {
+                      navigate({
+                        name: NavigationStrings.BOTTOM_STACK as keyof RootStackParamList,
+                      }
+                      );
+                    }
+                  }}
+                />
+
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: SIZES.margin }} >
+                  <View style={{ marginHorizontal: SIZES.margin, flex: 1, height: 1, backgroundColor: '#000000ff', }} />
+                  <Text style={styles.continueWith}>or continue with</Text>
+                  <View style={{ marginHorizontal: SIZES.margin, flex: 1, height: 1, backgroundColor: '#000000ff', }} />
+                </View>
+
+                <View style={styles.socialContainer}>
+                  {socials.map(platform => {
+                    const isApple = platform === 'apple';
+                    const isGoogle = platform === 'google';
+                    return (
+                      <TouchableOpacity
+                        key={platform}
+                        style={[
+                          styles.socialButton,
+                          isGoogle && { backgroundColor: '#F5F5F5' },
+                          isApple && { backgroundColor: '#000' },
+                        ]}
+                      >
+                        <View style={styles.socialContent}>
+                          <Image
+                            source={
+                              isGoogle
+                                ? images.google
+                                : isApple
+                                  ? images.apple
+                                  : null
+                            }
+                            style={styles.socialIcon}
+                            resizeMode="contain"
+                          />
+                          <Text
+                            style={[
+                              styles.socialText,
+                              isApple && { color: '#fff' },
+                              isGoogle && { color: '#000' },
+                            ]}
+                          >
+                            {isGoogle
+                              ? 'Login with Google'
+                              : 'Login with Apple'}
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
+              </View>
+            )}
+          </Formik>
+        </View>
+        <AuthFooter
+          message="Not a member?"
+          linkText="Sign up"
+          targetScreen={NavigationStrings.SIGN_UP}
+        />
+      </ScrollView>
+
       {loading && <Loader />}
     </Container>
   );

@@ -37,7 +37,7 @@ const data: KitchenData[] = [
 
 const LocationCards: React.FC<CardsProps> = ({ onExplore }) => {
   const renderItem = ({ item }: { item: KitchenData }) => (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={() => onExplore?.(item.id)}>
       <Image source={item.image} style={styles.image} resizeMode="cover" />
       <View style={styles.content}>
         <Text style={styles.title}>{item.title}</Text>
@@ -47,7 +47,7 @@ const LocationCards: React.FC<CardsProps> = ({ onExplore }) => {
           title='Explore Kitchen' style={styles.button}></Button>
 
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
   return (

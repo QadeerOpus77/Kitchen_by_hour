@@ -5,12 +5,10 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
   },
-  scrollContainer: {
-    // paddingVertical: SIZES.padding,
-  },
+  scrollContainer: {},
   listContainer: {
     paddingHorizontal: SIZES.padding,
-    paddingVertical: SIZES.padding * 0.5,
+    paddingBottom: SIZES.padding * 0.5,
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',

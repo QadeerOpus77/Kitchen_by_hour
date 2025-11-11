@@ -1,4 +1,4 @@
-import { View, Text, Image, ScrollView } from 'react-native'
+import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Button, Container, Header, } from '../../Components'
 import { images } from '../../constant'
@@ -30,9 +30,21 @@ const BookKitchen = () => {
                     <Button style={style.formBtn} title='Fill up Your Form'
                     ></Button>
                 </View>
-                <Text style={style.title}>
-                    My Bookings
-                </Text>
+                <View style={style.titlerow}>
+                    <Text style={style.title}>
+                        My Bookings
+                    </Text>
+                    <TouchableOpacity onPress={() =>
+                        navigate({
+                            name: NavigationStrings.BOOKING_STACK as keyof RootStackParamList,
+                            params: {
+                                screen: NavigationStrings.MY_BOOKINGS
+                            }
+                        })
+                    }>
+                        <Text style={style.viewall}>View All</Text>
+                    </TouchableOpacity>
+                </View>
 
                 {/* Show booked kitchens if they exist, otherwise show empty state */}
                 {bookedKitchens.length > 0 ? (
@@ -53,7 +65,7 @@ const BookKitchen = () => {
                                     navigate({
                                         name: NavigationStrings.BOOKING_STACK as keyof RootStackParamList,
                                         params: {
-                                            screen: NavigationStrings.MY_BOOKINGS
+                                            screen: NavigationStrings.BOOKING_DETAIL
                                         }
                                     })
                                 }

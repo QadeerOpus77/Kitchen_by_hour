@@ -10,6 +10,11 @@ export default StyleSheet.create({
   },
   title: {
     ...FONTS.Medium15,
+    // paddingHorizontal: SIZES.padding,
+    paddingVertical: SIZES.padding,
+  },
+  title2: {
+    ...FONTS.Medium15,
     paddingHorizontal: SIZES.padding,
     paddingVertical: SIZES.padding,
   },

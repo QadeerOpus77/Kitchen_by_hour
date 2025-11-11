@@ -1,6 +1,7 @@
 import { KitchenCards } from '../screens/types';
 import { images } from '../constant';
 import NavigationStrings from '../navigation/NavigationStrings';
+import { RootStackParamList } from '../navigation/types/RootStackParamList';
 
 export const kitchenCardData: KitchenCards[] = [
   {
@@ -153,7 +154,10 @@ export const menuItems = [
     id: 4,
     label: 'My Booking',
     icon: images.bookings,
-    navigateTo: NavigationStrings.MY_BOOKINGS,
+    navigateTo: {
+      stack: NavigationStrings.BOOKING_STACK as keyof RootStackParamList,
+      screen: NavigationStrings.MY_BOOKINGS,
+    },
   },
   {
     id: 5,

@@ -128,7 +128,7 @@ export default StyleSheet.create({
   rightIcon: {
     color: COLORS.ThemeColor,
     width: SIZES.h24,
-    height: SIZES.h25,
+    height: SIZES.h20,
     resizeMode: 'contain',
     tintColor: COLORS.ThemeColor,
   },

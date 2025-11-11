@@ -13,6 +13,7 @@ export default StyleSheet.create({
     paddingTop: SIZES.padding,
     paddingBottom: SIZES.height * 0.1,
     flex: 1,
+    backgroundColor: COLORS.lightgray,
   },
   chatIcon: {
     width: SIZES.large * 3,
