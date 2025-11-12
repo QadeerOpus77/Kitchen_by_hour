@@ -234,42 +234,42 @@ const Payment = () => {
                     </View>
                 </CustomModal>
 
-                {/* 🎉 Thank You Modal */}
-                {showThanks && (
-                    <Animated.View
-                        style={{
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            backgroundColor: 'rgba(0,0,0,0.5)',
-                            opacity: thanksAnim,
-                            zIndex: 999,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Animated.View
-                            style={[
-                                style.thankYouContainer,
-                                {
-                                    transform: [{ scale: thanksScale }],
-                                },
-                            ]}
-                        >
-                            <Image source={images.thankYou} style={style.thankYouImg} />
-                            <Text style={style.thankYou}>Thank you for booking a kitchen!</Text>
-                            <Text style={style.thankYouDesc}>
-                                This is dummy copy. It is not meant to be read. It has been placed here solely to demonstrate.
-                            </Text>
-
-                            <Button title="Close" style={style.button} onPress={handleThankYouClose} />
-                        </Animated.View>
-                    </Animated.View>
-                )}
                 <Button title="Confirm Payment" style={style.button} onPress={handleThanks} />
             </Container>
+            {/* 🎉 Thank You Modal */}
+            {showThanks && (
+                <Animated.View
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(0,0,0,0.5)',
+                        opacity: thanksAnim,
+                        zIndex: 999,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Animated.View
+                        style={[
+                            style.thankYouContainer,
+                            {
+                                transform: [{ scale: thanksScale }],
+                            },
+                        ]}
+                    >
+                        <Image source={images.thankYou} style={style.thankYouImg} />
+                        <Text style={style.thankYou}>Thank you for booking a kitchen!</Text>
+                        <Text style={style.thankYouDesc}>
+                            This is dummy copy. It is not meant to be read. It has been placed here solely to demonstrate.
+                        </Text>
+
+                        <Button title="Close" style={style.button} onPress={handleThankYouClose} />
+                    </Animated.View>
+                </Animated.View>
+            )}
 
         </Container>
     );

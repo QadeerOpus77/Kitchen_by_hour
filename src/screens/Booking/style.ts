@@ -142,10 +142,11 @@ export default StyleSheet.create({
   },
   thankYouContainer: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    height: SIZES.height,
+    backgroundColor: COLORS.blue,
     justifyContent: 'center',
     alignContent: 'center',
-    // width: 'auto',
+    paddingTop: SIZES.padding,
   },
   thankYou: {
     ...FONTS.Bold23,
