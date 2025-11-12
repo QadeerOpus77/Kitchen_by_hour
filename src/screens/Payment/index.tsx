@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, Alert, Animated } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Alert, Animated, Platform } from 'react-native'
 import React, { useRef, useState, useEffect } from 'react'
 import { BackHeader, Button, Container, KitchenCards } from '../../Components'
 import style from './style'
@@ -9,6 +9,7 @@ import { TextInput } from 'react-native-gesture-handler'
 import { navigate } from '../../navigation/Stack/NavigationRef'
 import NavigationStrings from '../../navigation/NavigationStrings'
 import { RootStackParamList } from '../../navigation/types/RootStackParamList'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 const Payment = () => {
     const [showCardModal, setShowCardModal] = useState(false);
@@ -140,6 +141,7 @@ const Payment = () => {
                 </View>
 
                 {/* 💳 Add Card Modal */}
+
                 <CustomModal
                     isVisible={showCardModal}
                     title="Add Card Details"

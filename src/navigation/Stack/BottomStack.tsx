@@ -120,9 +120,9 @@ export default function BottomStack(): React.JSX.Element {
         options={{ headerShown: false }}
       />
       <CurvedBottomBar.Screen
-        name={NavigationStrings.CALENDER}
+        name={NavigationStrings.AVAILABILITY}
         position="LEFT"
-        component={Screens.Calender}
+        component={Screens.Avaliblity}
         options={{ headerShown: false }}
       />
       <CurvedBottomBar.Screen
@@ -152,7 +152,7 @@ const getTabIcon = (routeName: string): any => {
   switch (routeName) {
     case NavigationStrings.HOME_STACK:
       return images.home;
-    case NavigationStrings.CALENDER:
+    case NavigationStrings.AVAILABILITY:
       return images.calender;
     case NavigationStrings.BOOKED_STACK:
       return images.checkIn;
@@ -169,7 +169,7 @@ const getTabLabel = (routeName: string): string => {
   switch (routeName) {
     case NavigationStrings.HOME_STACK:
       return 'Home';
-    case NavigationStrings.CALENDER:
+    case NavigationStrings.AVAILABILITY:
       return 'Calender';
     case NavigationStrings.BOOKED_STACK:
       return 'Check In';
@@ -239,6 +239,6 @@ const styles = StyleSheet.create({
     color: COLORS.gray,
   },
   activeText: {
-    color: COLORS.black,
+    color: COLORS.ThemeColor,
   },
 });

@@ -6,6 +6,7 @@ import {
     Switch,
     TouchableOpacity,
     ScrollView,
+
 } from 'react-native';
 import { BackHeader, Button, Container, showToast } from '../../Components';
 import { COLORS, SIZES, images } from '../../constant';
@@ -16,6 +17,7 @@ import { RootStackParamList } from '../../navigation/types/RootStackParamList';
 import { menuItems } from '../../config';
 import { useRoleState } from '../../redux/Hook/useRole';
 import CustomModal from '../../Components/CustomModal';
+
 
 // Define a flexible navigation type that supports both flat and nested navigation
 type NavigationTarget =
@@ -167,7 +169,8 @@ const Profile = () => {
             />
 
             {/* ===== Deactivate Modal ===== */}
-            <CustomModal
+
+            {/* <CustomModal
                 isVisible={isModalVisible}
                 onClose={() => setIsModalVisible(false)}
                 title="Are you sure you want to deactivate your account?"
@@ -181,7 +184,8 @@ const Profile = () => {
                 style={styles.modalCard}
                 iconStyle={styles.modalIcon}
                 IconConatinerStyle={styles.iconContainer}
-            />
+            /> */}
+
         </Container>
     );
 };

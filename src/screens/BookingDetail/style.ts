@@ -3,13 +3,18 @@ import { FONTS, SIZES, COLORS, commonStyles } from '../../constant';
 
 export default StyleSheet.create({
   container: {
+    backgroundColor: COLORS.lightgray,
     flex: 1,
   },
   subContainer: {
+    paddingVertical: SIZES.padding,
     paddingHorizontal: SIZES.padding,
     backgroundColor: COLORS.lightgray,
-    paddingVertical: SIZES.padding / 2,
-    flex: 1,
+    // flex: 1,
+  },
+  cardContainer: {
+    paddingHorizontal: SIZES.padding,
+    backgroundColor: COLORS.lightgray,
   },
   addressContainer: {
     flexDirection: 'row',

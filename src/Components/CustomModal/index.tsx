@@ -17,6 +17,8 @@ import {
 import { BlurView } from '@react-native-community/blur';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './style';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { COLORS } from '../../constant';
 
 interface CustomModalProps {
     isVisible: boolean;
@@ -80,50 +82,60 @@ const CustomModal: React.FC<CustomModalProps> = ({
 
     const translateY = slideAnim.interpolate({
         inputRange: [0, 1],
-        outputRange: [height, 0],
+        outputRange: [0, height / 2.5],
     });
 
     if (!isVisible) return null;
 
     const Content = (
+
         <SafeAreaView style={styles.safeArea}>
-            <Animated.View
-                style={[
-                    styles.modalCard,
-                    style,
-                    {
-                        transform: [{ translateY }],
-                        maxHeight: height * 0.7,
-                    },
-                ]}
+            <KeyboardAwareScrollView
+                style={{ flex: 1, }}
+                contentContainerStyle={{ paddingBottom: 20 }}
+                enableOnAndroid={true}
+                extraScrollHeight={Platform.OS === 'ios' ? 40 : 0}
+                keyboardShouldPersistTaps="handled"
             >
-                {icon && (
-                    <TouchableOpacity style={IconConatinerStyle} onPress={onClose}>
-                        <Image source={icon} style={iconStyle} />
-                    </TouchableOpacity>
-                )}
 
-                {title && <Text style={titleStyle}>{title}</Text>}
-                {description && <Text style={infoStyle}>{description}</Text>}
+                <Animated.View
+                    style={[
+                        styles.modalCard,
+                        style,
+                        {
+                            transform: [{ translateY }],
+                            maxHeight: height * 0.7,
+                        },
+                    ]}
+                >
+                    {icon && (
+                        <TouchableOpacity style={IconConatinerStyle} onPress={onClose}>
+                            <Image source={icon} style={iconStyle} />
+                        </TouchableOpacity>
+                    )}
 
-                {children}
+                    {title && <Text style={titleStyle}>{title}</Text>}
+                    {description && <Text style={infoStyle}>{description}</Text>}
 
-                {showConfirmButton && (
-                    <TouchableOpacity
-                        style={styles.modalPrimaryButton}
-                        activeOpacity={0.8}
-                        onPress={onConfirm}
-                    >
-                        <Text style={styles.confirmText}>{confirmText}</Text>
-                    </TouchableOpacity>
-                )}
+                    {children}
 
-                {showCancelButton && (
-                    <TouchableOpacity onPress={onClose} activeOpacity={0.7}>
-                        <Text style={styles.modalCancelButton}>{cancelText}</Text>
-                    </TouchableOpacity>
-                )}
-            </Animated.View>
+                    {showConfirmButton && (
+                        <TouchableOpacity
+                            style={styles.modalPrimaryButton}
+                            activeOpacity={0.8}
+                            onPress={onConfirm}
+                        >
+                            <Text style={styles.confirmText}>{confirmText}</Text>
+                        </TouchableOpacity>
+                    )}
+
+                    {showCancelButton && (
+                        <TouchableOpacity onPress={onClose} activeOpacity={0.7}>
+                            <Text style={styles.modalCancelButton}>{cancelText}</Text>
+                        </TouchableOpacity>
+                    )}
+                </Animated.View>
+            </KeyboardAwareScrollView>
         </SafeAreaView>
     );
 
