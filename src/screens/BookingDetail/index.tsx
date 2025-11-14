@@ -4,9 +4,12 @@ import {
     View, Text, Image, TouchableOpacity, FlatList, StyleSheet,
     Alert, Modal, Pressable, Dimensions
 } from 'react-native';
-import DocumentPicker, {
-    isCancel, isInProgress, types, DocumentPickerResponse,
-} from 'react-native-document-picker';
+import {
+    pick,
+    types,
+    DocumentPickerResponse,
+} from '@react-native-documents/picker';
+
 import { BackHeader, Button, Container, KitchenCards } from '../../Components';
 import style from './style';
 import { kitchenCardData } from '../../config';
@@ -27,7 +30,8 @@ const BookingDetail = () => {
     async function pickDocuments(): Promise<void> {
         try {
             setBusy(true);
-            const results = await DocumentPicker.pick({
+
+            const results = await pick({
                 allowMultiSelection: true,
                 copyTo: 'cachesDirectory',
                 type: [types.images, types.pdf],
@@ -36,18 +40,20 @@ const BookingDetail = () => {
 
             const normalized: Picked[] = results.map(r => ({
                 ...r,
-                stableUri: r.fileCopyUri ?? r.uri,
+                stableUri: r.uri ?? r.uri,
             }));
 
             setFiles(prev => [...prev, ...normalized]);
-        } catch (err: unknown) {
-            if (isCancel(err) || isInProgress(err)) return;
-            console.error('DocumentPicker error', err);
-            Alert.alert('Error', 'Failed to pick document(s).');
+
+        } catch (err: any) {
+            // This library DOES NOT offer isCancel or isInProgress, so we handle generically:
+            console.error('DocumentPicker error:', err);
+            Alert.alert('Canceled', 'Failed to pick document(s).');
         } finally {
             setBusy(false);
         }
     }
+
 
     function removeAt(idx: number): void {
         setFiles(prev => prev.filter((_, i) => i !== idx));

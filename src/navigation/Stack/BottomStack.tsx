@@ -159,7 +159,7 @@ const getTabIcon = (routeName: string): any => {
     case NavigationStrings.ALERTS:
       return images.alerts;
     case NavigationStrings.PROFILE_STACK:
-      return images.user;
+      return images.personal;
     default:
       return images.home;
   }

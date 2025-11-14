@@ -71,21 +71,6 @@ const Profile = () => {
         <Container scroll={true} style={styles.container}>
             {/* ===== Header ===== */}
             <BackHeader title="Profile" titleColor="black" backgroundColor="white" />
-
-            {/* ===== Profile Section ===== */}
-            <View style={styles.profileContainer}>
-                <View style={styles.imageWrapper}>
-                    <Image source={images.user} style={styles.profileImage} />
-                    {/* <TouchableOpacity style={styles.editIcon}>
-                        <Image source={images.camera} style={styles.cameraicon} />
-                    </TouchableOpacity> */}
-                </View>
-                <View style={styles.User}>
-                    <Text style={styles.name}>Glenn Powell</Text>
-                    <Text style={styles.email}>glennpowell@example.com</Text>
-                </View>
-            </View>
-
             {/* ===== Menu ===== */}
             <ScrollView
                 contentContainerStyle={{
@@ -94,6 +79,20 @@ const Profile = () => {
                 }}
                 showsVerticalScrollIndicator={false}
             >
+                {/* ===== Profile Section ===== */}
+                <View style={styles.profileContainer}>
+                    <View style={styles.imageWrapper}>
+                        <Image source={images.user} style={styles.profileImage} />
+                        {/* <TouchableOpacity style={styles.editIcon}>
+                        <Image source={images.camera} style={styles.cameraicon} />
+                    </TouchableOpacity> */}
+                    </View>
+                    <View style={styles.User}>
+                        <Text style={styles.name}>Glenn Powell</Text>
+                        <Text style={styles.email}>glennpowell@example.com</Text>
+                    </View>
+                </View>
+
                 <View>
                     {menuItems.map((item) => {
                         const Wrapper: any =

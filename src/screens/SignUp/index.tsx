@@ -70,7 +70,7 @@ const SignUp: React.FC<SignInProps> = ({ route }) => {
   return (
     <KeyboardAwareScrollView
       style={{ flex: 1, backgroundColor: COLORS.white }}
-      contentContainerStyle={{ paddingBottom: 40 }}
+      contentContainerStyle={{ paddingBottom: 0 }}
       enableOnAndroid={true}
       extraScrollHeight={Platform.OS === 'ios' ? 80 : 150}
       keyboardShouldPersistTaps="handled"

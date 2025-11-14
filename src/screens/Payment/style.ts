@@ -31,6 +31,7 @@ export default StyleSheet.create({
   address: {
     ...FONTS.Regular10,
     color: COLORS.gray,
+    paddingHorizontal: SIZES.padding / 2,
   },
   paymentRow: {
     flexDirection: 'row',
@@ -179,7 +180,7 @@ export default StyleSheet.create({
     backgroundColor: COLORS.white,
     justifyContent: 'center',
     alignContent: 'center',
-    width: 'auto',
+    width: SIZES.width,
   },
   thankYou: {
     ...FONTS.Bold26,

@@ -143,7 +143,8 @@ export default StyleSheet.create({
   thankYouContainer: {
     flex: 1,
     height: SIZES.height,
-    backgroundColor: COLORS.blue,
+    width: SIZES.width,
+    backgroundColor: COLORS.white,
     justifyContent: 'center',
     alignContent: 'center',
     paddingTop: SIZES.padding,

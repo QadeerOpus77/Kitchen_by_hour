@@ -82,7 +82,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
 
     const translateY = slideAnim.interpolate({
         inputRange: [0, 1],
-        outputRange: [0, height / 2.5],
+        outputRange: [0, height],
     });
 
     if (!isVisible) return null;
@@ -137,6 +137,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
                 </Animated.View>
             </KeyboardAwareScrollView>
         </SafeAreaView>
+
     );
 
     return (

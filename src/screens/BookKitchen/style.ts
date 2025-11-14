@@ -14,8 +14,9 @@ export default StyleSheet.create({
   location: {
     backgroundColor: COLORS.lightgray,
     borderRadius: SIZES.radius,
-    paddingVertical: SIZES.padding / 2,
-    marginHorizontal: SIZES.margin,
+    paddingVertical: SIZES.padding / 3,
+    marginHorizontal: SIZES.margin * 2,
+    marginVertical: SIZES.margin / 2,
   },
   locationTxt: {
     ...FONTS.Regular10,

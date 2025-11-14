@@ -18,8 +18,9 @@ export default StyleSheet.create({
     padding: SIZES.padding,
     borderTopLeftRadius: SIZES.radius * 2,
     borderTopRightRadius: SIZES.radius * 2,
-    // position: 'absolute',
-    // bottom: 0,
+    position: 'absolute',
+    bottom: 0,
+    marginBottom: SIZES.margin * 4,
     width: '100%',
   },
   modalTitle: {

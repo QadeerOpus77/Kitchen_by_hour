@@ -36,6 +36,7 @@ export default StyleSheet.create({
   address: {
     ...FONTS.Regular10,
     color: COLORS.gray,
+    paddingHorizontal: SIZES.padding / 2,
   },
   title: {
     ...FONTS.Medium13,
