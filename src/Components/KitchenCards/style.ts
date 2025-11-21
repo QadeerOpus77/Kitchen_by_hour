@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { StyleSheet } from 'react-native';
 import { FONTS, SIZES, COLORS, commonStyles } from '../../constant';
 import { panHandlerName } from 'react-native-gesture-handler/lib/typescript/handlers/PanGestureHandler';
@@ -14,6 +15,8 @@ const styles = StyleSheet.create({
   title: {
     ...FONTS.Medium14,
     textAlign: 'center',
+        color:COLORS.black
+
   },
   priceContainer: {
     flexDirection: 'row',

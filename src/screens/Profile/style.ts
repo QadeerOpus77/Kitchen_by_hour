@@ -46,11 +46,14 @@ const styles = StyleSheet.create({
   name: {
     ...FONTS.Regular16,
     marginHorizontal: SIZES.margin / 2,
+        color:COLORS.black
+
   },
   email: {
     marginHorizontal: SIZES.margin / 2,
     ...FONTS.Regular10,
     color: COLORS.ThemeColor,
+
   },
 
   menuItem: {
@@ -73,6 +76,8 @@ const styles = StyleSheet.create({
   menuLabel: {
     ...FONTS.Regular11,
     marginTop: SIZES.margin / 5,
+        color:COLORS.black
+
   },
   arrow: {
     width: SIZES.large,

@@ -1,4 +1,4 @@
-import { CodegenTypes, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SIZES, COLORS, FONTS, commonStyles } from '../../constant';
 
 const styles = StyleSheet.create({
@@ -32,10 +32,14 @@ const styles = StyleSheet.create({
   },
   title: {
     ...FONTS.Medium16,
+    color:COLORS.black
+    
   },
   address: {
     ...FONTS.Medium10,
     marginBottom: SIZES.h10,
+        color:COLORS.black
+
   },
   description: {
     ...FONTS.Regular10,

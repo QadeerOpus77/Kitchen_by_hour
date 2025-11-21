@@ -1,6 +1,7 @@
+ 
 import { StyleSheet } from 'react-native';
 import { SIZES, COLORS, FONTS } from '../../constant';
-import { Container } from '../../Components';
+
 
 export default StyleSheet.create({
   container: {
@@ -12,9 +13,11 @@ export default StyleSheet.create({
     ...FONTS.Medium15,
     // paddingHorizontal: SIZES.padding,
     paddingVertical: SIZES.padding,
+    color:COLORS.black
   },
   title2: {
     ...FONTS.Medium15,
+    color:COLORS.black,
     paddingHorizontal: SIZES.padding,
     paddingVertical: SIZES.padding,
   },

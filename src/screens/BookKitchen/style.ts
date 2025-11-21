@@ -21,6 +21,7 @@ export default StyleSheet.create({
   locationTxt: {
     ...FONTS.Regular10,
     textAlign: 'center',
+    color:COLORS.black
   },
   titlerow: {
     flexDirection: 'row',
@@ -30,6 +31,8 @@ export default StyleSheet.create({
   title: {
     ...FONTS.Medium16,
     marginVertical: SIZES.margin,
+        color:COLORS.black
+
   },
   viewall: {
     color: COLORS.ThemeColor,

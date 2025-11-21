@@ -15,6 +15,8 @@ export default StyleSheet.create({
   },
   text: {
     ...FONTS.Medium12,
+        color:COLORS.black
+
   },
   activeCard: {
     backgroundColor: COLORS.ThemeColor,

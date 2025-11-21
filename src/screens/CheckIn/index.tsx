@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useMemo, useState } from 'react';
 import { View, Text, ImageBackground, FlatList, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -174,12 +175,14 @@ const CheckIn = () => {
 
                 <View style={style.valueRow}>
                   <View style={style.checkInTime}>
-                    <Text>{item.checkIn ?? '—'}</Text>
+                    <Text style={{    color:COLORS.black
+}}>{item.checkIn ?? '—'}</Text>
                     <Text style={style.value}>Check in</Text>
                   </View>
 
                   <View style={style.checkInTime}>
-                    <Text>{item.checkOut ?? '—'}</Text>
+                    <Text style={{    color:COLORS.black
+}}>{item.checkOut ?? '—'}</Text>
                     <Text style={style.value}>Check out</Text>
                   </View>
                 </View>
@@ -193,7 +196,7 @@ const CheckIn = () => {
           }
         />
       </View>
-      <Image source={images.chat} style={style.chatIcon}></Image>
+      <Image source={images.chat} style={style.chatIcon} />
     </Container>
   );
 };

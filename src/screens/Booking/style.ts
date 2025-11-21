@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import { SIZES, COLORS, FONTS, commonStyles } from '../../constant';
-import SignIn from '../SignIn';
+
 
 const { height } = Dimensions.get('window');
 
@@ -33,6 +33,8 @@ export default StyleSheet.create({
   title: {
     ...FONTS.Bold18,
     marginVertical: SIZES.margin * 0.3,
+        color:COLORS.black
+
   },
   price: {
     ...FONTS.Bold15,
@@ -100,14 +102,20 @@ export default StyleSheet.create({
   bookingTitle: {
     ...FONTS.Medium14,
     marginVertical: SIZES.margin,
+        color:COLORS.black
+
   },
 
   label: {
     ...FONTS.Medium10,
     marginTop: SIZES.margin / 2,
+        color:COLORS.black
+
   },
   inputText: {
     ...FONTS.Regular10,
+        color:COLORS.black
+
   },
   inputContainer: {},
   inputBox: {
@@ -155,6 +163,8 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: SIZES.padding * 2,
+        color:COLORS.black
+
     // marginBottom: SIZES.height * 0.3,
   },
   thankYouDesc: {

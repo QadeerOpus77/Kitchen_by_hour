@@ -41,6 +41,8 @@ export default StyleSheet.create({
   title: {
     ...FONTS.Medium13,
     marginVertical: SIZES.margin,
+        color:COLORS.black
+
   },
   timeDate: {
     backgroundColor: COLORS.white,
@@ -60,6 +62,8 @@ export default StyleSheet.create({
   },
   value: {
     ...FONTS.Regular10,
+        color:COLORS.black
+
   },
   uploadBoxWrapper: {
     alignItems: 'center',

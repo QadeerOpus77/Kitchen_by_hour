@@ -54,6 +54,8 @@ const styles = StyleSheet.create({
     title: {
         ...FONTS.Medium14,
         textAlign: 'center',
+            color:COLORS.black
+
     },
     status: {
         backgroundColor: '#39FFC080',

@@ -41,6 +41,8 @@ export default StyleSheet.create({
   title: {
     ...FONTS.Medium13,
     marginVertical: SIZES.margin / 2,
+        color:COLORS.black
+
   },
   add: {
     ...FONTS.Regular10,
@@ -116,6 +118,8 @@ export default StyleSheet.create({
     ...FONTS.Medium13,
     textAlign: 'center',
     marginBottom: SIZES.margin * 0,
+        color:COLORS.black
+
   },
   modalDescription: {
     color: COLORS.gray,
@@ -149,6 +153,8 @@ export default StyleSheet.create({
   inputtitle: {
     marginVertical: SIZES.margin / 3,
     ...FONTS.Regular9_5,
+        color:COLORS.black
+
   },
 
   input: {
@@ -188,6 +194,8 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: SIZES.padding * 2,
+        color:COLORS.black
+
     // marginBottom: SIZES.height * 0.3,
   },
   thankYouDesc: {

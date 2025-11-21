@@ -1,7 +1,7 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { COLORS, commonStyles, FONTS, SIZES } from '../../constant';
 
-const { width } = Dimensions.get('window');
+
 
 const style = StyleSheet.create({
   container: {
@@ -10,7 +10,6 @@ const style = StyleSheet.create({
   },
   headerBackground: {
     height: SIZES.height * 0.25,
-
     justifyContent: 'flex-start',
     paddingTop: SIZES.padding,
     borderBottomLeftRadius: SIZES.radius * 3,
@@ -54,6 +53,8 @@ const style = StyleSheet.create({
   title: {
     ...FONTS.Medium15,
     marginVertical: SIZES.margin,
+        color:COLORS.black
+
   },
 
   timeDate: {
@@ -74,6 +75,8 @@ const style = StyleSheet.create({
   checkInTime: {},
   option: {
     ...FONTS.Regular10,
+        color:COLORS.black
+
   },
   value: {
     ...FONTS.Regular10,

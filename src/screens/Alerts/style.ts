@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
   },
   tabText: {
     ...FONTS.Regular10,
+        color:COLORS.black,
     textAlign: 'center',
   },
   tabTextActive: {

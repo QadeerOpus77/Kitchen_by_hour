@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useCallback } from 'react';
 import { View, Text, Image, TouchableOpacity, BackHandler } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
